@@ -1,6 +1,6 @@
 /**
  * 알쓰패치 교육 가이드 — 교육 허브 페이지
- * URL: aps7.net/page/hsample
+ * URL: landing1-lyart.vercel.app
  * 절충안: 기존 레이아웃/애니메이션 + 녹색 브랜드 + 협업문서 누락 섹션 추가
  */
 
@@ -26,7 +26,7 @@ import {
   BarChart3,
   Download,
 } from 'lucide-react';
-import heroImg from './assets/nonflush.png';
+import heroImg from './assets/althhero.png';
 import symbolImg from './assets/symbol.png';
 
 // --- Types ---
