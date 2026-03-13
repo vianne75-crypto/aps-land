@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>알쓰패치 강연 시나리오</title>
+<style>
+  @page {
+    size: A4;
+    margin: 14mm 16mm;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Pretendard', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    color: #1e293b;
+    font-size: 10pt;
+    line-height: 1.5;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  /* Header */
+  .header {
+    text-align: center;
+    margin-bottom: 6px;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #1a5e20;
+  }
+  .header-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 10px;
+  }
+  .header-logo .logo-box {
+    width: 28px; height: 28px;
+    background: #1a5e20;
+    border-radius: 6px;
+    display: flex; align-items: center; justify-content: center;
+    color: #fff; font-weight: 800; font-size: 14pt;
+  }
+  .header-logo span {
+    font-size: 9pt;
+    font-weight: 700;
+    color: #64748b;
+  }
+  .header h1 {
+    font-size: 20pt;
+    font-weight: 900;
+    color: #1a5e20;
+    line-height: 1.3;
+    margin-bottom: 4px;
+  }
+  .header .subtitle {
+    font-size: 11pt;
+    color: #64748b;
+    font-weight: 600;
+  }
+  .header .duration {
+    display: inline-block;
+    margin-top: 8px;
+    background: #1a5e20;
+    color: #fff;
+    font-size: 8.5pt;
+    font-weight: 700;
+    padding: 3px 14px;
+    border-radius: 20px;
+  }
+
+  /* 테이블 */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 12px;
+    font-size: 9pt;
+  }
+  thead th {
+    background: #1a5e20;
+    color: #fff;
+    font-weight: 700;
+    padding: 7px 10px;
+    text-align: left;
+    font-size: 8.5pt;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  thead th:last-child {
+    text-align: center;
+    width: 48px;
+  }
+  thead th:first-child {
+    width: 110px;
+  }
+
+  /* 행 스타일 */
+  tbody td {
+    border-bottom: 1px solid #e2e8f0;
+    padding: 6px 10px;
+    vertical-align: top;
+  }
+  tbody tr:last-child td {
+    border-bottom: none;
+  }
+
+  /* 큐 열 */
+  td.cue {
+    font-weight: 700;
+    color: #334155;
+    font-size: 8.5pt;
+    line-height: 1.4;
+    white-space: nowrap;
+  }
+
+  /* 시간 열 */
+  td.time {
+    text-align: center;
+    font-weight: 800;
+    color: #1a5e20;
+    font-size: 9pt;
+    white-space: nowrap;
+  }
+
+  /* 챕터 구분 행 */
+  tr.chapter td {
+    background: #f0fdf4;
+    border-bottom: 2px solid #a5d6a7;
+    padding-top: 8px;
+    padding-bottom: 8px;
+  }
+  tr.chapter td.cue {
+    color: #1a5e20;
+    font-size: 9.5pt;
+    font-weight: 800;
+  }
+  .chapter-label {
+    font-size: 7pt;
+    font-weight: 700;
+    color: #fff;
+    background: #1a5e20;
+    padding: 1px 6px;
+    border-radius: 3px;
+    margin-right: 4px;
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* 액션 행 (패치 관련) */
+  tr.action td {
+    background: #fffbeb;
+    border-bottom: 2px solid #fcd34d;
+  }
+  tr.action td.cue {
+    color: #92400e;
+  }
+  tr.action td.time {
+    color: #b45309;
+  }
+
+  /* 피드백/마무리 행 */
+  tr.closing td {
+    background: #faf5ff;
+    border-bottom: 2px solid #d8b4fe;
+  }
+  tr.closing td.cue {
+    color: #6b21a8;
+  }
+  tr.closing td.time {
+    color: #7c3aed;
+  }
+
+  /* 노트 내용 */
+  .note-main {
+    color: #334155;
+    line-height: 1.6;
+  }
+  .note-bullets {
+    list-style: none;
+    padding: 0;
+  }
+  .note-bullets li {
+    padding-left: 14px;
+    position: relative;
+    line-height: 1.6;
+  }
+  .note-bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+    background: #1a5e20;
+    border-radius: 50%;
+  }
+  .note-warn {
+    font-size: 7.5pt;
+    color: #dc2626;
+    font-weight: 600;
+    margin-top: 2px;
+  }
+  .note-tip {
+    font-size: 7.5pt;
+    color: #64748b;
+    font-style: italic;
+    margin-top: 2px;
+  }
+
+  /* Footer */
+  .footer-note {
+    margin-top: 12px;
+    padding: 8px 14px;
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 8px;
+    font-size: 8pt;
+    color: #64748b;
+    line-height: 1.6;
+    display: flex;
+    gap: 20px;
+  }
+  .footer-note strong {
+    color: #334155;
+  }
+
+  .footer {
+    text-align: center;
+    font-size: 7pt;
+    color: #94a3b8;
+    margin-top: 10px;
+    padding-top: 6px;
+    border-top: 1px solid #e2e8f0;
+  }
+
+  /* 인쇄 안내 바 */
+  .print-bar {
+    background: #1a5e20;
+    color: #fff;
+    text-align: center;
+    padding: 12px 20px;
+    font-size: 11pt;
+    font-weight: 600;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+  .print-bar button {
+    background: #fff;
+    color: #1a5e20;
+    border: none;
+    padding: 6px 20px;
+    border-radius: 6px;
+    font-weight: 700;
+    font-size: 10pt;
+    cursor: pointer;
+  }
+  .print-bar button:hover { background: #e8f5e9; }
+
+  @media print {
+    body { margin: 0; padding-bottom: 0; }
+    .print-bar { display: none; }
+  }
+</style>
+</head>
+<body style="padding-bottom: 50px;">
+
+<!-- Header -->
+<div class="header">
+  <div class="header-logo">
+    <div class="logo-box">A</div>
+    <span>APS 알쓰패치솔루션 · 강연 시나리오</span>
+  </div>
+  <h1>한국 사람 3명중 1명은<br>술 마시면 안되는 체질?</h1>
+  <div class="subtitle">부제 : 술과 알데히드 이야기</div>
+  <div class="duration">총 55 ~ 60분 강연</div>
+</div>
+
+<!-- 시나리오 테이블 -->
+<table>
+  <thead>
+    <tr>
+      <th>큐</th>
+      <th>진행 내용</th>
+      <th>시간</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- 도입부 -->
+    <tr>
+      <td class="cue">사전 영상</td>
+      <td class="note-main">
+        '우리가 미처 몰랐던 술과 알데히드 이야기' 영상 연속 재생
+        <div class="note-tip">참여자 입장 시부터 틀어두면 자연스러운 분위기 조성</div>
+      </td>
+      <td class="time">7분</td>
+    </tr>
+
+    <tr class="action">
+      <td class="cue">패치 배부</td>
+      <td class="note-main">
+        알쓰 패치 배부
+        <div class="note-warn">※ "패치를 아직 개봉하지 말라"고 반드시 안내</div>
+      </td>
+      <td class="time">3분</td>
+    </tr>
+
+    <tr>
+      <td class="cue">친밀감 형성</td>
+      <td class="note-main">
+        참여자 관계 형성 — 청강 이유 질문, 건강 염려, 음주플러싱 경험, 주량 등
+      </td>
+      <td class="time">2분</td>
+    </tr>
+
+    <tr>
+      <td class="cue">패치·연자 소개</td>
+      <td>
+        <ul class="note-bullets">
+          <li>연자와 알쓰패치 소개 (기능, 정확도, 특허 및 인증, 대학병원 공동연구)</li>
+        </ul>
+        <div class="note-warn">※ 사용상 주의사항 안내</div>
+      </td>
+      <td class="time">3분</td>
+    </tr>
+
+    <tr class="action">
+      <td class="cue">패치 부착</td>
+      <td>
+        <span class="note-main">단계별로 함께 해보면서 안내 및 <strong>7분 타이머</strong> 설정</span>
+        <div class="note-warn">※ 부착 전 온도센서 확인 · 진행 보조 필요 · 부착 후 센서 확인</div>
+      </td>
+      <td class="time">3분</td>
+    </tr>
+
+    <!-- 챕터 1 -->
+    <tr class="chapter">
+      <td class="cue"><span class="chapter-label">CH.1</span> 발암물질<br>술과 알데히드</td>
+      <td>
+        <ul class="note-bullets">
+          <li>에탄올의 특성, 아세트알데히드</li>
+          <li>암발생의 원리 ①</li>
+          <li>암발생의 원리 ②</li>
+        </ul>
+      </td>
+      <td class="time">7분</td>
+    </tr>
+
+    <tr class="action">
+      <td class="cue">피부 반응<br>1차 확인</td>
+      <td>
+        <ul class="note-bullets">
+          <li>1차 판정, 판정 방법 안내, 양성 반응자 확인</li>
+        </ul>
+        <div class="note-warn">※ 위음성 의심군 연장 &amp; 10분 관찰 타이머 설정</div>
+      </td>
+      <td class="time">3분</td>
+    </tr>
+
+    <!-- 챕터 2 -->
+    <tr class="chapter">
+      <td class="cue"><span class="chapter-label">CH.2</span> 아시안플러시</td>
+      <td>
+        <ul class="note-bullets">
+          <li>효소결핍과 음주 위험체질</li>
+          <li>붉어지는 사람 vs 하얘지는 사람</li>
+        </ul>
+      </td>
+      <td class="time">5분</td>
+    </tr>
+
+    <!-- 챕터 3 -->
+    <tr class="chapter">
+      <td class="cue"><span class="chapter-label">CH.3</span> 술을 왜<br>좋아할까?</td>
+      <td>
+        <ul class="note-bullets">
+          <li>알코올과 도파민, 그리고 도파밍</li>
+          <li>중독의 핵심 요소 (수용체와 내성)</li>
+        </ul>
+      </td>
+      <td class="time">5분</td>
+    </tr>
+
+    <tr class="action">
+      <td class="cue">피부 반응<br>2차 확인</td>
+      <td>
+        <ul class="note-bullets">
+          <li>타이머 울리면 양성반응 다시 질문</li>
+          <li>효소 반응별 질병 위험도 소개</li>
+        </ul>
+      </td>
+      <td class="time">3분</td>
+    </tr>
+
+    <tr>
+      <td class="cue">AUDIT-K</td>
+      <td>
+        <ul class="note-bullets">
+          <li>알쓰 사용자 알코올 사용 장애 AUDIT 실시</li>
+        </ul>
+      </td>
+      <td class="time">3분</td>
+    </tr>
+
+    <tr>
+      <td class="cue">결과 검토</td>
+      <td class="note-main">
+        AUDIT 중독 위험 결과 검토, 2~3명 참여
+        <div class="note-tip">연자 또는 보조 진행자가 진행 가능</div>
+      </td>
+      <td class="time">1분</td>
+    </tr>
+
+    <!-- 챕터 4 -->
+    <tr class="chapter">
+      <td class="cue"><span class="chapter-label">CH.4</span> 나는<br>중독일까?</td>
+      <td>
+        <ul class="note-bullets">
+          <li>중독의 정의, 중독과 중독사회 인정하기</li>
+          <li>선택적 도파밍과 도파민 디톡스, 그리고 관계의 기쁨</li>
+        </ul>
+      </td>
+      <td class="time">5분</td>
+    </tr>
+
+    <!-- 마무리 -->
+    <tr class="closing">
+      <td class="cue">피드백</td>
+      <td class="note-main">
+        피드백 요청 — 무엇을 인지했는지, 무엇을 느꼈는지
+      </td>
+      <td class="time">2분</td>
+    </tr>
+
+    <tr class="closing">
+      <td class="cue">슬로건<br>빈칸 맞추기</td>
+      <td class="note-main">
+        <strong>'모든 술은 (<u>&nbsp;발암물질&nbsp;</u>)이다!'</strong><br>
+        <strong>'중독 피하려면 (<u>&nbsp;도파민&nbsp;</u>) 쉬게하자.'</strong>
+      </td>
+      <td class="time">2분</td>
+    </tr>
+
+  </tbody>
+</table>
+
+<!-- 하단 안내 -->
+<div class="footer-note">
+  <div>
+    <strong>총 소요 시간:</strong> 55 ~ 60분
+  </div>
+  <div>
+    <strong>추가 옵션:</strong> 만족도 조사 또는 인지설문 추가 가능 (QR코드 or 스티커 보드)
+  </div>
+</div>
+
+<!-- Footer -->
+<div class="footer">
+  &copy; 2026 (주)웰니스컴퍼니올리브 &middot; APS 알쓰패치솔루션 &middot; aps7.net &middot; TEL 1544-5291
+</div>
+
+<!-- 인쇄 안내 바 (인쇄 시 숨김) -->
+<div class="print-bar">
+  PDF로 저장하려면 Ctrl+P (Mac: Cmd+P)를 누르고 "PDF로 저장"을 선택하세요
+  <button onclick="window.print()">지금 인쇄 / PDF 저장</button>
+</div>
+
+</body>
+</html>
