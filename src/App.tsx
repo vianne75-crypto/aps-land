@@ -282,7 +282,7 @@ const Hero = () => (
             <p className="text-xs lg:text-sm text-slate-600 leading-relaxed">
               <strong>반응이 없어도 정상입니다.</strong>
               <br />
-              환경 변수에 따라 반응이 약해질 수 있습니다.
+              쉽고 재미있게 건강인식을 <strong>패치</strong> 하세요!
             </p>
           </motion.div>
         </div>
