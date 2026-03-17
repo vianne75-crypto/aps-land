@@ -29,6 +29,17 @@ import {
 import heroImg from './assets/althhero.png';
 import symbolImg from './assets/symbol.png';
 
+// --- GA4 Helper ---
+declare global {
+  interface Window { gtag?: (...args: any[]) => void; }
+}
+const trackClick = (action: string, label: string) => {
+  window.gtag?.('event', action, {
+    event_category: 'education_hub',
+    event_label: label,
+  });
+};
+
 // --- Types ---
 interface ResultType {
   id: string;
@@ -132,6 +143,7 @@ const Navbar = () => {
             href="https://www.wcolive.com/shop_goods/goods_view.htm?category=0D000000&goods_idx=2353&goods_bu_id="
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick('purchase_click', 'navbar')}
             className="bg-[#1a5e20] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2e7d32] transition-all shadow-md shadow-green-100 flex items-center gap-2"
           >
             <ShoppingCart className="w-4 h-4" />
@@ -173,6 +185,7 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-[#1a5e20] text-white px-5 py-3 rounded-xl text-center font-semibold"
+                onClick={() => trackClick('purchase_click', 'mobile_menu')}
               >
                 구매하기
               </a>
@@ -216,6 +229,7 @@ const Hero = () => (
         <div className="flex flex-wrap gap-4">
           <a
             href="#usage"
+            onClick={() => trackClick('hero_cta', 'usage_guide')}
             className="bg-[#1a5e20] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-xl shadow-green-200 flex items-center gap-3 group"
           >
             사용법 바로가기
@@ -223,6 +237,7 @@ const Hero = () => (
           </a>
           <a
             href="#videos"
+            onClick={() => trackClick('hero_cta', 'education_video')}
             className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center gap-3"
           >
             <Play className="w-5 h-5 fill-current" />
@@ -401,10 +416,16 @@ const UsageSection = () => {
               <p className="text-green-100 text-lg mb-8 leading-relaxed">
                 알쓰패치를 단순한 검사 도구가 아니라, 환경과 조건을 함께 고려해 해석해야 하는 현장형 건강증진 도구로 이해하는 기준을 정리합니다.
               </p>
-              <button className="bg-white text-[#1a5e20] px-8 py-4 rounded-2xl font-bold hover:bg-green-50 transition-all flex items-center gap-3 mx-auto lg:mx-0">
+              <a
+                href="https://www.youtube.com/watch?v=i_XU9lAgK90"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackClick('video_click', 'onboarding_series')}
+                className="bg-white text-[#1a5e20] px-8 py-4 rounded-2xl font-bold hover:bg-green-50 transition-all flex items-center gap-3 mx-auto lg:mx-0"
+              >
                 <Play className="w-5 h-5 fill-current" />
                 온보딩 영상 시청하기
-              </button>
+              </a>
             </div>
             <div className="flex-1 w-full max-w-md aspect-video rounded-3xl overflow-hidden border border-green-700 shadow-2xl">
               <iframe
@@ -412,6 +433,7 @@ const UsageSection = () => {
                 title="전문가 온보딩 시리즈"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                 allowFullScreen
+                loading="lazy"
                 className="w-full h-full"
               />
             </div>
@@ -591,6 +613,7 @@ const ResourcesSection = () => {
                     href={res.link}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackClick('resource_download', res.name)}
                     className="flex items-center justify-between p-5 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 transition-all group"
                   >
                     <div className="flex items-center gap-4">
@@ -606,14 +629,12 @@ const ResourcesSection = () => {
                   </a>
                 ))}
               </div>
-              {/* TODO: 4종 ZIP 다운로드 URL 확정 후 교체 */}
-              <a
-                href="#"
-                className="mt-6 flex items-center justify-center gap-2 w-full py-4 bg-[#1a5e20] text-white rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-lg"
+              <div
+                className="mt-6 flex items-center justify-center gap-2 w-full py-4 bg-slate-600 text-white/80 rounded-2xl font-bold text-lg cursor-default"
               >
                 <Download className="w-5 h-5" />
-                교육자료 키트 무료 다운로드
-              </a>
+                교육자료 키트 일괄 다운로드 (준비 중)
+              </div>
             </div>
 
             {/* 구매 CTA 카드 */}
@@ -629,6 +650,7 @@ const ResourcesSection = () => {
                 href="https://www.wcolive.com/shop_goods/goods_view.htm?category=0D000000&goods_idx=2353&goods_bu_id="
                 target="_blank"
                 rel="noopener noreferrer"
+                onClick={() => trackClick('purchase_click', 'resource_section')}
                 className="block w-full bg-[#1a5e20] text-white text-center py-5 rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-xl shadow-green-500/20"
               >
                 wcolive.com에서 구매하기
@@ -679,6 +701,7 @@ const SelfDiagnosisSection = () => (
             href="https://www.aps7.net/shop_contents/mytest_question_all.htm?mytest_code=aps1"
             target="_blank"
             rel="noopener noreferrer"
+            onClick={() => trackClick('self_diagnosis_click', 'diagnosis_form')}
             className="inline-flex items-center gap-2 bg-[#ff9800] text-white px-6 py-3 rounded-2xl font-bold hover:bg-[#f57c00] transition-all shadow-md"
           >
             자가진단 폼 바로가기
@@ -723,6 +746,7 @@ const PurchaseCTA = () => (
         href="https://www.wcolive.com/shop_goods/goods_view.htm?category=0D000000&goods_idx=2353&goods_bu_id="
         target="_blank"
         rel="noopener noreferrer"
+        onClick={() => trackClick('purchase_click', 'bottom_cta')}
         className="inline-block px-12 py-5 bg-white text-[#1a5e20] border-2 border-[#1a5e20] rounded-2xl font-bold text-lg hover:bg-[#1a5e20] hover:text-white transition-all shadow-lg"
       >
         wcolive.com에서 구매하기
@@ -749,8 +773,8 @@ const Footer = () => (
           &copy; 2026 Wellness Company Olive Inc. All rights reserved.
         </div>
         <div className="flex gap-8 text-xs text-slate-400 font-medium">
-          <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-slate-900 transition-colors">Terms of Service</a>
+          <a href="https://www.wcolive.com/shop_info/privacy.htm" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">개인정보처리방침</a>
+          <a href="https://www.wcolive.com/shop_info/provision.htm" target="_blank" rel="noopener noreferrer" className="hover:text-slate-900 transition-colors">이용약관</a>
         </div>
       </div>
     </div>
