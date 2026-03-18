@@ -26,7 +26,7 @@ import {
   BarChart3,
   Download,
 } from 'lucide-react';
-import heroImg from './assets/althhero.png';
+import heroImg from './assets/althhero.webp';
 import symbolImg from './assets/symbol.png';
 
 // --- GA4 Helper ---
@@ -273,6 +273,9 @@ const Hero = () => (
             src={heroImg}
             alt="알쓰패치 무반응 결과 확인"
             className="w-full h-full object-cover scale-[1.2] lg:scale-110"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
             referrerPolicy="no-referrer"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent" />
