@@ -217,7 +217,7 @@ const Hero = () => (
           </span>
           Alcohol Level Test for Health
         </div>
-        <h1 className="text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight">
+        <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight">
           알쓰패치 <br />
           <span className="text-[#1a5e20] italic">교육 가이드</span>
         </h1>
@@ -226,11 +226,11 @@ const Hero = () => (
           <br />
           7분 효소결핍 검사로 절주 교육을 혁신하세요.
         </p>
-        <div className="flex flex-wrap gap-4">
+        <div className="flex flex-col sm:flex-row gap-4">
           <a
             href="#usage"
             onClick={() => trackClick('hero_cta', 'usage_guide')}
-            className="bg-[#1a5e20] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-xl shadow-green-200 flex items-center gap-3 group"
+            className="w-full sm:w-auto bg-[#1a5e20] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-xl shadow-green-200 flex items-center justify-center gap-3 group"
           >
             사용법 바로가기
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -238,7 +238,7 @@ const Hero = () => (
           <a
             href="#videos"
             onClick={() => trackClick('hero_cta', 'education_video')}
-            className="bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center gap-3"
+            className="w-full sm:w-auto bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-3"
           >
             <Play className="w-5 h-5 fill-current" />
             교육 영상
@@ -268,7 +268,7 @@ const Hero = () => (
         transition={{ duration: 0.6, delay: 0.2 }}
         className="relative"
       >
-        <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl shadow-green-200/50 aspect-square lg:aspect-auto lg:h-[600px]">
+        <div className="relative z-10 rounded-3xl overflow-hidden shadow-2xl shadow-green-200/50 h-[280px] sm:aspect-square sm:h-auto lg:aspect-auto lg:h-[600px]">
           <img
             src={heroImg}
             alt="알쓰패치 무반응 결과 확인"
@@ -413,7 +413,7 @@ const UsageSection = () => {
           <div className="absolute inset-0 opacity-10">
             <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent" />
           </div>
-          <div className="relative z-10 p-12 lg:p-20 flex flex-col lg:flex-row items-center gap-12">
+          <div className="relative z-10 p-8 lg:p-20 flex flex-col lg:flex-row items-center gap-12">
             <div className="flex-1 text-center lg:text-left">
               <h3 className="text-3xl lg:text-4xl font-bold text-white mb-6">전문가 온보딩 시리즈</h3>
               <p className="text-green-100 text-lg mb-8 leading-relaxed">
@@ -598,7 +598,7 @@ const ResourcesSection = () => {
   return (
     <section id="resources" className="py-24">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="bg-slate-900 rounded-[48px] p-12 lg:p-20 text-white overflow-hidden relative">
+        <div className="bg-slate-900 rounded-3xl lg:rounded-[48px] p-8 lg:p-20 text-white overflow-hidden relative">
           <div className="absolute top-0 right-0 w-1/2 h-full bg-[#1a5e20]/20 blur-[120px] -z-0" />
 
           <div className="relative z-10 grid lg:grid-cols-2 gap-16 items-center">
