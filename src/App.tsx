@@ -5,7 +5,7 @@
  */
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useReducedMotion } from 'motion/react';
 import {
   Play,
   CheckCircle2,
@@ -102,6 +102,34 @@ const NAV_LINKS = [
 
 // --- Components ---
 
+const HeroFloatingCard = () => {
+  const prefersReducedMotion = useReducedMotion();
+  return (
+    <motion.div
+      animate={prefersReducedMotion ? {} : { y: [0, -10, 0] }}
+      transition={prefersReducedMotion ? {} : { duration: 4, repeat: Infinity, ease: 'easeInOut' }}
+      className="absolute bottom-4 left-4 right-4 lg:bottom-8 lg:left-8 lg:right-8 bg-white/30 backdrop-blur-md p-4 lg:p-6 rounded-2xl shadow-xl border border-white/20"
+    >
+      <div className="flex items-center gap-3 lg:gap-4 mb-2 lg:mb-3">
+        <div className="w-9 h-9 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+          <CheckCircle2 className="w-4 h-4 lg:w-6 lg:h-6 text-emerald-600" aria-hidden="true" />
+        </div>
+        <div>
+          <div className="font-bold text-slate-900 text-sm lg:text-base">정상 반응 (음성)</div>
+          <div className="text-[10px] lg:text-xs text-slate-500 font-medium tracking-wide uppercase">
+            Normal Result
+          </div>
+        </div>
+      </div>
+      <p className="text-xs lg:text-sm text-slate-600 leading-relaxed">
+        <strong>반응이 없어도 정상입니다.</strong>
+        <br />
+        쉽고 재미있게 건강인식을 <strong>패치</strong> 하세요!
+      </p>
+    </motion.div>
+  );
+};
+
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -122,7 +150,7 @@ const Navbar = () => {
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <img src={symbolImg} alt="APS" className="h-8 object-contain" />
+          <img src={symbolImg} alt="APS" className="h-8 object-contain" width="32" height="32" />
           <span className="font-bold text-xl tracking-tight text-slate-900">
             APS <span className="text-[#43a047]">알쓰패치솔루션</span>
           </span>
@@ -144,7 +172,7 @@ const Navbar = () => {
             target="_blank"
             rel="noopener noreferrer"
             onClick={() => trackClick('purchase_click', 'navbar')}
-            className="bg-[#1a5e20] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2e7d32] transition-all shadow-md shadow-green-100 flex items-center gap-2"
+            className="bg-[#1a5e20] text-white px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-[#2e7d32] transition-all shadow-md shadow-green-100 flex items-center gap-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5e20] focus-visible:ring-offset-2"
           >
             <ShoppingCart className="w-4 h-4" />
             구매하기
@@ -153,10 +181,12 @@ const Navbar = () => {
 
         {/* Mobile Toggle */}
         <button
-          className="md:hidden p-2 text-slate-900"
+          className="md:hidden p-2 text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5e20] focus-visible:ring-offset-2 rounded-lg"
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          aria-label={isMobileMenuOpen ? '메뉴 닫기' : '메뉴 열기'}
+          aria-expanded={isMobileMenuOpen}
         >
-          {isMobileMenuOpen ? <X /> : <Menu />}
+          {isMobileMenuOpen ? <X aria-hidden="true" /> : <Menu aria-hidden="true" />}
         </button>
       </div>
 
@@ -230,7 +260,7 @@ const Hero = () => (
           <a
             href="#usage"
             onClick={() => trackClick('hero_cta', 'usage_guide')}
-            className="w-full sm:w-auto bg-[#1a5e20] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-xl shadow-green-200 flex items-center justify-center gap-3 group"
+            className="w-full sm:w-auto bg-[#1a5e20] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-xl shadow-green-200 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5e20] focus-visible:ring-offset-2"
           >
             사용법 바로가기
             <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -238,7 +268,7 @@ const Hero = () => (
           <a
             href="#videos"
             onClick={() => trackClick('hero_cta', 'education_video')}
-            className="w-full sm:w-auto bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-3"
+            className="w-full sm:w-auto bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
           >
             <Play className="w-5 h-5 fill-current" />
             교육 영상
@@ -273,6 +303,8 @@ const Hero = () => (
             src={heroImg}
             alt="알쓰패치 무반응 결과 확인"
             className="w-full h-full object-cover scale-[1.2] lg:scale-110"
+            width="600"
+            height="600"
             loading="eager"
             decoding="async"
             fetchPriority="high"
@@ -281,28 +313,7 @@ const Hero = () => (
           <div className="absolute inset-0 bg-gradient-to-t from-green-900/40 to-transparent" />
 
           {/* Floating Card */}
-          <motion.div
-            animate={{ y: [0, -10, 0] }}
-            transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut' }}
-            className="absolute bottom-4 left-4 right-4 lg:bottom-8 lg:left-8 lg:right-8 bg-white/30 backdrop-blur-md p-4 lg:p-6 rounded-2xl shadow-xl border border-white/20"
-          >
-            <div className="flex items-center gap-3 lg:gap-4 mb-2 lg:mb-3">
-              <div className="w-9 h-9 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                <CheckCircle2 className="w-4 h-4 lg:w-6 lg:h-6 text-emerald-600" />
-              </div>
-              <div>
-                <div className="font-bold text-slate-900 text-sm lg:text-base">정상 반응 (음성)</div>
-                <div className="text-[10px] lg:text-xs text-slate-500 font-medium tracking-wide uppercase">
-                  Normal Result
-                </div>
-              </div>
-            </div>
-            <p className="text-xs lg:text-sm text-slate-600 leading-relaxed">
-              <strong>반응이 없어도 정상입니다.</strong>
-              <br />
-              쉽고 재미있게 건강인식을 <strong>패치</strong> 하세요!
-            </p>
-          </motion.div>
+          <HeroFloatingCard />
         </div>
 
         {/* Decorative Elements */}
@@ -503,6 +514,9 @@ const VideoCard = ({ title, desc, tags, icon: Icon, url }: any) => (
         src={`https://img.youtube.com/vi/${url?.match(/[?&]v=([^&]+)/)?.[1] || ''}/maxresdefault.jpg`}
         alt={title}
         className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+        width="480"
+        height="360"
+        loading="lazy"
         referrerPolicy="no-referrer"
       />
       <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/40 transition-colors flex items-center justify-center">
@@ -762,7 +776,7 @@ const Footer = () => (
   <footer className="bg-white border-t border-slate-100 pt-20 pb-10">
     <div className="max-w-7xl mx-auto px-6">
       <div className="flex items-center gap-2 mb-6">
-        <img src={symbolImg} alt="APS" className="h-6 object-contain" />
+        <img src={symbolImg} alt="APS" className="h-6 object-contain" width="24" height="24" />
         <span className="font-bold text-xl tracking-tight text-slate-900">
           APS <span className="text-[#43a047]">알쓰패치솔루션</span>
         </span>
