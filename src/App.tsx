@@ -258,20 +258,22 @@ const Hero = () => (
         </p>
         <div className="flex flex-col sm:flex-row gap-4">
           <a
-            href="#usage"
-            onClick={() => trackClick('hero_cta', 'usage_guide')}
+            href="https://www.wcolive.com/shop_goods/goods_view.htm?category=0D000000&goods_idx=2353&goods_bu_id="
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => trackClick('purchase_click', 'hero_cta_variant')}
             className="w-full sm:w-auto bg-[#1a5e20] text-white px-8 py-4 rounded-2xl font-bold text-lg hover:bg-[#2e7d32] transition-all shadow-xl shadow-green-200 flex items-center justify-center gap-3 group focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#1a5e20] focus-visible:ring-offset-2"
           >
-            사용법 바로가기
-            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <ShoppingCart className="w-5 h-5" aria-hidden="true" />
+            지금 구매하기
           </a>
           <a
-            href="#videos"
-            onClick={() => trackClick('hero_cta', 'education_video')}
+            href="#usage"
+            onClick={() => trackClick('hero_cta', 'usage_guide_variant')}
             className="w-full sm:w-auto bg-white text-slate-900 border border-slate-200 px-8 py-4 rounded-2xl font-bold text-lg hover:bg-slate-50 transition-all flex items-center justify-center gap-3 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-slate-400 focus-visible:ring-offset-2"
           >
-            <Play className="w-5 h-5 fill-current" />
-            교육 영상
+            사용법 보기
+            <ArrowRight className="w-5 h-5" aria-hidden="true" />
           </a>
         </div>
 
