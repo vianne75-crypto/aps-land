@@ -247,7 +247,7 @@ const Hero = () => (
           </span>
           Alcohol Level Test for Health
         </div>
-        <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight">
+        <h1 className="text-3xl sm:text-5xl lg:text-7xl font-bold text-slate-900 leading-[1.1] mb-6 tracking-tight text-balance">
           알쓰패치 <br />
           <span className="text-[#1a5e20] italic">교육 가이드</span>
         </h1>
@@ -394,7 +394,7 @@ const UsageSection = () => {
     <section id="usage" className="py-24 bg-slate-50">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">알쓰패치 사용법</h2>
+          <h2 className="text-4xl font-bold text-slate-900 mb-4 text-balance">알쓰패치 사용법</h2>
           <p className="text-lg text-slate-600">패치를 붙이기 전에 사용법 영상을 꼭 시청하세요</p>
         </div>
 
@@ -465,7 +465,7 @@ const ResultsSection = () => (
     <div className="max-w-7xl mx-auto px-6">
       <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
         <div className="max-w-2xl">
-          <h2 className="text-4xl font-bold text-slate-900 mb-4">체질별 결과 해석</h2>
+          <h2 className="text-4xl font-bold text-slate-900 mb-4 text-balance">체질별 결과 해석</h2>
           <p className="text-lg text-slate-600">
             알쓰패치 반응 결과에 따른 체질별 특징과 건강 관리 가이드를 확인하세요.
           </p>
@@ -553,7 +553,7 @@ const VideosSection = () => (
   <section id="videos" className="py-24 bg-slate-50">
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <h2 className="text-4xl font-bold text-slate-900 mb-4">교육 영상</h2>
+        <h2 className="text-4xl font-bold text-slate-900 mb-4 text-balance">교육 영상</h2>
         <p className="text-lg text-slate-600">
           누구나 이해하기 쉬운 애니메이션과 그래픽으로 구성된 교육 콘텐츠
         </p>
@@ -696,7 +696,7 @@ const SelfDiagnosisSection = () => (
   <section className="py-24 bg-slate-50">
     <div className="max-w-7xl mx-auto px-6">
       <div className="text-center max-w-3xl mx-auto mb-16">
-        <h2 className="text-4xl font-bold text-slate-900 mb-4">건강행태 자가진단</h2>
+        <h2 className="text-4xl font-bold text-slate-900 mb-4 text-balance">건강행태 자가진단</h2>
         <p className="text-lg text-slate-600">
           교육 참여자가 직접 기록하고,<br className="md:hidden" />기관별 통계를 자동으로 받아보세요
         </p>
@@ -803,8 +803,11 @@ const Footer = () => (
 export default function App() {
   return (
     <div className="min-h-screen bg-white font-sans selection:bg-green-100 selection:text-green-900">
+      <a href="#main" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:px-4 focus:py-2 focus:bg-white focus:text-[#1a5e20] focus:font-bold focus:rounded-lg focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-[#1a5e20]">
+        메인 콘텐츠로 건너뛰기
+      </a>
       <Navbar />
-      <main>
+      <main id="main">
         <Hero />
         <FramingBanner />
         <UsageSection />
