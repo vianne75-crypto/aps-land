@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<!--
+  교육 허브 페이지 초안 — aps7.net/page/hc-dm
+  최종 업데이트: 2026-03-09
+  요건서: 교육허브_페이지_요건서.md
+
+  ── 콘텐츠 준비 현황 ──
+  ✅ 히어로 / 71% 프레이밍 / 결과 해석 가이드 / 자가진단 폼 URL / 본품 구매 URL
+  ✅ 교육자료 키트 4종 (PPT·패널 기존보유 + 기록지·시나리오 2026-03-08 제작)
+  ⬜ 영상 3종 유튜브 URL 확정 필요
+  ⬜ 교육자료 다운로드 URL 확정 필요 (파일 업로드 후)
+  ⬜ 통계분석 기능 — 개발 중 (Coming May 2026)
+
+  ── 접근 권한 ──
+  페이지 자체: 공개 (비회원 포함 전체 열람 가능)
+  통계분석: 스카우트 이상만
+  퀴즈 링크: APS회원 이상만 응시 가능 (비회원은 연습, 일반회원은 차단)
+-->
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>알쓰패치 교육 가이드 — APS 건강증진 스튜디오</title>
+<style>
+/* ── 리셋 & 기본 ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: -apple-system, "Noto Sans KR", "Malgun Gothic", sans-serif;
+  background: #f5f5f5; color: #333; line-height: 1.7;
+}
+.wrap { max-width: 640px; margin: 0 auto; }
+img { max-width: 100%; height: auto; }
+
+/* ── 히어로 ── */
+.hero {
+  background: linear-gradient(135deg, #1a5e20, #43a047);
+  color: #fff; text-align: center;
+  padding: 48px 24px 40px;
+}
+.hero .badge {
+  display: inline-block; background: rgba(255,255,255,0.2);
+  padding: 4px 14px; border-radius: 20px; font-size: 13px;
+  margin-bottom: 16px; letter-spacing: 0.5px;
+}
+.hero h1 { font-size: 26px; font-weight: 800; margin-bottom: 10px; }
+.hero p { font-size: 15px; opacity: 0.9; max-width: 400px; margin: 0 auto; }
+
+/* ── 섹션 공통 ── */
+section { padding: 32px 16px; }
+section h2 {
+  font-size: 20px; font-weight: 700; margin-bottom: 8px; color: #1a5e20;
+}
+section .sub { font-size: 14px; color: #777; margin-bottom: 20px; }
+
+/* ── 71% 프레이밍 배너 ── */
+.framing-banner {
+  background: #fff; border-radius: 12px; padding: 24px 20px;
+  margin: 0 16px 0 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  border-left: 4px solid #ffa000;
+  position: relative; top: -24px;
+}
+.framing-banner .stat {
+  font-size: 36px; font-weight: 800; color: #e65100;
+  margin-bottom: 4px;
+}
+.framing-banner .stat-label { font-size: 15px; font-weight: 600; color: #333; }
+.framing-banner .stat-desc {
+  font-size: 13px; color: #666; margin-top: 8px; line-height: 1.6;
+}
+
+/* ── 영상 섹션 ── */
+.video-section { background: #fff; padding: 32px 16px; }
+.video-container {
+  position: relative; width: 100%; padding-top: 56.25%;
+  border-radius: 12px; overflow: hidden; background: #000;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.video-container iframe {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0;
+}
+.video-placeholder {
+  position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+  display: flex; align-items: center; justify-content: center;
+  color: #aaa; font-size: 14px; flex-direction: column; gap: 8px;
+}
+.video-placeholder .play-icon { font-size: 48px; }
+
+/* ── 체질 판정 카드 ── */
+.result-section { background: #f5f5f5; }
+.result-cards { display: flex; flex-direction: column; gap: 12px; }
+.result-card {
+  background: #fff; border-radius: 12px; padding: 20px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+}
+.result-card .badge-label {
+  display: inline-block; padding: 3px 10px; border-radius: 6px;
+  font-size: 12px; font-weight: 700; margin-bottom: 8px; color: #fff;
+}
+.result-card h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+.result-card p { font-size: 13px; color: #555; line-height: 1.6; }
+.result-card .action {
+  margin-top: 10px; font-size: 13px; font-weight: 600;
+  padding: 6px 12px; border-radius: 6px; display: inline-block;
+}
+
+/* 주의 */
+.card-caution { border-left: 4px solid #ff9800; }
+.card-caution .badge-label { background: #ff9800; }
+.card-caution .action { background: #fff3e0; color: #e65100; }
+
+/* 경고 */
+.card-warning { border-left: 4px solid #e91e63; }
+.card-warning .badge-label { background: #e91e63; }
+.card-warning .action { background: #fce4ec; color: #c2185b; }
+
+/* 위험 */
+.card-danger { border-left: 4px solid #9c27b0; }
+.card-danger .badge-label { background: #9c27b0; }
+.card-danger .action { background: #f3e5f5; color: #7b1fa2; }
+
+/* ── 교육자료 키트 ── */
+.kit-section { background: #fff; }
+.kit-list { list-style: none; }
+.kit-item {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 0; border-bottom: 1px solid #eee;
+}
+.kit-item:last-child { border-bottom: none; }
+.kit-icon {
+  width: 44px; height: 44px; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 20px; flex-shrink: 0;
+}
+.kit-item h4 { font-size: 15px; font-weight: 600; margin-bottom: 2px; }
+.kit-item p { font-size: 13px; color: #777; }
+
+.kit-icon.ppt { background: #e3f2fd; }
+.kit-icon.record { background: #e8f5e9; }
+.kit-icon.survey { background: #fff3e0; }
+.kit-icon.script { background: #fce4ec; }
+.kit-icon.report { background: #f3e5f5; }
+
+.download-btn {
+  display: block; text-align: center; padding: 16px;
+  background: #1a5e20; color: #fff; text-decoration: none;
+  border-radius: 12px; font-size: 16px; font-weight: 700;
+  margin-top: 24px;
+  box-shadow: 0 2px 8px rgba(26,94,32,0.3);
+  transition: background 0.2s;
+}
+.download-btn:hover { background: #2e7d32; }
+
+/* ── 본품 구매 CTA ── */
+.purchase-section {
+  background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+  text-align: center; padding: 40px 24px;
+}
+.purchase-section h2 { color: #1a5e20; margin-bottom: 8px; }
+.purchase-section p { font-size: 14px; color: #555; margin-bottom: 20px; }
+.purchase-btn {
+  display: inline-block; padding: 14px 40px;
+  background: #fff; color: #1a5e20; text-decoration: none;
+  border-radius: 12px; font-size: 16px; font-weight: 700;
+  border: 2px solid #1a5e20;
+  transition: all 0.2s;
+}
+.purchase-btn:hover { background: #1a5e20; color: #fff; }
+
+/* ── 푸터 ── */
+.footer {
+  text-align: center; padding: 24px 16px;
+  font-size: 12px; color: #999; background: #fff;
+}
+.footer a { color: #1a5e20; text-decoration: none; }
+
+/* ── 모바일 ── */
+@media (max-width: 480px) {
+  .hero { padding: 36px 20px 32px; }
+  .hero h1 { font-size: 22px; }
+  section { padding: 24px 16px; }
+}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <!-- ═══ 히어로 ═══ -->
+  <div class="hero">
+    <div class="badge">APS 건강증진 스튜디오</div>
+    <h1>알쓰패치 교육 가이드</h1>
+    <p>사용법 영상 · 결과 해석 · 교육자료 키트</p>
+  </div>
+
+  <!-- ═══ 71% 프레이밍 배너 ═══ -->
+  <div class="framing-banner">
+    <div class="stat">71%</div>
+    <div class="stat-label">한국인의 무반응(음성) 비율</div>
+    <div class="stat-desc">
+      반응이 없어도 정상입니다.<br>
+      비오는 날씨, 약물 복용, 체온, 음주습관 등 환경 변수에 따라 반응이 더 약해질 수도 있습니다.
+    </div>
+  </div>
+
+  <!-- ═══ 영상 자료 ═══ -->
+  <section class="video-section">
+    <h2>영상 자료</h2>
+    <p class="sub">패치를 붙이기 전에 사용법 영상을 꼭 시청하세요</p>
+
+    <!-- 메인: 교육용 7분 영상 -->
+    <h3 style="font-size:15px; font-weight:600; margin-bottom:8px; color:#333;">사용법 교육 영상 (7분)</h3>
+    <div class="video-container">
+      <!-- TODO: 교육용 7분 영상 유튜브 URL 확정 후 iframe 교체 -->
+      <div class="video-placeholder">
+        <div class="play-icon">&#9654;</div>
+        <div>교육용 7분 영상 임베드 예정</div>
+      </div>
+    </div>
+
+    <!-- 흡연 위험 영상 -->
+    <h3 style="font-size:15px; font-weight:600; margin: 20px 0 8px; color:#333;">흡연 위험 영상</h3>
+    <div class="video-container">
+      <!-- TODO: 흡연 위험 영상 유튜브 URL 확정 후 iframe 교체 -->
+      <div class="video-placeholder">
+        <div class="play-icon">&#9654;</div>
+        <div>흡연 위험 영상 임베드 예정</div>
+      </div>
+    </div>
+
+    <!-- 스카우트 온보딩 시리즈 -->
+    <h3 style="font-size:15px; font-weight:600; margin: 20px 0 8px; color:#333;">전문가(스카우트) 온보딩 시리즈 (5편)</h3>
+    <p style="font-size:13px; color:#777; margin-bottom:12px;">알쓰패치 활용법을 심화 학습하고 싶은 분을 위한 영상입니다</p>
+    <div class="video-container">
+      <!-- TODO: 온보딩 재생목록 URL 확정 후 iframe 교체 -->
+      <div class="video-placeholder">
+        <div class="play-icon">&#9654;</div>
+        <div>온보딩 시리즈 재생목록 임베드 예정</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══ 결과 해석 가이드 ═══ -->
+  <section class="result-section">
+    <h2>결과 해석 가이드</h2>
+    <p class="sub">피부색 변화로 음주 위험을 즉시 체감하는 체험형 교육입니다.<br>
+      체질을 확인하는 7분 만에 음주의 위험을 깨닫게 됩니다.</p>
+
+    <div class="result-cards">
+
+      <div class="result-card card-caution">
+        <span class="badge-label">약 71%</span>
+        <h3>주의체질 — 무반응</h3>
+        <p>ALDH2 정상이지만, 경고 신호가 없어 폭음률이 높고 만성질환 유병률이 높습니다.<br>
+          OECD 평균을 크게 웃도는 우리나라 폭음률과 만성질환의 주된 원인이 바로 이 체질입니다.</p>
+        <div class="action">→ 절주 목표 설정이 핵심!</div>
+      </div>
+
+      <div class="result-card card-warning">
+        <span class="badge-label">약 28%</span>
+        <h3>경고체질 — 약간 붉어짐</h3>
+        <p>ALDH2 결핍으로 발암물질(아세트알데히드) 분해가 더뎌 가급적 마시지 않아야 합니다.<br>
+          3명 중 1명은 음주 시 발암성이 크게 치솟습니다.</p>
+        <div class="action">→ 가급적 음주를 피해야 합니다</div>
+      </div>
+
+      <div class="result-card card-danger">
+        <span class="badge-label">소수</span>
+        <h3>위험체질 — 많이 붉어짐</h3>
+        <p>음주 자체가 괴롭기 때문에 음주자가 거의 없지만, 흡연 시 심뇌혈관 위험도가 크게 치솟아 선별 관리가 필요합니다.</p>
+        <div class="action">→ 흡연 여부 선별 관리</div>
+      </div>
+
+    </div>
+
+    <p style="margin-top:16px; font-size:14px; text-align:center; font-weight:600; color:#1a5e20;">
+      모든 체질에 교육 효과가 있습니다
+    </p>
+  </section>
+
+  <!-- ═══ 교육자료 키트 ═══ -->
+  <section class="kit-section">
+    <h2>교육자료 키트</h2>
+    <p class="sub">처음 하는 담당자도 바로 교육을 진행할 수 있습니다</p>
+
+    <ul class="kit-list">
+      <li class="kit-item">
+        <div class="kit-icon ppt">&#128218;</div>
+        <div>
+          <h4>교육용 PPT 슬라이드</h4>
+          <p>그대로 띄워서 강의할 수 있는 완성형 슬라이드</p>
+        </div>
+      </li>
+      <li class="kit-item">
+        <div class="kit-icon ppt">&#128444;</div>
+        <div>
+          <h4>캠페인 전시용 패널</h4>
+          <p>교육 현장에 세워두는 안내 패널 (인쇄용)</p>
+        </div>
+      </li>
+      <li class="kit-item">
+        <div class="kit-icon record">&#128203;</div>
+        <div>
+          <h4>참여자 기록지</h4>
+          <p>체질 판정 결과 + 폭음·흡연 지표 기록 (인쇄용)</p>
+        </div>
+      </li>
+      <li class="kit-item">
+        <div class="kit-icon script">&#128196;</div>
+        <div>
+          <h4>강연 시나리오</h4>
+          <p>처음 하는 담당자도 진행할 수 있는 단계별 스크립트</p>
+        </div>
+      </li>
+    </ul>
+
+    <!-- TODO: 4종 파일 업로드 후 다운로드 URL 교체
+         ✅ 교육용 PPT 슬라이드 (기존 보유)
+         ✅ 캠페인 전시용 패널 (기존 보유)
+         ✅ 참여자 기록지 (2026-03-08 제작 → dm_landing/참여자_기록지.html)
+         ✅ 강연 시나리오 (2026-03-08 제작 → dm_landing/강연_시나리오.md) -->
+    <a class="download-btn" href="#">교육자료 키트 무료 다운로드</a>
+  </section>
+
+  <!-- ═══ 건강행태 자가진단 ═══ -->
+  <!-- 접근 권한: 자가진단 폼 링크 = 공개 / 통계분석 = 스카우트 이상만 -->
+  <!-- 폼 작동 방식: 스카우트 회원 로그인 상태에서 참여자에게 태블릿 건네는 구조 -->
+  <!-- 로그인된 회원 = 기관 식별자 (폼에 기관명 필드 없음) -->
+  <section class="kit-section" style="background:#f5f5f5;">
+    <h2>건강행태 자가진단</h2>
+    <p class="sub">교육 참여자가 직접 기록하고, 기관별 통계를 자동으로 받아보세요</p>
+
+    <div style="background:#fff; border-radius:12px; padding:20px; box-shadow:0 1px 4px rgba(0,0,0,0.08);">
+      <div style="display:flex; gap:12px; align-items:flex-start; margin-bottom:16px;">
+        <div class="kit-icon record" style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#128202;</div>
+        <div>
+          <h4 style="font-size:15px; font-weight:600; margin-bottom:4px;">참여자 자가진단 폼</h4>
+          <p style="font-size:13px; color:#777; line-height:1.6;">
+            교육 현장에서 태블릿이나 키오스크로 참여자가 직접 건강행태를 기록합니다.<br>
+            폭음빈도 · 흡연여부 · 음주플러싱(패치검사) 3문항, 30초면 완료됩니다.
+          </p>
+        </div>
+      </div>
+      <div style="display:flex; gap:12px; align-items:flex-start;">
+        <div class="kit-icon report" style="width:44px;height:44px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;">&#128200;</div>
+        <div>
+          <h4 style="font-size:15px; font-weight:600; margin-bottom:4px;">APS 건강행태 리포트 <span style="font-size:11px; color:#fff; background:#ff9800; padding:2px 6px; border-radius:4px; font-weight:600;">Coming May 2026</span></h4>
+          <p style="font-size:13px; color:#777; line-height:1.6;">
+            분석 기간을 설정하면 누적 데이터를 자동 집계합니다.<br>
+            폭음률 · 흡연율 · 음주플러싱(양성/음성) · 표본오차율까지 — PDF 리포트로 다운로드하여 보고서에 바로 활용할 수 있습니다.<br>
+            <span style="font-size:12px; color:#999;">* 스카우트 이상 회원만 이용 가능</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <a class="download-btn" href="https://www.aps7.net/shop_contents/mytest_question_all.htm?mytest_code=aps1" style="background:#ff9800; box-shadow:0 2px 8px rgba(255,152,0,0.3);">자가진단 폼 바로가기</a>
+  </section>
+
+  <!-- ═══ 본품 구매 CTA ═══ -->
+  <section class="purchase-section">
+    <h2>본품 구매</h2>
+    <p>교육 현장에 바로 활용할 수 있는 알쓰패치 본품을 구매하세요</p>
+    <a class="purchase-btn" href="https://wcolive.com">wcolive.com에서 구매하기</a>
+  </section>
+
+  <!-- ═══ 푸터 ═══ -->
+  <div class="footer">
+    <p>APS 건강증진 스튜디오</p>
+    <p>문의: <a href="tel:15445291">1544-5291</a> · <a href="https://www.wcolive.com">www.wcolive.com</a></p>
+  </div>
+
+</div>
+
+</body>
+</html>
