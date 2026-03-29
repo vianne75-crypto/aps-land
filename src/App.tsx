@@ -611,6 +611,30 @@ const ResourcesSection = () => {
     },
   ];
 
+  const f1Resources = [
+    {
+      icon: ClipboardList,
+      name: '절주 목표 설정 워크시트',
+      desc: '자가 음주 현황 체크 + if-then 실행 의도 작성 (A4 인쇄용)',
+      type: 'PDF',
+      link: null, // D2 완성 후 교체
+    },
+    {
+      icon: FileText,
+      name: '폭음 위험 인포그래픽',
+      desc: '주의체질(71%) 대상 폭음·ALDH2 위험 시각화 자료',
+      type: 'PDF',
+      link: null, // D2 완성 후 교체
+    },
+    {
+      icon: Presentation,
+      name: '절주 행동변화 가이드 PPT',
+      desc: '현장 배포용 절주 교육 슬라이드 (강연 PART 6 연계)',
+      type: 'PowerPoint',
+      link: null, // D2 완성 후 교체
+    },
+  ];
+
   return (
     <section id="resources" className="py-24">
       <div className="max-w-7xl mx-auto px-6">
@@ -653,6 +677,33 @@ const ResourcesSection = () => {
               >
                 <Download className="w-5 h-5" />
                 교육자료 키트 일괄 다운로드 (준비 중)
+              </div>
+
+              {/* F1 금주 교육자료 */}
+              <div className="mt-8">
+                <div className="flex items-center gap-2 mb-3">
+                  <span className="text-xs font-bold text-green-400 uppercase tracking-widest">금주 교육자료 (F1)</span>
+                  <span className="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded-full">4/13 공개 예정</span>
+                </div>
+                <div className="flex flex-col gap-3">
+                  {f1Resources.map((res) => (
+                    <div
+                      key={res.name}
+                      className="flex items-center justify-between p-4 bg-white/5 border border-white/10 rounded-2xl opacity-60"
+                    >
+                      <div className="flex items-center gap-4">
+                        <div className="p-2 bg-amber-500/10 rounded-lg">
+                          <res.icon className="w-5 h-5 text-amber-400/60" />
+                        </div>
+                        <div>
+                          <div className="font-bold text-sm">{res.name}</div>
+                          <div className="text-xs text-slate-500">{res.type} · 준비 중</div>
+                        </div>
+                      </div>
+                      <Download className="w-4 h-4 text-slate-600" />
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
