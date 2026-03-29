@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APS 스카우트 챌린지 퀴즈</title>
+<style>
+*, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+html { font-size:16px; }
+body {
+  font-family: -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+  background: #f5f7f5;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 24px 16px 60px;
+}
+
+/* ── 카드 ── */
+.card {
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 4px 24px rgba(0,0,0,.09);
+  max-width: 520px;
+  width: 100%;
+  padding: 36px 28px;
+  animation: fadeUp .35s ease;
+}
+@media(max-width:540px){ .card{ padding:28px 20px; } }
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(10px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+
+/* ── 헤더 ── */
+.badge {
+  display:inline-block; background:#e8f5e9; color:#2e7d32;
+  font-size:12px; font-weight:700; padding:5px 14px;
+  border-radius:20px; margin-bottom:14px; letter-spacing:.04em;
+}
+h1 { font-size:22px; font-weight:800; color:#1b5e20; margin-bottom:6px; line-height:1.3; }
+.subtitle { font-size:14px; color:#666; line-height:1.7; margin-bottom:24px; }
+
+/* ── 진행 바 ── */
+.progress-wrap { margin-bottom:28px; }
+.progress-meta {
+  display:flex; justify-content:space-between;
+  font-size:12px; color:#999; margin-bottom:6px;
+}
+.progress-track { background:#e8e8e8; border-radius:10px; height:6px; }
+.progress-fill  { background:#43a047; border-radius:10px; height:6px; transition:width .4s ease; }
+
+/* ── 문항 ── */
+.q-number { font-size:12px; font-weight:700; color:#43a047; letter-spacing:.06em; margin-bottom:8px; }
+.q-text   { font-size:17px; font-weight:700; color:#1a1a1a; line-height:1.55; margin-bottom:22px; }
+
+/* ── 선택지 ── */
+.options { display:flex; flex-direction:column; gap:10px; }
+.opt {
+  display:flex; align-items:flex-start; gap:12px;
+  padding:14px 16px;
+  border:1.5px solid #ddd; border-radius:12px;
+  cursor:pointer; transition:all .18s;
+  font-size:15px; font-weight:500; color:#333;
+  background:#fff; text-align:left; width:100%;
+  font-family:inherit; line-height:1.5;
+}
+.opt:hover { border-color:#43a047; background:#f1f8e9; }
+.opt.selected  { border-color:#2e7d32; background:#e8f5e9; color:#1b5e20; font-weight:700; }
+.opt.correct   { border-color:#2e7d32; background:#e8f5e9; color:#1b5e20; pointer-events:none; }
+.opt.wrong     { border-color:#e53935; background:#ffebee; color:#b71c1c; pointer-events:none; }
+.opt.disabled  { opacity:.45; pointer-events:none; }
+
+.opt-circle {
+  width:24px; height:24px; border-radius:50%;
+  border:2px solid #ccc; flex-shrink:0;
+  display:flex; align-items:center; justify-content:center;
+  font-size:11px; font-weight:700; color:#aaa;
+  transition:all .18s; margin-top:1px;
+}
+.opt.selected .opt-circle { border-color:#2e7d32; background:#2e7d32; color:#fff; }
+.opt.correct  .opt-circle { border-color:#2e7d32; background:#2e7d32; color:#fff; }
+.opt.wrong    .opt-circle { border-color:#e53935; background:#e53935; color:#fff; }
+
+/* ── 제출 버튼 ── */
+.btn-submit {
+  width:100%; padding:15px;
+  background:#2e7d32; color:#fff;
+  border:none; border-radius:12px;
+  font-size:16px; font-weight:700;
+  cursor:pointer; font-family:inherit;
+  margin-top:20px; transition:background .2s;
+}
+.btn-submit:hover    { background:#1b5e20; }
+.btn-submit:disabled { background:#a5d6a7; cursor:not-allowed; }
+
+/* ── 오답 피드백 ── */
+.feedback-box {
+  display:none;
+  margin-top:18px;
+  background:#fff8f0;
+  border:1.5px solid #ffcc80;
+  border-radius:14px;
+  padding:18px 18px 14px;
+  animation: fadeUp .3s ease;
+}
+.feedback-box.show { display:block; }
+.feedback-icon { font-size:20px; margin-bottom:8px; }
+.feedback-text {
+  font-size:14px; color:#444; line-height:1.75;
+  white-space: pre-line;
+}
+.feedback-text strong { color:#1b5e20; }
+.feedback-link {
+  display:inline-block;
+  margin-top:10px;
+  font-size:13px; font-weight:700; color:#2e7d32;
+  text-decoration:none; border-bottom:1px dashed #2e7d32;
+}
+.feedback-link:hover { color:#1b5e20; }
+.btn-retry {
+  width:100%; padding:13px;
+  background:#fff3e0; color:#e65100;
+  border:1.5px solid #ffcc80; border-radius:10px;
+  font-size:14px; font-weight:700;
+  cursor:pointer; font-family:inherit;
+  margin-top:14px; transition:background .18s;
+}
+.btn-retry:hover { background:#ffe0b2; }
+
+/* ── 정답 피드백 ── */
+.correct-msg {
+  display:none;
+  margin-top:16px;
+  background:#e8f5e9; border:1.5px solid #c8e6c9;
+  border-radius:12px; padding:14px 16px;
+  font-size:14px; font-weight:600; color:#1b5e20;
+  animation: fadeUp .25s ease;
+}
+.correct-msg.show { display:block; }
+
+.btn-next {
+  width:100%; padding:15px;
+  background:#2e7d32; color:#fff;
+  border:none; border-radius:12px;
+  font-size:16px; font-weight:700;
+  cursor:pointer; font-family:inherit;
+  margin-top:14px; transition:background .2s;
+  display:none;
+}
+.btn-next.show { display:block; }
+.btn-next:hover { background:#1b5e20; }
+
+/* ── 인트로 화면 ── */
+#introView .intro-list {
+  margin:20px 0; padding:0; list-style:none;
+  display:flex; flex-direction:column; gap:10px;
+}
+#introView .intro-list li {
+  display:flex; gap:12px; align-items:flex-start;
+  font-size:14px; color:#444; line-height:1.6;
+}
+#introView .intro-list .ico {
+  width:28px; height:28px; border-radius:8px;
+  background:#e8f5e9; display:flex; align-items:center;
+  justify-content:center; font-size:14px; flex-shrink:0;
+}
+
+/* ── 통과 화면 ── */
+#passView { text-align:center; }
+.pass-icon { font-size:56px; margin-bottom:16px; }
+#passView h2 { font-size:24px; font-weight:800; color:#1b5e20; margin-bottom:8px; }
+#passView p  { font-size:14px; color:#555; line-height:1.7; margin-bottom:4px; }
+.pass-badge {
+  display:inline-block; margin:20px 0 24px;
+  background:linear-gradient(135deg, #1b5e20, #2e7d32);
+  color:#fff; font-size:14px; font-weight:700;
+  padding:10px 28px; border-radius:30px;
+}
+.btn-journey {
+  display:block; width:100%; padding:15px;
+  background:#2e7d32; color:#fff;
+  border:none; border-radius:12px;
+  font-size:15px; font-weight:700;
+  text-decoration:none; text-align:center;
+  cursor:pointer; font-family:inherit;
+  transition:background .2s; margin-top:8px;
+}
+.btn-journey:hover { background:#1b5e20; }
+
+.disclaimer {
+  margin-top:24px; font-size:11px; color:#bbb; line-height:1.8; text-align:center;
+}
+</style>
+</head>
+<body>
+
+<!-- ════════════════════════════
+     인트로 화면
+════════════════════════════ -->
+<div class="card" id="introView">
+  <span class="badge">APS SCOUT CHALLENGE</span>
+  <h1>스카우트 챌린지<br>퀴즈</h1>
+  <p class="subtitle">온보딩 영상 내용을 확인하는 5문항입니다.<br>100% 통과하면 스카우트 여정이 이어집니다.</p>
+
+  <ul class="intro-list">
+    <li><span class="ico">📝</span>총 5문항 · 각 문항 오답 시 즉각 피드백 제공</li>
+    <li><span class="ico">🔄</span>재시도 무제한 · 모든 문항 정답 시 통과</li>
+    <li><span class="ico">🎯</span>영상 핵심 내용 — GG형 체질·사용법·보완 도구</li>
+    <li><span class="ico">⏱</span>소요 시간 약 3~5분</li>
+  </ul>
+
+  <button class="btn-submit" onclick="startQuiz()">퀴즈 시작하기 →</button>
+</div>
+
+<!-- ════════════════════════════
+     퀴즈 화면
+════════════════════════════ -->
+<div class="card" id="quizView" style="display:none;">
+
+  <!-- 진행 바 -->
+  <div class="progress-wrap">
+    <div class="progress-meta">
+      <span id="progressLabel">Q1 / 5</span>
+      <span id="progressPct">20%</span>
+    </div>
+    <div class="progress-track">
+      <div class="progress-fill" id="progressFill" style="width:20%"></div>
+    </div>
+  </div>
+
+  <!-- 문항 -->
+  <div class="q-number" id="qNumber">Q 1</div>
+  <div class="q-text"   id="qText"></div>
+  <div class="options"  id="optionsWrap"></div>
+
+  <!-- 제출 버튼 -->
+  <button class="btn-submit" id="btnSubmit" onclick="submitAnswer()" disabled>확인하기</button>
+
+  <!-- 오답 피드백 -->
+  <div class="feedback-box" id="feedbackBox">
+    <div class="feedback-icon">💡</div>
+    <div class="feedback-text" id="feedbackText"></div>
+    <a href="#" class="feedback-link" id="feedbackLink" target="_blank" style="display:none;"></a>
+    <button class="btn-retry" onclick="retryQuestion()">다시 선택하기</button>
+  </div>
+
+  <!-- 정답 피드백 -->
+  <div class="correct-msg" id="correctMsg">✅ 정답입니다! 잘 이해하셨네요.</div>
+  <button class="btn-next" id="btnNext" onclick="nextQuestion()">다음 문항 →</button>
+</div>
+
+<!-- ════════════════════════════
+     통과 화면
+════════════════════════════ -->
+<div class="card" id="passView" style="display:none;">
+  <div class="pass-icon">🏅</div>
+  <h2>퀴즈 통과!</h2>
+  <p>5문항을 모두 맞히셨습니다.</p>
+  <p>APS 스카우트 여정의 다음 단계로 이어집니다.</p>
+  <div class="pass-badge">✓ 스카우트 챌린지 퀴즈 통과</div>
+  <a href="https://wcolive.com" class="btn-journey">다음 단계 — 구매후기 등록하기 →</a>
+  <p class="disclaimer">
+    APS[앱스]알쓰패치솔루션 · aps7.net · wcolive.com
+  </p>
+</div>
+
+<script>
+/* ════════════════════════════════════════
+   문항 데이터 (MUSE 구어체 피드백 적용)
+   타임스탬프 링크: 영상 업로드 후 {VIDEO_URL_Q1} 등으로 교체
+════════════════════════════════════════ */
+var QUESTIONS = [
+  {
+    num: 'Q 1',
+    text: '알쓰패치는 어떤 도구입니까?',
+    opts: [
+      '음주 가능 여부를 즉시 판정하는 의료 진단기기',
+      '체질과 음주·흡연 습관을 맥락과 함께 해석하도록 돕는 교육 도구',
+      '결과를 그대로 읽으면 체질을 100% 정확히 알 수 있는 분석 장비',
+      '음주량을 객관적으로 측정하는 수치 기반 검사기'
+    ],
+    answer: 1,
+    feedback: '아쉽게도 틀렸어요.\n\n알쓰패치는 의료 진단기기가 아니에요. 결과 하나만 보고 "안전하다/위험하다"를 판정하는 도구가 아닙니다.\n\n<strong>체질 정보를 맥락과 함께 해석하도록 돕는 교육 도구</strong>예요. 같은 GG형이라도 음주 습관에 따라 위험도가 달라지는 것처럼요.',
+    linkText: '1편 영상에서 다시 확인하기 →',
+    linkUrl: '{VIDEO_URL_Q1}'  // 영상 업로드 후 교체
+  },
+  {
+    num: 'Q 2',
+    text: '알쓰패치를 붙였는데 피부에 아무 변화가 없었습니다.\n이 결과가 의미하는 것으로 가장 옳은 것은?',
+    opts: [
+      '알코올을 마셔도 건강에 문제없는 안전한 체질이다',
+      '패치가 불량이거나 부착 시간이 부족한 것이다',
+      '주의체질(GG형)일 가능성이 높으며, 음주 습관 관리가 오히려 더 중요하다',
+      '음주량을 적당히 유지하면 괜찮다는 신호다'
+    ],
+    answer: 2,
+    feedback: '아쉽게도 틀렸어요.\n\n<strong>반응이 없다고 안전한 게 아니에요.</strong> 오히려 그 반대일 수 있습니다.\n\n피부 반응이 없는 건 주의체질(GG형)의 특징이에요. GG형은 술을 마셔도 얼굴이 붉어지지 않아서 "괜찮다"고 느끼기 쉽지만, 경고 신호 없이 과음하기 때문에 <strong>음주 습관 관리가 오히려 더 중요한 체질</strong>입니다.',
+    linkText: '3편 영상에서 다시 확인하기 →',
+    linkUrl: '{VIDEO_URL_Q2}'
+  },
+  {
+    num: 'Q 3',
+    text: '주의체질(GG형)이 음주 시 특별히 주의해야 하는 과학적 이유로 옳은 것은?',
+    opts: [
+      '알코올 흡수 속도가 다른 체질보다 2배 이상 빠르기 때문에',
+      '위장에서 알코올이 완전히 분해되지 않고 축적되기 때문에',
+      'CYP2E1 보조회로가 활성화되어 알데히드 독성에 더 오래 노출되기 때문에',
+      '간 해독 효소 자체가 아예 없기 때문에'
+    ],
+    answer: 2,
+    feedback: '아쉽게도 틀렸어요.\n\n조금 낯선 이름이지만 중요한 개념이에요. <strong>CYP2E1</strong>은 우리 몸의 보조 알코올 분해 경로예요.\n\n주의체질(GG형)은 주요 분해 경로(ALDH2)가 정상이에요. 그런데 과음하면 이 보조 경로(CYP2E1)가 활성화되면서, 독성 물질인 아세트알데히드에 <strong>더 오래 노출</strong>됩니다.\n\n쉽게 말하면: 안 붉어진다 = 몸이 무감각하게 버티고 있다는 뜻이고, 그 사이에 독성은 계속 쌓이는 거예요.',
+    linkText: '3편 영상에서 다시 확인하기 (02:30~) →',
+    linkUrl: '{VIDEO_URL_Q3}'
+  },
+  {
+    num: 'Q 4',
+    text: '알쓰패치의 올바른 사용 순서는?',
+    opts: [
+      '팔 안쪽을 알코올 솜으로 닦은 후 패치를 붙이고 7분 후 확인한다',
+      '패치를 팔 안쪽에 붙이고 → 7분 기다린 후 → 떼어내고 피부 반응을 확인한다',
+      '패치를 붙이고 10분 이상 기다렸다가 반응이 강할 때 확인한다',
+      '손목 안쪽에 붙이고 5분 후 반응 색상을 확인한다'
+    ],
+    answer: 1,
+    feedback: '아쉽게도 틀렸어요.\n\n정확한 사용법은 딱 3단계예요.\n<strong>① 팔 안쪽에 부착 → ② 7분 대기 → ③ 패치를 떼고 피부 반응 확인</strong>\n\n알코올 솜으로 닦는 단계는 포함되지 않아요. 3단계만으로 충분하고, 지금 바로 현장에서 쓸 수 있습니다.',
+    linkText: '1편 영상에서 다시 확인하기 (01:00~) →',
+    linkUrl: '{VIDEO_URL_Q4}'
+  },
+  {
+    num: 'Q 5',
+    text: '알쓰패치 반응이 애매하거나 불확실할 때, 현장 신뢰도를 높이기 위해 함께 활용하면 좋은 보완 도구는?',
+    opts: [
+      'AUDIT-K (음주 문제 수준 선별 검사, 10문항)',
+      '음주플러싱설문 (얼굴·목·가슴이 붉어지는 경험 자가보고)',
+      'HSI (헤비스모킹인덱스, 흡연 의존도 2문항)',
+      'K10 (우울·불안 수준 선별 검사, 10문항)'
+    ],
+    answer: 1,
+    feedback: '아쉽게도 틀렸어요.\n\n패치 반응이 애매할 때는 <strong>음주플러싱설문</strong>을 함께 활용하면 돼요.\n\n방법은 간단해요. 딱 한 가지만 물어보면 됩니다.\n"술을 마시면 얼굴·목·가슴이 붉어진 경험이 있나요?"\n\n이 한 질문으로 현장에서 바로 체질 판정을 보완할 수 있어요. AUDIT-K나 K10은 별도 목적의 도구라 패치 결과 보완용으로는 맞지 않습니다.',
+    linkText: '2편 영상에서 다시 확인하기 (00:30~) →',
+    linkUrl: '{VIDEO_URL_Q5}'
+  }
+];
+
+/* ════════════════════════════════════════
+   상태
+════════════════════════════════════════ */
+var currentQ   = 0;
+var selectedOpt = null;
+var answered   = false;
+
+/* ════════════════════════════════════════
+   퀴즈 시작
+════════════════════════════════════════ */
+function startQuiz() {
+  document.getElementById('introView').style.display = 'none';
+  document.getElementById('quizView').style.display  = 'block';
+  renderQuestion();
+}
+
+/* ════════════════════════════════════════
+   문항 렌더
+════════════════════════════════════════ */
+function renderQuestion() {
+  var q = QUESTIONS[currentQ];
+  selectedOpt = null;
+  answered = false;
+
+  /* 진행 바 */
+  var pct = Math.round(((currentQ + 1) / 5) * 100);
+  document.getElementById('progressLabel').textContent = 'Q' + (currentQ + 1) + ' / 5';
+  document.getElementById('progressPct').textContent   = pct + '%';
+  document.getElementById('progressFill').style.width  = pct + '%';
+
+  /* 문항 */
+  document.getElementById('qNumber').textContent = q.num;
+  document.getElementById('qText').textContent   = q.text;
+
+  /* 선택지 */
+  var wrap = document.getElementById('optionsWrap');
+  wrap.innerHTML = '';
+  var circles = ['①','②','③','④'];
+  q.opts.forEach(function(opt, i) {
+    var btn = document.createElement('button');
+    btn.className = 'opt';
+    btn.innerHTML = '<span class="opt-circle">' + circles[i] + '</span>' + opt;
+    btn.onclick = function() { selectOpt(i, btn); };
+    wrap.appendChild(btn);
+  });
+
+  /* 버튼·피드백 리셋 */
+  document.getElementById('btnSubmit').disabled = true;
+  document.getElementById('btnSubmit').textContent = '확인하기';
+  document.getElementById('btnSubmit').style.display = 'block';
+  document.getElementById('feedbackBox').classList.remove('show');
+  document.getElementById('correctMsg').classList.remove('show');
+  document.getElementById('btnNext').classList.remove('show');
+}
+
+/* ════════════════════════════════════════
+   선택지 클릭
+════════════════════════════════════════ */
+function selectOpt(idx, el) {
+  if (answered) return;
+  document.querySelectorAll('.opt').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  selectedOpt = idx;
+  document.getElementById('btnSubmit').disabled = false;
+}
+
+/* ════════════════════════════════════════
+   답 제출
+════════════════════════════════════════ */
+function submitAnswer() {
+  if (selectedOpt === null) return;
+  var q = QUESTIONS[currentQ];
+  answered = true;
+
+  /* 모든 선택지 비활성 */
+  var opts = document.querySelectorAll('.opt');
+  opts.forEach(function(o, i) {
+    if (i === q.answer) {
+      o.classList.add('correct');
+      o.classList.remove('selected');
+    } else if (i === selectedOpt) {
+      o.classList.add('wrong');
+      o.classList.remove('selected');
+    } else {
+      o.classList.add('disabled');
+    }
+  });
+
+  document.getElementById('btnSubmit').style.display = 'none';
+
+  if (selectedOpt === q.answer) {
+    /* 정답 */
+    document.getElementById('correctMsg').classList.add('show');
+    document.getElementById('btnNext').classList.add('show');
+    var nextBtn = document.getElementById('btnNext');
+    nextBtn.textContent = currentQ < 4 ? '다음 문항 →' : '결과 보기 →';
+  } else {
+    /* 오답 — 피드백 표시 */
+    var fb = document.getElementById('feedbackBox');
+    var fbText = document.getElementById('feedbackText');
+    fbText.innerHTML = q.feedback;
+    fb.classList.add('show');
+
+    /* 타임스탬프 링크 */
+    var linkEl = document.getElementById('feedbackLink');
+    if (q.linkUrl && q.linkUrl.indexOf('{') === -1) {
+      linkEl.href = q.linkUrl;
+      linkEl.textContent = q.linkText;
+      linkEl.style.display = 'inline';
+    } else {
+      linkEl.style.display = 'none';
+    }
+  }
+}
+
+/* ════════════════════════════════════════
+   다시 선택 (오답 후)
+════════════════════════════════════════ */
+function retryQuestion() {
+  renderQuestion();
+  document.getElementById('quizView').scrollIntoView({ behavior:'smooth' });
+}
+
+/* ════════════════════════════════════════
+   다음 문항
+════════════════════════════════════════ */
+function nextQuestion() {
+  currentQ++;
+  if (currentQ >= 5) {
+    /* 통과 */
+    document.getElementById('quizView').style.display = 'none';
+    document.getElementById('passView').style.display = 'block';
+    window.scrollTo(0, 0);
+  } else {
+    renderQuestion();
+    window.scrollTo(0, 0);
+  }
+}
+</script>
+</body>
+</html>

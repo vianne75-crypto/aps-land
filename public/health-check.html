@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APS 건강체크 — 나의 음주·흡연 위험 진단</title>
+<style>
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+  html { font-size:16px; }
+  body {
+    font-family: -apple-system, 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif;
+    background:#f5f7f5; color:#222; min-height:100vh;
+    display:flex; flex-direction:column; align-items:center;
+    padding:32px 20px 64px;
+  }
+
+  /* ── 공통 카드 ── */
+  .card {
+    background:#fff; border-radius:20px;
+    box-shadow:0 4px 20px rgba(0,0,0,.08);
+    max-width:520px; width:100%; padding:36px 32px;
+  }
+  @media(max-width:540px){ .card{ padding:28px 20px; } }
+
+  /* ── 헤더 ── */
+  .badge {
+    display:inline-block; background:#e8f5e9; color:#2e7d32;
+    font-size:12px; font-weight:700; padding:5px 12px;
+    border-radius:20px; margin-bottom:14px; letter-spacing:.02em;
+  }
+  h1 { font-size:22px; font-weight:800; line-height:1.4; color:#1b5e20; margin-bottom:6px; }
+  .subtitle { font-size:14px; color:#666; line-height:1.7; margin-bottom:28px; }
+  .divider { border:none; border-top:1px solid #eee; margin:0 0 28px; }
+
+  /* ── 진행 바 ── */
+  .progress-wrap { margin-bottom:28px; }
+  .progress-label { font-size:12px; color:#999; margin-bottom:6px; }
+  .progress-bar-bg { background:#e0e0e0; border-radius:10px; height:6px; }
+  .progress-bar-fill { background:#43a047; border-radius:10px; height:6px; transition:width .4s ease; }
+
+  /* ── 문항 ── */
+  .question-block { display:none; }
+  .question-block.active { display:block; animation:fadeIn .3s ease; }
+  @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
+
+  .q-number { font-size:12px; font-weight:700; color:#43a047; margin-bottom:8px; letter-spacing:.04em; }
+  .q-text { font-size:17px; font-weight:700; color:#1a1a1a; line-height:1.5; margin-bottom:6px; }
+  .q-note { font-size:12px; color:#888; margin-bottom:20px; line-height:1.6; }
+
+  .options { display:flex; flex-direction:column; gap:10px; }
+  .opt {
+    display:flex; align-items:center; gap:12px;
+    padding:14px 16px; border:1.5px solid #ddd; border-radius:12px;
+    cursor:pointer; transition:all .18s; font-size:15px; font-weight:500;
+    background:#fff;
+  }
+  .opt:hover { border-color:#43a047; background:#f1f8e9; }
+  .opt.selected { border-color:#2e7d32; background:#e8f5e9; color:#1b5e20; font-weight:700; }
+  .opt-circle {
+    width:22px; height:22px; border-radius:50%; border:2px solid #ccc;
+    flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:700; color:#999;
+    transition:all .18s;
+  }
+  .opt.selected .opt-circle { border-color:#2e7d32; background:#2e7d32; color:#fff; }
+
+  /* ── 네비게이션 버튼 ── */
+  .nav-wrap { display:flex; gap:10px; margin-top:28px; }
+  .btn-back {
+    flex:0 0 auto; padding:14px 20px; background:#f5f5f5; color:#666;
+    border:none; border-radius:12px; font-size:15px; font-weight:600;
+    cursor:pointer; transition:background .18s; font-family:inherit;
+  }
+  .btn-back:hover { background:#e0e0e0; }
+  .btn-next {
+    flex:1; padding:15px; background:#2e7d32; color:#fff;
+    border:none; border-radius:12px; font-size:16px; font-weight:700;
+    cursor:pointer; transition:background .2s; font-family:inherit;
+  }
+  .btn-next:hover { background:#1b5e20; }
+  .btn-next:disabled { background:#a5d6a7; cursor:not-allowed; }
+
+  /* ── 결과 화면 ── */
+  #resultView { display:none; animation:fadeIn .4s ease; }
+
+  .grade-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 20px; border-radius:30px; font-size:18px; font-weight:800;
+    margin-bottom:20px; letter-spacing:-.01em;
+  }
+  .grade-RED    { background:#ffebee; color:#c62828; }
+  .grade-YELLOW { background:#fff8e1; color:#e65100; }
+  .grade-ORANGE { background:#fff3e0; color:#bf360c; }
+  .grade-GREEN  { background:#e8f5e9; color:#1b5e20; }
+  .grade-UNKNOWN{ background:#f5f5f5; color:#616161; }
+
+  .grade-title { font-size:20px; font-weight:800; margin-bottom:6px; }
+  .grade-desc  { font-size:14px; color:#555; line-height:1.7; margin-bottom:24px; }
+
+  /* 위험 배수 박스 */
+  .risk-box {
+    background:#fff8f8; border:1.5px solid #ffcdd2; border-radius:14px;
+    padding:20px; margin-bottom:20px;
+  }
+  .risk-box.orange { background:#fff8f4; border-color:#ffe0b2; }
+  .risk-box.yellow { background:#fffde7; border-color:#fff176; }
+  .risk-box.green  { background:#f1f8e9; border-color:#c8e6c9; border:1.5px solid #c8e6c9; }
+  .risk-box-title { font-size:13px; font-weight:700; color:#888; margin-bottom:12px; letter-spacing:.04em; }
+  .risk-item {
+    font-size:14px; font-weight:600; color:#333; margin-bottom:10px;
+    padding-bottom:10px; border-bottom:1px solid rgba(0,0,0,.06); line-height:1.6;
+  }
+  .risk-item:last-child { margin-bottom:0; padding-bottom:0; border-bottom:none; }
+  .sensitivity-note { display:block; font-size:12px; font-weight:400; color:#c62828; margin-top:3px; }
+  .condition-note   { display:block; font-size:11px; font-weight:400; color:#999; margin-top:2px; }
+
+  /* 연동 버튼 */
+  .action-buttons { display:flex; flex-direction:column; gap:10px; margin-bottom:24px; }
+  .btn-primary {
+    display:block; width:100%; padding:14px; background:#2e7d32; color:#fff;
+    border:none; border-radius:12px; font-size:15px; font-weight:700;
+    text-align:center; text-decoration:none; cursor:pointer;
+    font-family:inherit; transition:background .2s;
+  }
+  .btn-primary:hover { background:#1b5e20; }
+  .btn-secondary {
+    display:block; width:100%; padding:14px; background:#fff; color:#2e7d32;
+    border:2px solid #2e7d32; border-radius:12px; font-size:15px; font-weight:700;
+    text-align:center; text-decoration:none; cursor:pointer;
+    font-family:inherit; transition:all .2s;
+  }
+  .btn-secondary:hover { background:#e8f5e9; }
+  .btn-link {
+    display:block; width:100%; padding:12px; background:#f5f5f5; color:#555;
+    border:none; border-radius:12px; font-size:14px; font-weight:600;
+    text-align:center; text-decoration:none; cursor:pointer;
+    font-family:inherit;
+  }
+
+  /* 마스터 CTA */
+  .master-cta-box {
+    background:#e8eaf6; border-radius:16px; padding:24px; text-align:center;
+    margin-bottom:24px;
+  }
+  .master-cta-box p { font-size:14px; color:#3949ab; line-height:1.7; margin-bottom:6px; }
+  .master-cta-box p:first-child { font-weight:700; font-size:15px; margin-bottom:8px; }
+  .btn-master {
+    width:100%; padding:15px; background:#3949ab; color:#fff;
+    border:none; border-radius:12px; font-size:15px; font-weight:700;
+    cursor:pointer; margin-top:14px; margin-bottom:8px;
+    font-family:inherit; transition:background .2s;
+  }
+  .btn-master:hover { background:#283593; }
+  .btn-text-link {
+    background:none; border:none; color:#888; font-size:13px;
+    cursor:pointer; font-family:inherit; text-decoration:underline;
+  }
+
+  /* 면책 문구 */
+  .disclaimer {
+    font-size:11px; color:#aaa; line-height:1.8; text-align:left;
+    padding:16px; background:#fafafa; border-radius:10px; margin-top:4px;
+  }
+
+  /* ── 마스터 트랙 ── */
+  #masterView { display:none; animation:fadeIn .4s ease; }
+  .master-header { background:#3949ab; color:#fff; border-radius:14px; padding:20px; margin-bottom:24px; }
+  .master-header h2 { font-size:18px; font-weight:800; margin-bottom:6px; }
+  .master-header p  { font-size:13px; opacity:.85; line-height:1.6; }
+
+  .audit-q { margin-bottom:28px; }
+  .audit-q .q-number { color:#3949ab; }
+
+  .audit-options { display:flex; flex-direction:column; gap:8px; }
+  .audit-opt {
+    display:flex; align-items:center; gap:12px;
+    padding:12px 14px; border:1.5px solid #ddd; border-radius:10px;
+    cursor:pointer; font-size:14px; font-weight:500; background:#fff;
+    transition:all .18s;
+  }
+  .audit-opt:hover   { border-color:#3949ab; background:#e8eaf6; }
+  .audit-opt.selected{ border-color:#3949ab; background:#e8eaf6; color:#1a237e; font-weight:700; }
+  .audit-opt .opt-circle { border-color:#ccc; }
+  .audit-opt.selected .opt-circle { border-color:#3949ab; background:#3949ab; color:#fff; }
+
+  .btn-master-submit {
+    width:100%; padding:15px; background:#3949ab; color:#fff;
+    border:none; border-radius:12px; font-size:16px; font-weight:700;
+    cursor:pointer; margin-top:8px; font-family:inherit; transition:background .2s;
+  }
+  .btn-master-submit:hover    { background:#283593; }
+  .btn-master-submit:disabled { background:#9fa8da; cursor:not-allowed; }
+
+  /* 마스터 결과 */
+  #masterResultView { display:none; animation:fadeIn .4s ease; }
+  .audit-grade-badge {
+    display:inline-flex; align-items:center; gap:8px;
+    padding:10px 20px; border-radius:30px; font-size:17px; font-weight:800; margin-bottom:16px;
+  }
+  .audit-LOW      { background:#e8f5e9; color:#1b5e20; }
+  .audit-RISK     { background:#fff3e0; color:#e65100; }
+  .audit-HARMFUL  { background:#fff8e1; color:#f57f17; }
+  .audit-DEPENDENT{ background:#ffebee; color:#b71c1c; }
+
+  .protocol-placeholder {
+    background:#f5f5f5; border-radius:12px; padding:16px; font-size:13px; color:#888;
+    text-align:center; margin-bottom:20px; line-height:1.7;
+  }
+
+  .btn-pdf {
+    width:100%; padding:14px; background:#546e7a; color:#fff;
+    border:none; border-radius:12px; font-size:15px; font-weight:700;
+    cursor:pointer; font-family:inherit; transition:background .2s; margin-bottom:10px;
+  }
+  .btn-pdf:hover { background:#37474f; }
+
+  @media print {
+    body { background:#fff; padding:0; }
+    .card { box-shadow:none; border-radius:0; }
+    .btn-pdf, .btn-text-link, .master-cta-box { display:none !important; }
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     스카우트 트랙 — 문항
+════════════════════════════════════════ -->
+<div class="card" id="surveyCard">
+  <span class="badge">APS 건강체크</span>
+  <h1>나의 음주·흡연<br>위험 진단</h1>
+  <p class="subtitle">4문항으로 내 건강 위험을 확인하세요.<br>약 1분 소요됩니다.</p>
+  <hr class="divider">
+
+  <!-- 진행 바 -->
+  <div class="progress-wrap">
+    <div class="progress-label" id="progressLabel">Q1 / 4</div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill" style="width:25%"></div>
+    </div>
+  </div>
+
+  <!-- Q1: 폭음 빈도 -->
+  <div class="question-block active" id="q1-block">
+    <div class="q-number">Q 1 · 폭음 빈도</div>
+    <div class="q-text">한 번에 소주 7잔(여성 5잔) 이상<br>마신 적은 얼마나 되나요?</div>
+    <div class="q-note">소주 7잔 = 맥주 5캔(500cc) = 와인 5잔</div>
+    <div class="options">
+      <div class="opt" data-q="q1" data-v="1" onclick="selectOpt(this)">
+        <div class="opt-circle">①</div> 안 마시거나 해당 없음
+      </div>
+      <div class="opt" data-q="q1" data-v="2" onclick="selectOpt(this)">
+        <div class="opt-circle">②</div> 월 1회 미만
+      </div>
+      <div class="opt" data-q="q1" data-v="3" onclick="selectOpt(this)">
+        <div class="opt-circle">③</div> 월 1~3회
+      </div>
+      <div class="opt" data-q="q1" data-v="4" onclick="selectOpt(this)">
+        <div class="opt-circle">④</div> 주 1회 이상
+      </div>
+    </div>
+    <div class="nav-wrap">
+      <button class="btn-next" id="btnNext1" onclick="goNext(2)" disabled>다음</button>
+    </div>
+  </div>
+
+  <!-- Q2: 흡연 상태 -->
+  <div class="question-block" id="q2-block">
+    <div class="q-number">Q 2 · 흡연 상태</div>
+    <div class="q-text">현재 담배를 피우고 있나요?</div>
+    <div class="q-note">전자담배 포함</div>
+    <div class="options">
+      <div class="opt" data-q="q2" data-v="1" onclick="selectOpt(this)">
+        <div class="opt-circle">①</div> 매일 피움
+      </div>
+      <div class="opt" data-q="q2" data-v="2" onclick="selectOpt(this)">
+        <div class="opt-circle">②</div> 가끔 피움
+      </div>
+      <div class="opt" data-q="q2" data-v="3" onclick="selectOpt(this)">
+        <div class="opt-circle">③</div> 과거 흡연 (현재 금연 중)
+      </div>
+      <div class="opt" data-q="q2" data-v="4" onclick="selectOpt(this)">
+        <div class="opt-circle">④</div> 비흡연
+      </div>
+    </div>
+    <div class="nav-wrap">
+      <button class="btn-back" onclick="goBack(1)">이전</button>
+      <button class="btn-next" id="btnNext2" onclick="goNext(3)" disabled>다음</button>
+    </div>
+  </div>
+
+  <!-- Q3: 흡연량 (조건부 — Q2 ①② 선택 시) -->
+  <div class="question-block" id="q3-block">
+    <div class="q-number">Q 3 · 흡연량</div>
+    <div class="q-text">하루 평균 흡연량은?</div>
+    <div class="q-note"> </div>
+    <div class="options">
+      <div class="opt" data-q="q3" data-v="1" onclick="selectOpt(this)">
+        <div class="opt-circle">①</div> 반 갑 미만 (10개비 미만)
+      </div>
+      <div class="opt" data-q="q3" data-v="2" onclick="selectOpt(this)">
+        <div class="opt-circle">②</div> 반 갑~1갑 (10~20개비)
+      </div>
+      <div class="opt" data-q="q3" data-v="3" onclick="selectOpt(this)">
+        <div class="opt-circle">③</div> 1갑 이상 (20개비 이상)
+      </div>
+    </div>
+    <div class="nav-wrap">
+      <button class="btn-back" onclick="goBack(2)">이전</button>
+      <button class="btn-next" id="btnNext3" onclick="goNext(4)" disabled>다음</button>
+    </div>
+  </div>
+
+  <!-- Q4: 체질 -->
+  <div class="question-block" id="q4-block">
+    <div class="q-number" id="q4-number">Q 4 · 체질</div>
+    <div class="q-text">술 한두 잔에 얼굴이 빨개지는<br>체질인가요?</div>
+    <div class="q-note">패치 테스트에서 양성(붉어짐)이 나온 경우도 해당</div>
+    <div class="options">
+      <div class="opt" data-q="q4" data-v="1" onclick="selectOpt(this)">
+        <div class="opt-circle">①</div> 예
+      </div>
+      <div class="opt" data-q="q4" data-v="2" onclick="selectOpt(this)">
+        <div class="opt-circle">②</div> 아니오
+      </div>
+      <div class="opt" data-q="q4" data-v="3" onclick="selectOpt(this)">
+        <div class="opt-circle">③</div> 잘 모르겠음
+      </div>
+    </div>
+    <div class="nav-wrap">
+      <button class="btn-back" onclick="goBack('q4-prev')">이전</button>
+      <button class="btn-next" id="btnNext4" onclick="showResult()" disabled>결과 보기</button>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     결과 화면
+════════════════════════════════════════ -->
+<div class="card" id="resultView">
+
+  <!-- 등급 배지 -->
+  <div id="gradeBadge" class="grade-badge"></div>
+  <div id="gradeTitle" class="grade-title"></div>
+  <div id="gradeDesc"  class="grade-desc"></div>
+
+  <!-- 위험 배수 박스 -->
+  <div id="riskBox"></div>
+
+  <!-- F1·F2 연동 버튼 -->
+  <div class="action-buttons" id="actionButtons"></div>
+
+  <!-- 마스터 트랙 CTA -->
+  <div class="master-cta-box">
+    <p>우리 기관 구성원 전체의 음주 행태를<br>국제 표준으로 진단하고 싶으신가요?</p>
+    <p>AUDIT-K(국민건강영양조사 표준) 10문항으로<br>
+       집단 통계 리포트를 생성하고 기관 보고에 활용할 수 있습니다.</p>
+    <button class="btn-master" onclick="startMaster()">기관 집단 진단 시작</button>
+    <br>
+    <button class="btn-text-link" onclick="void(0)">건너뛰기</button>
+  </div>
+
+  <!-- 면책 문구 -->
+  <div class="disclaimer">
+    ※ 이 결과는 학술 연구 및 자가진단 기반이며 의료 진단이 아닙니다.<br>
+    수치는 집단 연구 결과이며 개인의 실제 건강 상태와 다를 수 있습니다.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     마스터 트랙 — AUDIT-K 10문항
+════════════════════════════════════════ -->
+<div class="card" id="masterView">
+  <div class="master-header">
+    <h2>기관 집단 음주 진단</h2>
+    <p>AUDIT-K (국민건강영양조사 표준) · 10문항 · 약 3분</p>
+  </div>
+
+  <div id="auditQuestions"></div>
+
+  <button class="btn-master-submit" id="btnMasterSubmit" onclick="showMasterResult()" disabled>
+    진단 결과 보기
+  </button>
+  <p style="font-size:12px;color:#aaa;text-align:center;margin-top:12px;line-height:1.6;">
+    ※ 이 결과는 교육 목적이며 의료 진단이 아닙니다.
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     마스터 결과 화면
+════════════════════════════════════════ -->
+<div class="card" id="masterResultView">
+  <div class="master-header" style="text-align:center;">
+    <h2>AUDIT-K 진단 결과</h2>
+    <p>기관 집단 음주 위험도</p>
+  </div>
+
+  <div id="auditGradeBadge" class="audit-grade-badge"></div>
+  <div id="auditScore"  style="font-size:20px;font-weight:800;margin-bottom:6px;"></div>
+  <div id="auditLabel" style="font-size:14px;color:#555;margin-bottom:20px;"></div>
+
+  <div class="protocol-placeholder">
+    ⏳ 교육 프로토콜 준비 중<br>
+    <span style="font-size:12px;">2026년 4월 자문 완료 후 맞춤형 교육 프로토콜이 제공됩니다.</span>
+  </div>
+
+  <!-- 기관 보고서 CTA -->
+  <div style="background:#e8eaf6;border-radius:14px;padding:20px;margin-bottom:16px;text-align:center;">
+    <p style="font-size:14px;color:#3949ab;font-weight:700;margin-bottom:6px;">우리 기관 집단 보고서가 필요하신가요?</p>
+    <p style="font-size:13px;color:#5c6bc0;line-height:1.6;margin-bottom:12px;">구간별 인원 수를 입력하면 A4 PDF 보고서가 자동 생성됩니다.</p>
+    <a href="organ-report.html" style="display:inline-block;padding:12px 24px;background:#3949ab;color:#fff;border-radius:10px;font-size:14px;font-weight:700;text-decoration:none;">기관 보고서 생성하기 →</a>
+  </div>
+
+  <button class="btn-pdf" onclick="downloadPDF()">개인 결과 PDF 저장</button>
+
+  <div class="disclaimer" style="margin-top:16px;">
+    ※ 이 결과는 교육 목적이며 의료 진단이 아닙니다.<br>
+    수치는 집단 연구 결과이며 개인의 실제 건강 상태와 다를 수 있습니다.
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════
+     JS — 스카우트 트랙 로직
+════════════════════════════════════════ -->
+<script>
+/* ── 상태 ── */
+var answers = { q1: null, q2: null, q3: null, q4: null };
+var currentQ = 1;
+var smokerQ3Required = false;
+
+/* ── 선택지 클릭 ── */
+function selectOpt(el) {
+  var q = el.dataset.q;
+  var v = el.dataset.v;
+  // 같은 문항 선택 해제
+  document.querySelectorAll('[data-q="' + q + '"]').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  answers[q] = v;
+
+  // 다음 버튼 활성화
+  var btnMap = { q1: 'btnNext1', q2: 'btnNext2', q3: 'btnNext3', q4: 'btnNext4' };
+  var btn = document.getElementById(btnMap[q]);
+  if (btn) btn.disabled = false;
+
+  // Q2 선택 시 Q3 필요 여부 결정
+  if (q === 'q2') {
+    smokerQ3Required = (v === '1' || v === '2');
+    if (!smokerQ3Required) answers.q3 = null; // 비흡연이면 Q3 초기화
+  }
+}
+
+/* ── 진행 바 업데이트 ── */
+function updateProgress(qNum, total) {
+  document.getElementById('progressLabel').textContent = 'Q' + qNum + ' / ' + total;
+  document.getElementById('progressFill').style.width = (qNum / total * 100) + '%';
+}
+
+/* ── 문항 이동 ── */
+function showQ(id) {
+  document.querySelectorAll('.question-block').forEach(function(b){ b.classList.remove('active'); });
+  var block = document.getElementById(id);
+  if (block) block.classList.add('active');
+}
+
+function goNext(targetQ) {
+  if (targetQ === 3) {
+    if (!smokerQ3Required) {
+      // Q3 건너뜀 → Q4로
+      currentQ = 4;
+      document.getElementById('q4-number').textContent = 'Q 3 · 체질'; // 비흡연자에겐 Q3로 표시
+      updateProgress(3, 3);
+      showQ('q4-block');
+      return;
+    }
+    currentQ = 3;
+    updateProgress(3, 4);
+    showQ('q3-block');
+    return;
+  }
+  if (targetQ === 4) {
+    currentQ = 4;
+    document.getElementById('q4-number').textContent = 'Q 4 · 체질';
+    updateProgress(4, 4);
+    showQ('q4-block');
+    return;
+  }
+  if (targetQ === 2) {
+    currentQ = 2;
+    updateProgress(2, 4);
+    showQ('q2-block');
+    return;
+  }
+}
+
+function goBack(target) {
+  if (target === 1) { currentQ = 1; updateProgress(1, 4); showQ('q1-block'); return; }
+  if (target === 2) { currentQ = 2; updateProgress(2, 4); showQ('q2-block'); return; }
+  if (target === 'q4-prev') {
+    if (smokerQ3Required) { currentQ = 3; updateProgress(3, 4); showQ('q3-block'); }
+    else                  { currentQ = 2; updateProgress(2, 4); showQ('q2-block'); }
+    return;
+  }
+}
+
+/* ── 등급 판정 ── */
+function determineGrade(q1, q2, q4) {
+  var hasPolyphenol = (q4 === '1');          // 체질 양성
+  var isSmoker      = (q2 === '1' || q2 === '2');
+  var hasBinge      = (q1 === '3' || q1 === '4');
+  if (q4 === '3') return 'UNKNOWN';          // 잘 모르겠음
+  if (hasPolyphenol && (hasBinge || isSmoker)) return 'RED';
+  if (hasPolyphenol && !hasBinge && !isSmoker) return 'YELLOW';
+  if (!hasPolyphenol && (hasBinge || isSmoker)) return 'ORANGE';
+  return 'GREEN';
+}
+
+/* ── 등급별 콘텐츠 ── */
+var GRADE_CONTENT = {
+  RED: {
+    icon: '🔴',
+    label: '위험',
+    title: '고위험 — 즉각적인 생활 습관 개선이 필요합니다',
+    desc: '체질적으로 알코올 분해 능력이 낮고, 현재 음주·흡연 패턴이 결합되어 심혈관 위험이 크게 높아져 있습니다.',
+    riskClass: '',
+    risks: [
+      {
+        text: '관상동맥 경련 — 연구에 따르면 비폭음자 대비 <strong>6.9배</strong> 높게 보고됩니다',
+        sensitivity: '당신의 체질(플러싱 양성)과 현재 음주·흡연 패턴에서 이 위험이 해당됩니다',
+        condition: '폭음자 대상 연구, 개인차 있음'
+      },
+      {
+        text: '심근경색 — <strong>4.54배</strong> 높게 보고됩니다',
+        sensitivity: '현재 두 조건(체질+흡연)이 동시에 작용하고 있습니다',
+        condition: '폭음자 대상 연구, 개인차 있음'
+      },
+      {
+        text: '4주 절주 시 혈압 — 연구에서 평균 <strong>-5.5mmHg</strong> 감소 보고',
+        sensitivity: null,
+        condition: '연구에서 평균 감소 보고, 개인차 있음'
+      }
+    ],
+    actions: [
+      { type: 'primary',   label: '나의 절주 워크시트 받기',     href: '[F1_PDF_URL_TBD]' },
+      { type: 'secondary', label: '금연 교육 자세히 보기',       href: '[F2_URL_TBD]' },
+      { type: 'link',      label: '보건소 금연클리닉 1544-9030', href: 'tel:15449030' }
+    ]
+  },
+  YELLOW: {
+    icon: '🟡',
+    label: '주의',
+    title: '주의 — 체질적으로 주의가 필요합니다',
+    desc: '현재 음주·흡연량은 낮지만, 체질적으로 알코올 분해 효소가 부족합니다. 소량의 음주도 건강에 영향을 줄 수 있습니다.',
+    riskClass: 'yellow',
+    risks: [
+      {
+        text: '알코올 체내 축적 — 플러싱 반응은 아세트알데히드(1급 발암물질) 노출의 지표입니다',
+        sensitivity: '소량 음주에도 이 위험이 체질상 동일하게 작용합니다',
+        condition: '연구 기반, 개인차 있음'
+      }
+    ],
+    actions: [
+      { type: 'primary', label: '나의 절주 워크시트 받기', href: '[F1_PDF_URL_TBD]' }
+    ]
+  },
+  ORANGE: {
+    icon: '🟠',
+    label: '경고',
+    title: '경고 — 음주·흡연 습관 개선이 필요합니다',
+    desc: '체질적 위험은 낮지만, 현재 음주·흡연 패턴 자체가 건강 위험 요인입니다.',
+    riskClass: 'orange',
+    risks: [
+      {
+        text: '폭음은 체질과 무관하게 심혈관·간 건강에 독립적인 위험 요인입니다',
+        sensitivity: null,
+        condition: '세계보건기구(WHO) 권고 기준'
+      }
+    ],
+    actions: [
+      { type: 'primary',   label: '나의 절주 워크시트 받기', href: '[F1_PDF_URL_TBD]' },
+      { type: 'secondary', label: '금연 교육 자세히 보기',   href: '[F2_URL_TBD]' }
+    ]
+  },
+  GREEN: {
+    icon: '🟢',
+    label: '양호',
+    title: '양호 — 현재 건강 습관을 유지하세요',
+    desc: '현재 체질과 생활 습관 모두 건강한 상태입니다. 지금의 습관을 꾸준히 유지하는 것이 중요합니다.',
+    riskClass: 'green',
+    risks: [
+      {
+        text: '건강한 비음주·비흡연 습관은 심혈관 질환 위험을 낮게 유지합니다',
+        sensitivity: null,
+        condition: '세계보건기구(WHO) 권고'
+      }
+    ],
+    actions: []
+  },
+  UNKNOWN: {
+    icon: '⬜',
+    label: '체질 확인 필요',
+    title: '알쓰패치로 체질을 먼저 확인해보세요',
+    desc: '정확한 건강 위험 진단을 위해 알코올 분해 체질(ALDH2) 확인이 필요합니다. 알쓰패치 7분 테스트로 확인하세요.',
+    riskClass: '',
+    risks: [],
+    actions: [
+      { type: 'primary', label: '알쓰패치 구매하기', href: 'https://wcolive.com' }
+    ]
+  }
+};
+
+/* ── 결과 화면 렌더링 ── */
+function showResult() {
+  if (!answers.q4) return;
+  var grade = determineGrade(answers.q1, answers.q2, answers.q4);
+  var c = GRADE_CONTENT[grade];
+
+  // 카드 전환
+  document.getElementById('surveyCard').style.display = 'none';
+  var rv = document.getElementById('resultView');
+  rv.style.display = 'block';
+
+  // 배지
+  var badge = document.getElementById('gradeBadge');
+  badge.textContent = c.icon + ' ' + c.label;
+  badge.className = 'grade-badge grade-' + grade;
+
+  document.getElementById('gradeTitle').textContent = c.title;
+  document.getElementById('gradeDesc').textContent  = c.desc;
+
+  // 위험 배수 박스
+  var riskBox = document.getElementById('riskBox');
+  if (c.risks.length > 0) {
+    var html = '<div class="risk-box ' + c.riskClass + '"><div class="risk-box-title">위험 지표</div>';
+    c.risks.forEach(function(r) {
+      html += '<div class="risk-item">' + r.text;
+      if (r.sensitivity) html += '<span class="sensitivity-note">— ' + r.sensitivity + '</span>';
+      if (r.condition)   html += '<span class="condition-note">(' + r.condition + ')</span>';
+      html += '</div>';
+    });
+    html += '</div>';
+    riskBox.innerHTML = html;
+  } else {
+    riskBox.innerHTML = '';
+  }
+
+  // 연동 버튼
+  var ab = document.getElementById('actionButtons');
+  var btnHtml = '';
+  c.actions.forEach(function(a) {
+    if (a.type === 'primary')
+      btnHtml += '<a href="' + a.href + '" class="btn-primary">' + a.label + '</a>';
+    else if (a.type === 'secondary')
+      btnHtml += '<a href="' + a.href + '" class="btn-secondary">' + a.label + '</a>';
+    else
+      btnHtml += '<a href="' + a.href + '" class="btn-link">' + a.label + '</a>';
+  });
+  ab.innerHTML = btnHtml;
+}
+
+/* ── 마스터 트랙 진입 ── */
+var AUDIT_QUESTIONS = [
+  { id:'q5',  label:'Q5', text:'지난 1년간, 얼마나 자주 알코올이 들어간 술을 마셨습니까?',
+    opts:['전혀 안 마심','월 1회 미만','월 2~4회','주 2~3회','주 4회 이상'] },
+  { id:'q6',  label:'Q6', text:'보통 음주 시 한 번에 몇 잔이나 마십니까? (표준잔 기준)',
+    opts:['1~2잔','3~4잔','5~6잔','7~9잔','10잔 이상'] },
+  { id:'q7',  label:'Q7', text:'한 번의 술자리에서 6잔 이상 마신 적은 얼마나 됩니까?',
+    opts:['없음','월 1회 미만','월 1회','주 1회','거의 매일'] },
+  { id:'q8',  label:'Q8', text:'지난 1년 중, 음주를 시작한 이후에는 멈추기 힘들었던 적이 얼마나 자주 있었습니까?',
+    opts:['없음','월 1회 미만','월 1회','주 1회','거의 매일'] },
+  { id:'q9',  label:'Q9', text:'지난 1년 중, 주로 음주 때문에 일상적으로 기대되는 일들을 실패한 적이 얼마나 자주 있었습니까?',
+    opts:['없음','월 1회 미만','월 1회','주 1회','거의 매일'] },
+  { id:'q10', label:'Q10', text:'지난 1년 중, 많이 마신 그 다음날 아침, 다시 정신을 차리기 위해 아침 일찍 술이 필요했던 적이 얼마나 자주 있었습니까?',
+    opts:['없음','월 1회 미만','월 1회','주 1회','거의 매일'] },
+  { id:'q11', label:'Q11', text:'지난 1년 중, 음주 후에 죄책감이 들거나 후회한 적이 얼마나 자주 있었습니까?',
+    opts:['없음','월 1회 미만','월 1회','주 1회','거의 매일'] },
+  { id:'q12', label:'Q12', text:'지난 1년 중, 음주 때문에 전날 밤의 일이 기억나지 않았던 적이 얼마나 자주 있었습니까?',
+    opts:['없음','월 1회 미만','월 1회','주 1회','거의 매일'] },
+  { id:'q13', label:'Q13', text:'음주로 인해 본인이나 다른 사람이 다친 적이 있습니까?',
+    opts:['없음','예, 있지만 지난 1년 내는 아님','예, 지난 1년 내에'] },
+  { id:'q14', label:'Q14', text:'친척이나 친구, 의사가 음주에 대해 걱정하거나 술을 끊도록 권유한 적이 있습니까?',
+    opts:['없음','예, 있지만 지난 1년 내는 아님','예, 지난 1년 내에'] }
+];
+var auditAnswers = {};
+
+function startMaster() {
+  document.getElementById('resultView').style.display = 'none';
+  var masterView = document.getElementById('masterView');
+  masterView.style.display = 'block';
+
+  // 문항 렌더
+  var container = document.getElementById('auditQuestions');
+  var html = '';
+  AUDIT_QUESTIONS.forEach(function(q, qi) {
+    html += '<div class="audit-q">';
+    html += '<div class="q-number">' + q.label + '</div>';
+    html += '<div class="q-text" style="font-size:15px;font-weight:600;margin-bottom:14px;line-height:1.5;">' + q.text + '</div>';
+    html += '<div class="audit-options">';
+    q.opts.forEach(function(opt, oi) {
+      var score = (q.opts.length === 5) ? oi : (oi === 0 ? 0 : (oi === 1 ? 2 : 4));
+      html += '<div class="audit-opt opt" data-q="' + q.id + '" data-v="' + score + '" onclick="selectAuditOpt(this)">';
+      html += '<div class="opt-circle">' + String.fromCharCode(9312 + oi) + '</div>' + opt;
+      html += '</div>';
+    });
+    html += '</div></div>';
+  });
+  container.innerHTML = html;
+}
+
+function selectAuditOpt(el) {
+  var q = el.dataset.q;
+  document.querySelectorAll('[data-q="' + q + '"]').forEach(function(o){ o.classList.remove('selected'); });
+  el.classList.add('selected');
+  auditAnswers[q] = parseInt(el.dataset.v);
+  // 전체 답변 완료 시 버튼 활성화
+  if (Object.keys(auditAnswers).length >= AUDIT_QUESTIONS.length) {
+    document.getElementById('btnMasterSubmit').disabled = false;
+  }
+}
+
+/* ── AUDIT-K 등급 판정 ── */
+function determineAuditKGrade(totalScore) {
+  if (totalScore <= 7)  return { grade:'LOW',       label:'저위험',          cssClass:'audit-LOW' };
+  if (totalScore <= 15) return { grade:'RISK',       label:'위험음주',         cssClass:'audit-RISK' };
+  if (totalScore <= 19) return { grade:'HARMFUL',    label:'해로운 음주',      cssClass:'audit-HARMFUL' };
+  return                       { grade:'DEPENDENT',  label:'알코올 의존 가능성', cssClass:'audit-DEPENDENT' };
+}
+
+function showMasterResult() {
+  var total = 0;
+  Object.values(auditAnswers).forEach(function(v){ total += v; });
+
+  var result = determineAuditKGrade(total);
+  document.getElementById('masterView').style.display = 'none';
+  var mrv = document.getElementById('masterResultView');
+  mrv.style.display = 'block';
+
+  var badgeEl = document.getElementById('auditGradeBadge');
+  badgeEl.textContent = result.label;
+  badgeEl.className = 'audit-grade-badge ' + result.cssClass;
+
+  document.getElementById('auditScore').textContent = 'AUDIT-K 합산: ' + total + '점 / 40점';
+  document.getElementById('auditLabel').textContent = '등급: ' + result.label;
+}
+
+/* ── PDF 다운로드 ── */
+function downloadPDF() {
+  window.print();
+}
+</script>
+
+</body>
+</html>
