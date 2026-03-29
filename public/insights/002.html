@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인사이트 #002 — 사업장 음주와 산재: 보건관리자가 놓치는 숫자 | APS 보건교육연구소</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #F5F8FF; color: #1a1a2e; }
+
+    .site-header { background: #1a3a5c; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+    .site-header nav a { color: #b3c9e0; font-size: 14px; margin-left: 20px; text-decoration: none; }
+    .site-header nav a:hover { color: #fff; }
+
+    .article-hero { background: #1a3a5c; padding: 40px 24px 36px; }
+    .article-hero .container { max-width: 720px; margin: 0 auto; }
+    .breadcrumb { font-size: 13px; color: #7ec8e3; margin-bottom: 20px; }
+    .breadcrumb a { color: #7ec8e3; text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .article-no { display: inline-block; background: rgba(255,255,255,0.1); color: #7ec8e3; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+    .article-hero h1 { color: #fff; font-size: 26px; font-weight: 800; line-height: 1.4; margin-bottom: 16px; }
+    .article-meta { color: #b3c9e0; font-size: 13px; }
+    .tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .tag { font-size: 11px; font-weight: 600; color: #1a6bb5; background: #e8f0fa; padding: 3px 10px; border-radius: 12px; }
+
+    .article-body { max-width: 720px; margin: 48px auto; padding: 0 24px; }
+
+    .key-quote { background: #fff; border-left: 4px solid #1a6bb5; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .key-quote p { font-size: 15px; line-height: 1.7; color: #2c3e50; font-style: italic; }
+    .key-quote .source { font-size: 12px; color: #9aa3b8; margin-top: 8px; font-style: normal; }
+
+    h2 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 36px 0 16px; border-bottom: 2px solid #e8f0fa; padding-bottom: 10px; }
+    h3 { font-size: 16px; font-weight: 700; color: #1a3a5c; margin: 24px 0 10px; }
+    p { font-size: 15px; line-height: 1.8; color: #3a4060; margin-bottom: 16px; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    @media (max-width: 640px) { .stats-row { grid-template-columns: 1fr; } }
+    .stat-card { background: #1a3a5c; color: #fff; border-radius: 12px; padding: 20px 16px; text-align: center; }
+    .stat-card .number { font-size: 32px; font-weight: 800; color: #7ec8e3; line-height: 1.1; }
+    .stat-card .label { font-size: 12px; margin-top: 8px; opacity: 0.8; line-height: 1.4; }
+
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    th { background: #1a3a5c; color: #fff; font-size: 13px; font-weight: 600; padding: 12px 16px; text-align: left; }
+    td { font-size: 14px; padding: 12px 16px; border-bottom: 1px solid #f0f4fa; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fbff; }
+    td strong { color: #1a6bb5; }
+
+    .apply-box { background: #fff; border: 2px solid #1a6bb5; border-radius: 12px; padding: 24px; margin: 32px 0; }
+    .apply-box .apply-title { font-size: 14px; font-weight: 700; color: #1a6bb5; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .apply-flow { background: #f5f8ff; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.8; font-family: monospace; color: #2c3e50; margin: 12px 0; white-space: pre-line; }
+
+    .aldh2-box { background: #fff3e0; border: 1px solid #ffb74d; border-radius: 10px; padding: 20px; margin: 24px 0; }
+    .aldh2-box .aldh2-title { font-size: 13px; font-weight: 700; color: #e65100; margin-bottom: 8px; }
+    .aldh2-box p { font-size: 14px; color: #5d3a00; margin: 0; }
+
+    .sources { background: #fff; border-radius: 10px; padding: 20px 24px; margin: 32px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .sources h3 { font-size: 14px; color: #6b7a99; margin: 0 0 12px; }
+    .sources ul { list-style: none; }
+    .sources li { font-size: 13px; color: #6b7a99; padding: 4px 0; border-bottom: 1px solid #f0f4fa; }
+    .sources li:last-child { border-bottom: none; }
+
+    .article-nav { display: flex; justify-content: space-between; align-items: center; padding: 32px 0 64px; }
+    .nav-btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .nav-btn.prev { background: #f0f4fa; color: #1a3a5c; }
+    .nav-btn.next { background: #1a6bb5; color: #fff; opacity: 0.4; pointer-events: none; }
+    .nav-btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="https://aps7.net">APS 보건교육연구소</a>
+  <nav>
+    <a href="https://aps7.net">홈</a>
+    <a href="https://edu.aps7.net/insights/">인사이트 목록</a>
+    <a href="https://aps7.net/page/scout">APS 스카우트</a>
+  </nav>
+</header>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="https://edu.aps7.net/insights/">보건교육 인사이트</a> › #002</div>
+    <div class="article-no">INSIGHT #002</div>
+    <h1>사업장 음주와 산재: 보건관리자가 놓치는 숫자</h1>
+    <div class="article-meta">2026-03-29 · APS 보건교육연구소 FORGE 벼리</div>
+    <div class="tags-row">
+      <span class="tag">#산업재해</span>
+      <span class="tag">#음주</span>
+      <span class="tag">#사업장보건</span>
+      <span class="tag">#보건관리자</span>
+      <span class="tag">#ALDH2</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-body">
+
+  <div class="key-quote">
+    <p>"음주는 작업장 사고 발생의 20~30%에 관여하며, 숙취 상태 출근(Hangover at Work)은 인지기능·반응속도를 20% 이상 저하시킨다. 이는 교대근무 직군에서 특히 두드러진다."</p>
+    <div class="source">— WHO/ILO 공동 검토: Alcohol use disorders and risk of work-related injuries</div>
+  </div>
+
+  <h2>보건관리자가 놓치는 3가지 숫자</h2>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="number">20~30%</div>
+      <div class="label">전 세계 작업장 사고 중 음주 관여 비율 (WHO/ILO)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">20%+</div>
+      <div class="label">숙취 상태에서의 인지기능·반응속도 저하</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">28~30%</div>
+      <div class="label">한국 성인 남성 고위험 음주율 (국민건강영양조사 2022)</div>
+    </div>
+  </div>
+
+  <table>
+    <tr><th>숫자</th><th>의미</th><th>현장 함의</th></tr>
+    <tr><td><strong>20~30%</strong></td><td>전 세계 작업장 사고 중 음주 관여 비율 (WHO/ILO)</td><td>사고 조사 시 음주력 확인이 필요</td></tr>
+    <tr><td><strong>20%+</strong></td><td>숙취 상태에서의 인지기능·반응속도 저하</td><td>"어제 마셨는데 오늘 사고"가 실제 발생 경로</td></tr>
+    <tr><td><strong>28~30%</strong></td><td>한국 성인 남성 고위험 음주율 (국민건강영양조사 2022)</td><td>사업장 내 고위험 음주자가 예상보다 많음</td></tr>
+  </table>
+
+  <h2>ALDH2 체질과 숙취 — 놓친 변수</h2>
+
+  <div class="aldh2-box">
+    <div class="aldh2-title">⚠️ 핵심 발견: 체질 판정 없는 선별은 절반의 정보</div>
+    <p>ALDH2 결핍 체질(AG형·AA형, 한국인 약 30%)은 같은 음주량에서 아세트알데히드 축적이 지속되어 <strong>숙취 지속 시간이 GG형 대비 더 길다</strong>. "마셨나 안 마셨나"만 보는 선별로는 고위험군을 정확히 식별할 수 없다.</p>
+  </div>
+
+  <h2>APS 현장 적용 인사이트</h2>
+
+  <p>대부분의 사업장 보건관리자는 "음주자 여부"는 파악하지만, <strong>"아세트알데히드 대사 취약군"은 식별하지 않습니다.</strong></p>
+
+  <div class="apply-box">
+    <div class="apply-title">선별 방식 전환 제안</div>
+    <div class="apply-flow">[기존 선별]  음주 여부 확인 → 고위험 음주자 안내 → 끝
+
+[ALDH2 연계] 체질 판정 → GG/AG/AA 체질별 산재 위험도 차등
+           → 집중 교육 대상 식별 → 산재 예방 KPI 연결</div>
+    <p style="margin-top:12px;font-size:14px;color:#3a4060;"><strong>포지셔닝 전환</strong>: 보건관리자 대상 메시지에서 "음주 선별"이 아닌 <em>"산재 예방을 위한 체질 기반 위험군 분류"</em>로 접근할 때 도입 설득력이 높아집니다.</p>
+  </div>
+
+  <h3>보건관리자 설득 포인트</h3>
+  <p>이 인사이트를 기관 도입 제안에 활용할 때 효과적인 메시지 후보:</p>
+  <ul style="list-style:none;padding:0;margin:12px 0 24px;">
+    <li style="padding:8px 12px;background:#fff;border-radius:8px;margin-bottom:8px;font-size:14px;border-left:3px solid #1a6bb5;">직원의 30%는 숙취가 더 오래 간다 — 체질 때문입니다</li>
+    <li style="padding:8px 12px;background:#fff;border-radius:8px;margin-bottom:8px;font-size:14px;border-left:3px solid #1a6bb5;">사고는 어제 음주에서 시작될 수 있습니다</li>
+    <li style="padding:8px 12px;background:#fff;border-radius:8px;font-size:14px;border-left:3px solid #1a6bb5;">고위험 음주자 중 진짜 위험한 사람을 골라내는 법</li>
+  </ul>
+
+  <div class="sources">
+    <h3>출처</h3>
+    <ul>
+      <li>WHO. Global Status Report on Alcohol and Health 2018. Geneva: WHO Press.</li>
+      <li>ILO. Alcohol and Drug Problems at Work: The Shift to Prevention. Geneva: ILO, 2003.</li>
+      <li>한국산업안전보건공단(KOSHA). 산업재해 현황분석 2023.</li>
+      <li>질병관리청. 국민건강영양조사 2022 — 음주 행태.</li>
+      <li>Verster JC et al. "The Alcohol Hangover Research Group consensus statement." Current Drug Abuse Reviews 3(2), 2010.</li>
+    </ul>
+  </div>
+
+  <div class="article-nav">
+    <a class="nav-btn prev" href="./001">← 인사이트 #001</a>
+    <span class="nav-btn next">다음 인사이트 준비 중</span>
+  </div>
+
+</div>
+
+</body>
+</html>

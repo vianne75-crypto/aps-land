@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인사이트 #001 — 생물지표 피드백이 행동변화에 효과적인 조건 | APS 보건교육연구소</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #F5F8FF; color: #1a1a2e; }
+
+    .site-header { background: #1a3a5c; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+    .site-header nav a { color: #b3c9e0; font-size: 14px; margin-left: 20px; text-decoration: none; }
+    .site-header nav a:hover { color: #fff; }
+
+    .article-hero { background: #1a3a5c; padding: 40px 24px 36px; }
+    .article-hero .container { max-width: 720px; margin: 0 auto; }
+    .breadcrumb { font-size: 13px; color: #7ec8e3; margin-bottom: 20px; }
+    .breadcrumb a { color: #7ec8e3; text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .article-no { display: inline-block; background: rgba(255,255,255,0.1); color: #7ec8e3; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+    .article-hero h1 { color: #fff; font-size: 26px; font-weight: 800; line-height: 1.4; margin-bottom: 16px; }
+    .article-meta { color: #b3c9e0; font-size: 13px; }
+    .tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .tag { font-size: 11px; font-weight: 600; color: #1a6bb5; background: #e8f0fa; padding: 3px 10px; border-radius: 12px; }
+
+    .article-body { max-width: 720px; margin: 48px auto; padding: 0 24px; }
+
+    .key-quote { background: #fff; border-left: 4px solid #1a6bb5; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .key-quote p { font-size: 15px; line-height: 1.7; color: #2c3e50; font-style: italic; }
+    .key-quote .source { font-size: 12px; color: #9aa3b8; margin-top: 8px; font-style: normal; }
+
+    h2 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 36px 0 16px; border-bottom: 2px solid #e8f0fa; padding-bottom: 10px; }
+    h3 { font-size: 16px; font-weight: 700; color: #1a3a5c; margin: 24px 0 10px; }
+    p { font-size: 15px; line-height: 1.8; color: #3a4060; margin-bottom: 16px; }
+
+    .stat-highlight { background: #1a6bb5; color: #fff; border-radius: 12px; padding: 24px 28px; margin: 24px 0; text-align: center; }
+    .stat-highlight .number { font-size: 48px; font-weight: 800; line-height: 1; }
+    .stat-highlight .label { font-size: 14px; margin-top: 8px; opacity: 0.85; }
+
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    th { background: #1a3a5c; color: #fff; font-size: 13px; font-weight: 600; padding: 12px 16px; text-align: left; }
+    td { font-size: 14px; padding: 12px 16px; border-bottom: 1px solid #f0f4fa; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fbff; }
+    td strong { color: #1a6bb5; }
+
+    .apply-box { background: #fff; border: 2px solid #1a6bb5; border-radius: 12px; padding: 24px; margin: 32px 0; }
+    .apply-box .apply-title { font-size: 14px; font-weight: 700; color: #1a6bb5; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .apply-flow { background: #f5f8ff; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.8; font-family: monospace; color: #2c3e50; margin: 12px 0; white-space: pre-line; }
+
+    .sources { background: #fff; border-radius: 10px; padding: 20px 24px; margin: 32px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .sources h3 { font-size: 14px; color: #6b7a99; margin: 0 0 12px; }
+    .sources ul { list-style: none; }
+    .sources li { font-size: 13px; color: #6b7a99; padding: 4px 0; border-bottom: 1px solid #f0f4fa; }
+    .sources li:last-child { border-bottom: none; }
+    .sources a { color: #1a6bb5; text-decoration: none; }
+    .sources a:hover { text-decoration: underline; }
+
+    .article-nav { display: flex; justify-content: space-between; align-items: center; padding: 32px 0 64px; }
+    .nav-btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .nav-btn.prev { background: #f0f4fa; color: #1a3a5c; }
+    .nav-btn.next { background: #1a6bb5; color: #fff; }
+    .nav-btn:hover { opacity: 0.85; }
+    .nav-btn.disabled { opacity: 0.4; pointer-events: none; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="https://aps7.net">APS 보건교육연구소</a>
+  <nav>
+    <a href="https://aps7.net">홈</a>
+    <a href="https://edu.aps7.net/insights/">인사이트 목록</a>
+    <a href="https://aps7.net/page/scout">APS 스카우트</a>
+  </nav>
+</header>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="https://edu.aps7.net/insights/">보건교육 인사이트</a> › #001</div>
+    <div class="article-no">INSIGHT #001</div>
+    <h1>생물지표 피드백이 행동변화에 효과적인 조건</h1>
+    <div class="article-meta">2026-03-23 · APS 보건교육연구소 FORGE 벼리</div>
+    <div class="tags-row">
+      <span class="tag">#행동변화</span>
+      <span class="tag">#HBM</span>
+      <span class="tag">#바이오마커피드백</span>
+      <span class="tag">#건강증진</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-body">
+
+  <div class="key-quote">
+    <p>"신체 손상 또는 개인적 위험의 증거가 있을 때 행동변화 동기가 높아진다. 피드백은 개인에게 의미 있고, 다음 행동 안내가 함께 제공될 때 가장 효과적이다."</p>
+    <div class="source">— PMC Scoping Review (2023): Using Biological Feedback to Promote Health Behavior Change in Adults</div>
+  </div>
+
+  <h2>생물지표 피드백이 효과적인 4가지 조건</h2>
+
+  <table>
+    <tr><th>조건</th><th>설명</th></tr>
+    <tr><td><strong>① 개인화</strong></td><td>쉽게 이해할 수 있고 개인에게 의미 있을 때</td></tr>
+    <tr><td><strong>② 적정 빈도</strong></td><td>해당 행동·바이오마커 특성에 맞는 피드백 주기</td></tr>
+    <tr><td><strong>③ 다음 행동 안내</strong></td><td>피드백과 함께 활용 가이드 제공 시</td></tr>
+    <tr><td><strong>④ 개인 특성 반영</strong></td><td>체질 등 개인 특성으로 피드백 맥락화 시</td></tr>
+  </table>
+
+  <h2>추가 발견 — 규범 기반 메시지의 힘</h2>
+
+  <p>2025년 JMIR 무작위 대조시험(RCT)은 음주 개입에서 중요한 발견을 제시했습니다.</p>
+
+  <div class="stat-highlight">
+    <div class="number">규범 인식</div>
+    <div class="label">"인지된 위험"보다 음주 규범 인식이 행동변화를 더 강하게 매개</div>
+  </div>
+
+  <p>단순히 "당신은 위험합니다"라는 수치보다, <strong>"나와 비슷한 사람들의 기준"을 함께 제시할 때</strong> 행동변화 효과가 더 강력하다는 것입니다. 위험 수치를 단독으로 노출하는 것보다, 비교 집단의 규범 정보를 병기할 때 행동변화 동기가 유의미하게 높아졌습니다.</p>
+
+  <h2>APS 현장 적용 인사이트</h2>
+
+  <p>알쓰패치 체험은 4가지 조건 중 <strong>③ "다음 행동 안내"가 현재 가장 취약한 지점</strong>입니다. 체질 판정 결과를 제공하는 것으로 끝나는 것이 아니라, 그 다음에 무엇을 해야 하는지 안내가 연결되어야 합니다.</p>
+
+  <div class="apply-box">
+    <div class="apply-title">현장 적용 방안</div>
+    <div class="apply-flow">[현재]  패치 체험 → 체질 판정 → 끝
+
+[개선]  패치 체험 → 체질 판정 → F1·F2 연동 버튼 → 다음 행동 유도</div>
+    <p style="margin-top:12px;font-size:14px;color:#3a4060;"><strong>카피 적용 제안</strong>: 위험 배수(예: 6.9배) 단독 노출보다, 규범 기반 메시지 병기가 효과적입니다. 예: <em>"귀하와 같은 체질의 절주 실천자 중 혈압이 낮아진 비율"</em></p>
+  </div>
+
+  <div class="sources">
+    <h3>출처</h3>
+    <ul>
+      <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10562972/" target="_blank">Using Biological Feedback to Promote Health Behavior Change — PMC (2023)</a></li>
+      <li><a href="https://www.jmir.org/2025/1/e55541" target="_blank">Smartphone-Based Alcohol Intervention Mediation Analysis — JMIR (2025)</a></li>
+    </ul>
+  </div>
+
+  <div class="article-nav">
+    <span class="nav-btn prev disabled">← 이전 인사이트</span>
+    <a class="nav-btn next" href="./002">다음 인사이트 →</a>
+  </div>
+
+</div>
+
+</body>
+</html>

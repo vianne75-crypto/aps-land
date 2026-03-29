@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>보건교육 인사이트 — APS 보건교육연구소</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #F5F8FF; color: #1a1a2e; }
+
+    /* Header */
+    .site-header { background: #1a3a5c; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+    .site-header nav a { color: #b3c9e0; font-size: 14px; margin-left: 20px; text-decoration: none; }
+    .site-header nav a:hover { color: #fff; }
+
+    /* Hero */
+    .insights-hero { background: #1a3a5c; padding: 48px 24px 40px; text-align: center; }
+    .insights-hero .label { display: inline-block; background: rgba(255,255,255,0.1); color: #7ec8e3; font-size: 12px; font-weight: 600; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+    .insights-hero h1 { color: #fff; font-size: 28px; font-weight: 800; line-height: 1.3; margin-bottom: 12px; }
+    .insights-hero p { color: #b3c9e0; font-size: 15px; max-width: 480px; margin: 0 auto; }
+
+    /* Grid */
+    .insights-grid { max-width: 1080px; margin: 48px auto; padding: 0 24px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media (max-width: 768px) { .insights-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 1024px) and (min-width: 769px) { .insights-grid { grid-template-columns: repeat(2, 1fr); } }
+
+    /* Card */
+    .insight-card { background: #fff; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); padding: 24px; display: flex; flex-direction: column; border: 2px solid transparent; transition: border-color 0.2s, transform 0.2s; cursor: pointer; }
+    .insight-card:hover { border-color: #1a6bb5; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,107,181,0.12); }
+    .card-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; }
+    .tag { font-size: 11px; font-weight: 600; color: #1a6bb5; background: #e8f0fa; padding: 3px 10px; border-radius: 12px; }
+    .card-title { font-size: 16px; font-weight: 700; line-height: 1.45; color: #1a1a2e; margin-bottom: 16px; }
+    .card-stat { margin-bottom: 16px; }
+    .stat-number { font-size: 28px; font-weight: 800; color: #1a6bb5; line-height: 1; }
+    .stat-label { font-size: 12px; color: #6b7a99; margin-top: 4px; }
+    .card-meta { font-size: 12px; color: #9aa3b8; margin-bottom: auto; padding-bottom: 16px; }
+    .card-link { margin-top: 16px; display: flex; align-items: center; color: #1a6bb5; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .card-link::after { content: ' →'; margin-left: 4px; transition: margin-left 0.2s; }
+    .insight-card:hover .card-link::after { margin-left: 8px; }
+
+    /* Coming soon card */
+    .card-coming { opacity: 0.5; cursor: default; }
+    .card-coming:hover { transform: none; border-color: transparent; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+
+    /* CTA */
+    .insights-footer { text-align: center; padding: 0 24px 64px; }
+    .insights-footer p { font-size: 14px; color: #6b7a99; margin-bottom: 16px; }
+    .btn-back { display: inline-block; background: #1a6bb5; color: #fff; font-size: 14px; font-weight: 600; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .btn-back:hover { background: #1558a0; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="https://aps7.net">APS 보건교육연구소</a>
+  <nav>
+    <a href="https://aps7.net">홈</a>
+    <a href="https://edu.aps7.net">교육 허브</a>
+    <a href="https://aps7.net/page/scout">APS 스카우트</a>
+  </nav>
+</header>
+
+<section class="insights-hero">
+  <div class="label">INSIGHT SERIES</div>
+  <h1>보건교육 인사이트</h1>
+  <p>APS 보건교육연구소가 정리한 현장 적용 연구 — 학술 근거를 보건교육 현장 언어로</p>
+</section>
+
+<div class="insights-grid">
+
+  <!-- #001 -->
+  <div class="insight-card" onclick="location.href='./001'">
+    <div class="card-tags">
+      <span class="tag">#행동변화</span>
+      <span class="tag">#HBM</span>
+      <span class="tag">#바이오마커</span>
+    </div>
+    <div class="card-title">생물지표 피드백이 행동변화에 효과적인 조건</div>
+    <div class="card-stat">
+      <div class="stat-number">4가지</div>
+      <div class="stat-label">행동변화를 이끄는 피드백 조건</div>
+    </div>
+    <div class="card-meta">2026-03-23 · PMC Scoping Review (2023), JMIR RCT (2025)</div>
+    <a class="card-link" href="./001">더 읽기</a>
+  </div>
+
+  <!-- #002 -->
+  <div class="insight-card" onclick="location.href='./002'">
+    <div class="card-tags">
+      <span class="tag">#산업재해</span>
+      <span class="tag">#음주</span>
+      <span class="tag">#보건관리자</span>
+    </div>
+    <div class="card-title">사업장 음주와 산재: 보건관리자가 놓치는 숫자</div>
+    <div class="card-stat">
+      <div class="stat-number">20~30%</div>
+      <div class="stat-label">전 세계 작업장 사고 중 음주 관여 비율</div>
+    </div>
+    <div class="card-meta">2026-03-29 · WHO Global Status Report, KOSHA 산업재해 현황분석</div>
+    <a class="card-link" href="./002">더 읽기</a>
+  </div>
+
+  <!-- #003 Coming soon -->
+  <div class="insight-card card-coming">
+    <div class="card-tags">
+      <span class="tag">#준비중</span>
+    </div>
+    <div class="card-title">인사이트 #003 — 준비 중</div>
+    <div class="card-stat">
+      <div class="stat-number">—</div>
+      <div class="stat-label">곧 게시됩니다</div>
+    </div>
+    <div class="card-meta">2026-04월 예정</div>
+    <span class="card-link" style="cursor:default;opacity:0.4;">준비 중</span>
+  </div>
+
+</div>
+
+<div class="insights-footer">
+  <p>매월 2회 새로운 인사이트가 업데이트됩니다.</p>
+  <a class="btn-back" href="https://aps7.net">← APS 메인으로</a>
+</div>
+
+</body>
+</html>
