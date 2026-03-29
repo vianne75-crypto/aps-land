@@ -188,6 +188,25 @@ h1 { font-size:22px; font-weight:800; color:#1b5e20; margin-bottom:6px; line-hei
   transition:background .2s; margin-top:8px;
 }
 .btn-journey:hover { background:#1b5e20; }
+.btn-journey.btn-secondary {
+  background:#fff; color:#2e7d32;
+  border:2px solid #2e7d32;
+}
+.btn-journey.btn-secondary:hover { background:#f1f8e9; }
+/* 여정 흐름 */
+.journey-flow {
+  display:flex; align-items:center; justify-content:center;
+  gap:6px; margin:20px 0 24px; flex-wrap:wrap;
+}
+.j-step {
+  background:#f1f8e9; border:1.5px solid #a5d6a7;
+  border-radius:20px; padding:6px 14px;
+  font-size:12px; font-weight:700; color:#2e7d32;
+  white-space:nowrap;
+}
+.j-step.done { background:#2e7d32; color:#fff; border-color:#2e7d32; }
+.j-step.current { background:#fff9c4; color:#f57f17; border-color:#f9a825; }
+.j-arrow { color:#a5d6a7; font-size:14px; font-weight:700; }
 
 .disclaimer {
   margin-top:24px; font-size:11px; color:#bbb; line-height:1.8; text-align:center;
@@ -258,9 +277,32 @@ h1 { font-size:22px; font-weight:800; color:#1b5e20; margin-bottom:6px; line-hei
   <div class="pass-icon">🏅</div>
   <h2>퀴즈 통과!</h2>
   <p>5문항을 모두 맞히셨습니다.</p>
-  <p>APS 스카우트 여정의 다음 단계로 이어집니다.</p>
   <div class="pass-badge">✓ 스카우트 챌린지 퀴즈 통과</div>
-  <a href="https://wcolive.com" class="btn-journey">다음 단계 — 구매후기 등록하기 →</a>
+
+  <!-- 여정 흐름 안내 -->
+  <div class="journey-flow">
+    <div class="j-step done">✅ 퀴즈 통과</div>
+    <div class="j-arrow">→</div>
+    <div class="j-step current">① 샘플 주문</div>
+    <div class="j-arrow">→</div>
+    <div class="j-step">② 체험 후기 등록</div>
+    <div class="j-arrow">→</div>
+    <div class="j-step">③ 스카우트 달성 🎖</div>
+  </div>
+  <p style="font-size:13px;color:#777;margin-bottom:16px;">다음 단계는 알쓰패치 샘플 주문입니다.<br>체험 후 후기를 남기면 스카우트 자격이 완성됩니다.</p>
+
+  <!-- CTA 1: 샘플 주문 (주) -->
+  <a href="https://www.wcolive.com/shop_goods/goods_view.htm?category=0D000000&goods_idx=2353"
+     class="btn-journey">
+    ① 알쓰패치 샘플 주문하기 →
+  </a>
+  <!-- CTA 2: 이미 구매한 경우 후기 등록 (부) -->
+  <!-- 이미 구매했다면: -->
+  <a href="https://www.wcolive.com/shop_goods/goods_view.htm?category=0D000000&goods_idx=2353#goods_review"
+     class="btn-journey btn-secondary">
+    ② 이미 구매했어요 — 후기 등록하기 →
+  </a>
+
   <p class="disclaimer">
     APS[앱스]알쓰패치솔루션 · aps7.net · wcolive.com
   </p>
