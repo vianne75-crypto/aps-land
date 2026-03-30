@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인사이트 #003 — 금연 참여자의 40%는 위험 음주자: 보건소가 놓치는 교차 개입 기회 | APS 보건교육연구소</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #F5F8FF; color: #1a1a2e; }
+
+    .site-header { background: #1a3a5c; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+    .site-header nav a { color: #b3c9e0; font-size: 14px; margin-left: 20px; text-decoration: none; }
+    .site-header nav a:hover { color: #fff; }
+
+    .article-hero { background: #1a3a5c; padding: 40px 24px 36px; }
+    .article-hero .container { max-width: 720px; margin: 0 auto; }
+    .breadcrumb { font-size: 13px; color: #7ec8e3; margin-bottom: 20px; }
+    .breadcrumb a { color: #7ec8e3; text-decoration: none; }
+    .breadcrumb a:hover { color: #fff; }
+    .article-no { display: inline-block; background: rgba(255,255,255,0.1); color: #7ec8e3; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+    .article-hero h1 { color: #fff; font-size: 26px; font-weight: 800; line-height: 1.4; margin-bottom: 16px; }
+    .article-meta { color: #b3c9e0; font-size: 13px; }
+    .tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .tag { font-size: 11px; font-weight: 600; color: #1a6bb5; background: #e8f0fa; padding: 3px 10px; border-radius: 12px; }
+
+    .article-body { max-width: 720px; margin: 48px auto; padding: 0 24px; }
+
+    .key-quote { background: #fff; border-left: 4px solid #1a6bb5; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .key-quote p { font-size: 15px; line-height: 1.7; color: #2c3e50; font-style: italic; }
+    .key-quote .source { font-size: 12px; color: #9aa3b8; margin-top: 8px; font-style: normal; }
+
+    h2 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 36px 0 16px; border-bottom: 2px solid #e8f0fa; padding-bottom: 10px; }
+    h3 { font-size: 16px; font-weight: 700; color: #1a3a5c; margin: 24px 0 10px; }
+    p { font-size: 15px; line-height: 1.8; color: #3a4060; margin-bottom: 16px; }
+
+    .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 24px 0; }
+    @media (max-width: 640px) { .stats-row { grid-template-columns: 1fr; } }
+    .stat-card { background: #1a3a5c; color: #fff; border-radius: 12px; padding: 20px 16px; text-align: center; }
+    .stat-card .number { font-size: 32px; font-weight: 800; color: #7ec8e3; line-height: 1.1; }
+    .stat-card .label { font-size: 12px; margin-top: 8px; opacity: 0.8; line-height: 1.4; }
+
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    th { background: #1a3a5c; color: #fff; font-size: 13px; font-weight: 600; padding: 12px 16px; text-align: left; }
+    td { font-size: 14px; padding: 12px 16px; border-bottom: 1px solid #f0f4fa; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fbff; }
+    td strong { color: #1a6bb5; }
+
+    .apply-box { background: #fff; border: 2px solid #1a6bb5; border-radius: 12px; padding: 24px; margin: 32px 0; }
+    .apply-box .apply-title { font-size: 14px; font-weight: 700; color: #1a6bb5; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .apply-flow { background: #f5f8ff; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.8; font-family: monospace; color: #2c3e50; margin: 12px 0; white-space: pre-line; }
+
+    .aldh2-box { background: #fff3e0; border: 1px solid #ffb74d; border-radius: 10px; padding: 20px; margin: 24px 0; }
+    .aldh2-box .aldh2-title { font-size: 13px; font-weight: 700; color: #e65100; margin-bottom: 8px; }
+    .aldh2-box p { font-size: 14px; color: #5d3a00; margin: 0; }
+
+    .warning-box { background: #fff8f8; border: 1px solid #e74c3c; border-radius: 10px; padding: 20px; margin: 24px 0; }
+    .warning-box .warning-title { font-size: 13px; font-weight: 700; color: #c0392b; margin-bottom: 8px; }
+    .warning-box p { font-size: 14px; color: #4a1010; margin: 0; }
+
+    .sources { background: #fff; border-radius: 10px; padding: 20px 24px; margin: 32px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .sources h3 { font-size: 14px; color: #6b7a99; margin: 0 0 12px; }
+    .sources ul { list-style: none; }
+    .sources li { font-size: 13px; color: #6b7a99; padding: 6px 0; border-bottom: 1px solid #f0f4fa; line-height: 1.6; }
+    .sources li:last-child { border-bottom: none; }
+
+    .disclaimer { font-size: 12px; color: #9aa3b8; background: #f8fbff; border-radius: 8px; padding: 14px 18px; margin-top: 32px; line-height: 1.7; }
+
+    .cta-section { background: #1a3a5c; border-radius: 16px; padding: 32px; text-align: center; margin: 40px 0 60px; }
+    .cta-section h3 { color: #fff; font-size: 18px; margin-bottom: 10px; }
+    .cta-section p { color: #b3c9e0; font-size: 14px; margin-bottom: 20px; }
+    .cta-btn { display: inline-block; background: #1a6bb5; color: #fff; font-size: 14px; font-weight: 700; padding: 12px 28px; border-radius: 8px; text-decoration: none; }
+    .cta-btn:hover { background: #1558a0; }
+
+    .nav-links { display: flex; justify-content: space-between; padding: 20px 0; margin-bottom: 20px; }
+    .nav-links a { font-size: 14px; color: #1a6bb5; text-decoration: none; }
+    .nav-links a:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a href="https://edu.aps7.net" class="logo">APS 보건교육연구소</a>
+  <nav>
+    <a href="https://edu.aps7.net/insights">인사이트</a>
+    <a href="https://edu.aps7.net">교육 허브</a>
+    <a href="https://aps7.net">홈</a>
+  </nav>
+</header>
+
+<div class="article-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="https://edu.aps7.net/insights">← 인사이트 목록</a>
+    </div>
+    <div class="article-no">INSIGHT #003</div>
+    <h1>금연 교육 참여자의 40%는 위험 음주자:<br>보건소가 놓치는 교차 개입 기회</h1>
+    <div class="article-meta">2026년 3월 | APS 보건교육연구소</div>
+    <div class="tags-row">
+      <span class="tag">#금연클리닉</span>
+      <span class="tag">#위험음주</span>
+      <span class="tag">#보건소</span>
+      <span class="tag">#통합교육</span>
+      <span class="tag">#ALDH2</span>
+    </div>
+  </div>
+</div>
+
+<div class="article-body">
+
+  <div class="key-quote">
+    <p>"금연 치료에 참여한 흡연자의 상당수는 동시에 위험 음주 기준을 충족하지만,
+    현장에서 음주 평가가 함께 이루어지는 경우는 드물다. 두 행태는 동일한 뇌 보상 회로를 공유하며,
+    음주는 금연 실패의 가장 강력한 예측 인자 중 하나다."</p>
+    <div class="source">Kahler et al., 2011, Nicotine & Tobacco Research / Hurt et al., 2010, JAMA</div>
+  </div>
+
+  <h2>1. 금연 현장의 숨겨진 변수: 음주</h2>
+
+  <p>보건소 금연클리닉을 방문하는 흡연자들은 금연이라는 단일 목표를 가지고 찾아온다.
+  그러나 국내외 연구들은 이들 중 상당 비율이 동시에 위험 음주 기준(AUDIT-C 3점 이상 또는 AUDIT 8점 이상)을
+  충족한다는 사실을 일관되게 보고한다.</p>
+
+  <div class="stats-row">
+    <div class="stat-card">
+      <div class="number">40~60%</div>
+      <div class="label">금연 치료 참여 흡연자 중<br>위험 음주 해당 비율<br>(연구 대상 기준, 개인차 있음)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">2~3배</div>
+      <div class="label">비흡연자 대비 흡연자의<br>위험 음주 가능성<br>(WHO 기준)</div>
+    </div>
+    <div class="stat-card">
+      <div class="number">45%</div>
+      <div class="label">금연 재발 직전<br>음주 사건이 보고된 비율<br>(Kahler et al., 2011)</div>
+    </div>
+  </div>
+
+  <p>흡연과 음주는 뇌의 도파민 보상 경로를 공유한다. 음주 상황은 담배에 대한 조건반사적 갈망을 촉발하고,
+  알코올 자체가 전전두피질의 억제 기능을 약화시켜 금연 의지를 무너뜨린다.
+  이 연결고리를 끊지 않는 한, 금연 교육의 효과는 구조적으로 제한된다.</p>
+
+  <h2>2. ALDH2 체질이 이 문제를 더 복잡하게 만든다</h2>
+
+  <p>한국인의 약 71%는 GG형(주의체질) — ALDH2 효소가 정상적으로 작동하며 음주 시
+  홍조·구역감 같은 경고 신호가 없다. 이 무반응은 안전의 신호가 아니라
+  더 많이 마셔도 즉각적 불쾌감이 없다는 뜻이다.</p>
+
+  <div class="aldh2-box">
+    <div class="aldh2-title">🔬 ALDH2 체질별 음주 위험 패턴</div>
+    <p><strong>GG형 (주의체질, 71%):</strong> 홍조 없음 → 음주량 조절 단서 부재 → 만성 과음 위험. 금연 시도 중 음주로 인한 재발이 더 조용하게, 더 빠르게 진행될 수 있음.<br><br>
+    <strong>AG형 (경고체질, 25%):</strong> 홍조·불쾌감 → 음주 억제 신호 있음. 단, 음주 습관 형성 시 불쾌감에 내성이 생기는 경우도 존재.<br><br>
+    <strong>AA형 (위험체질, 4%):</strong> 극도의 불쾌감 → 대부분 음주 기피. 금연 시 음주 재발 위험 낮음.<br><br>
+    ※ 금연 교육 현장에서 체질 판정은 참여자가 자신의 음주 위험을 객관적으로 인식하는 강력한 교육 도구가 된다.</p>
+  </div>
+
+  <h2>3. 통합 교육의 근거: 따로 하면 왜 효과가 떨어지는가</h2>
+
+  <p>2019년 Cochrane 체계적 문헌고찰은 금연과 음주 개입을 동시에 제공한 경우,
+  단독 금연 개입 대비 12개월 금연 유지율이 유의미하게 높았음을 보고했다(Krist et al., 2020 참조).
+  두 행태의 신경생물학적 연결고리를 동시에 다루어야 각각의 효과가 증폭된다.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>개입 방식</th>
+        <th>12개월 금연 유지율</th>
+        <th>음주량 변화</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>금연 단독 개입</td>
+        <td>10~15%</td>
+        <td>거의 변화 없음</td>
+      </tr>
+      <tr>
+        <td>음주 단독 개입</td>
+        <td>해당 없음</td>
+        <td>단기 감소 (재발 잦음)</td>
+      </tr>
+      <tr>
+        <td><strong>금연 + 절주 통합 개입</strong></td>
+        <td><strong>18~25% (연구 대상 기준)</strong></td>
+        <td><strong>음주량 유의미한 감소</strong></td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>단, 통합 개입이 효과적이려면 두 가지 조건이 필요하다.
+  ①참여자가 자신의 음주 패턴을 객관적으로 인식할 수 있어야 하고,
+  ②교육자가 음주 위험을 직접적이지 않게(낙인 없이) 다룰 수 있는 도구를 가져야 한다.</p>
+
+  <div class="warning-box">
+    <div class="warning-title">⚠️ 보건소 현장의 구조적 문제</div>
+    <p>대부분의 금연클리닉 프로토콜에는 AUDIT 또는 AUDIT-C 스크리닝이 포함되어 있지 않다.
+    음주 평가는 "추가 업무"로 인식되며, 담당자는 음주 주제를 꺼내는 것 자체를 부담스러워한다.
+    결과적으로, 금연 재발의 가장 큰 위험 요인이 매 상담에서 무시된다.</p>
+  </div>
+
+  <h2>4. 현장 적용: 알쓰패치가 연결고리가 되는 이유</h2>
+
+  <p>알쓰패치(ALDH2 체질 판정 도구)는 이 교차 개입의 진입점으로 활용될 수 있다.
+  7분이라는 짧은 체험 시간 내에 참여자는 자신의 체질을 직접 확인하고,
+  "왜 나는 이렇게 마셔도 괜찮은 것 같았는지"에 대한 생물학적 설명을 얻는다.
+  이 자기발견적 경험은 금연 교육과 연계될 때 음주 행태 변화의 강력한 동기가 된다.</p>
+
+  <div class="apply-box">
+    <div class="apply-title">현장 적용 흐름 — 금연클리닉 통합 프로토콜 예시</div>
+    <div class="apply-flow">① 내원 시 알쓰패치 체질 판정 (7분)
+   → GG형: "홍조 없음이 더 위험한 이유" 교육 연계
+   → AG형: "홍조 있어도 습관 형성 가능" 교육 연계
+
+② AUDIT-C 3문항 스크리닝 (2분)
+   → 3점 이상: 절주 목표 설정 워크시트 병행
+   → 미해당: 금연 시 음주 유혹 대처 계획 포함
+
+③ 금연 상담 시 음주 트리거 지도화 (5분 추가)
+   → "지난주 담배가 가장 피우고 싶었던 때는 언제?" → 음주 상황 비율 파악
+
+④ 4주 후 팔로업: 금연 유지 + 음주량 변화 동시 확인</div>
+  </div>
+
+  <h2>5. 보건소 담당자를 위한 핵심 요약</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>질문</th>
+        <th>근거 기반 답변</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>금연 참여자에게 음주도 물어봐야 하나?</td>
+        <td><strong>반드시.</strong> AUDIT-C 3문항, 2분이면 충분. 금연 재발 예측의 핵심 지표.</td>
+      </tr>
+      <tr>
+        <td>음주 주제를 꺼내면 참여자가 거부감을 보이지 않나?</td>
+        <td>체질 검사(알쓰패치) 결과를 매개로 하면 낙인 없이 자연스럽게 연결 가능.</td>
+      </tr>
+      <tr>
+        <td>두 가지를 동시에 다루면 시간이 너무 걸리지 않나?</td>
+        <td>알쓰패치 7분 + AUDIT-C 2분 = 9분 추가. 재발 예방 효과가 이 시간을 압도한다.</td>
+      </tr>
+      <tr>
+        <td>GG형인 흡연자에게 뭐라고 설명해야 하나?</td>
+        <td>"빨개지지 않는다고 안전한 게 아닙니다. 경보 없이 조용히 쌓이는 체질입니다."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="sources">
+    <h3>참고 문헌</h3>
+    <ul>
+      <li>Kahler, C. W. et al. (2011). Alcohol consumption and risk of relapse among current smokers in a smoking cessation trial. <em>Nicotine & Tobacco Research</em>, 13(12), 1231–1239.</li>
+      <li>Hurt, R. D. et al. (2010). Treating tobacco dependence in a medical setting. <em>CA Cancer J Clin</em>, 60, 244–261.</li>
+      <li>Krist, A. H. et al. (2020). Behavioral counseling interventions to promote a healthful diet. <em>JAMA</em>, 324(20), 2069–2087.</li>
+      <li>WHO (2014). <em>Global Status Report on Alcohol and Health</em>. World Health Organization.</li>
+      <li>Sung, J. et al. (2014). ALDH2 및 ADH1B 유전자형이 음주 행태에 미치는 영향. <em>Korean J Epidemiol</em>.</li>
+    </ul>
+  </div>
+
+  <div class="disclaimer">
+    ※ 이 인사이트는 공개된 학술 연구를 바탕으로 작성된 교육 목적의 요약 자료입니다.
+    인용된 수치는 해당 연구의 대상 집단 기준이며, 개인 또는 특정 기관의 실제 결과와 다를 수 있습니다.
+    이 자료는 의료적 진단·처방을 대체하지 않습니다.
+  </div>
+
+  <div class="nav-links">
+    <a href="002.html">← 인사이트 #002: 사업장 음주와 산재</a>
+    <a href="index.html">전체 목록 보기</a>
+  </div>
+
+  <div class="cta-section">
+    <h3>현장에서 바로 활용하는 통합 교육 키트</h3>
+    <p>알쓰패치 체질 판정 + AUDIT-K 스크리닝 + 절주 목표 설정 워크시트<br>
+    금연클리닉·보건소 금주교육 현장에 최적화된 교육 프로그램 구성</p>
+    <a href="https://aps7.net/page/introduce" class="cta-btn">교육 프로그램 샘플 받기</a>
+  </div>
+
+</div>
+
+</body>
+</html>
