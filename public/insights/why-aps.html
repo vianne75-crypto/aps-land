@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>수십 년간 건강 교육이 풀지 못한 문제, 그리고 알쓰패치 | APS 보건교육연구소</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #F5F8FF; color: #1a1a2e; }
+    .site-header { background: #1a3a5c; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+    .site-header nav a { color: #b3c9e0; font-size: 14px; margin-left: 20px; text-decoration: none; }
+    .site-header nav a:hover { color: #fff; }
+    .article-hero { background: #1a3a5c; padding: 40px 24px 36px; }
+    .article-hero .container { max-width: 720px; margin: 0 auto; }
+    .breadcrumb { font-size: 13px; color: #7ec8e3; margin-bottom: 20px; }
+    .breadcrumb a { color: #7ec8e3; text-decoration: none; }
+    .article-no { display: inline-block; background: rgba(255,255,255,0.1); color: #7ec8e3; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+    .article-hero h1 { color: #fff; font-size: 26px; font-weight: 800; line-height: 1.4; margin-bottom: 16px; }
+    .article-meta { color: #b3c9e0; font-size: 13px; }
+    .tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .tag { font-size: 11px; font-weight: 600; color: #1a6bb5; background: #e8f0fa; padding: 3px 10px; border-radius: 12px; }
+    .article-body { max-width: 720px; margin: 48px auto; padding: 0 24px; }
+    .narrative-lead { font-size: 17px; line-height: 1.9; color: #2c3e50; margin-bottom: 28px; }
+    .block-quote { background: #fff; border-left: 4px solid #1a6bb5; padding: 20px 24px; border-radius: 0 8px 8px 0; margin: 28px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .block-quote p { font-size: 16px; line-height: 1.7; color: #1a3a5c; font-weight: 700; font-style: italic; }
+    h2 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 40px 0 16px; border-bottom: 2px solid #e8f0fa; padding-bottom: 10px; }
+    p { font-size: 15px; line-height: 1.9; color: #3a4060; margin-bottom: 18px; }
+    .concept-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 24px 0; }
+    @media (max-width: 600px) { .concept-pair { grid-template-columns: 1fr; } }
+    .concept-card { background: #fff; border-radius: 10px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .concept-card .concept-label { font-size: 11px; font-weight: 700; color: #9aa3b8; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 8px; }
+    .concept-card .concept-title { font-size: 16px; font-weight: 700; color: #1a3a5c; margin-bottom: 8px; }
+    .concept-card p { font-size: 13px; line-height: 1.7; color: #6b7a99; margin: 0; }
+    .insight-moment { background: #1a3a5c; color: #fff; border-radius: 12px; padding: 28px 32px; margin: 32px 0; }
+    .insight-moment .moment-label { font-size: 11px; font-weight: 700; color: #7ec8e3; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 12px; }
+    .insight-moment .moment-quote { font-size: 20px; font-weight: 800; line-height: 1.4; color: #fff; margin-bottom: 12px; font-style: italic; }
+    .insight-moment .moment-desc { font-size: 14px; color: #b3c9e0; line-height: 1.7; }
+    .flow-diagram { background: #f5f8ff; border-radius: 10px; padding: 20px 24px; margin: 24px 0; }
+    .flow-step { display: flex; align-items: flex-start; margin-bottom: 14px; }
+    .flow-step:last-child { margin-bottom: 0; }
+    .flow-arrow { font-size: 20px; color: #1a6bb5; margin-right: 14px; margin-top: 2px; flex-shrink: 0; }
+    .flow-content .flow-title { font-size: 14px; font-weight: 700; color: #1a3a5c; }
+    .flow-content .flow-sub { font-size: 13px; color: #6b7a99; margin-top: 2px; }
+    .series-table { background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin: 24px 0; width: 100%; border-collapse: collapse; }
+    .series-table th { background: #1a3a5c; color: #fff; font-size: 13px; font-weight: 600; padding: 12px 16px; text-align: left; }
+    .series-table td { font-size: 14px; padding: 12px 16px; border-bottom: 1px solid #f0f4fa; vertical-align: top; }
+    .series-table tr:last-child td { border-bottom: none; }
+    .series-table tr:nth-child(even) td { background: #f8fbff; }
+    .series-table td strong { color: #1a6bb5; }
+    .article-nav { display: flex; justify-content: space-between; align-items: center; padding: 32px 0 64px; }
+    .nav-btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .nav-btn.prev { background: #f0f4fa; color: #1a3a5c; }
+    .nav-btn.list { background: #1a6bb5; color: #fff; }
+    .nav-btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="https://aps7.net">APS 보건교육연구소</a>
+  <nav>
+    <a href="https://aps7.net">홈</a>
+    <a href="https://edu.aps7.net/insights/">인사이트 목록</a>
+    <a href="https://aps7.net/page/scout">APS 스카우트</a>
+  </nav>
+</header>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="https://edu.aps7.net/insights/">보건교육 인사이트</a> › 창간사</div>
+    <div class="article-no">FOUNDING ESSAY</div>
+    <h1>수십 년간 건강 교육이 풀지 못한 문제, 그리고 알쓰패치</h1>
+    <div class="article-meta">2026-03-30 · APS 보건교육연구소 FORGE 벼리</div>
+    <div class="tags-row">
+      <span class="tag">#HBM</span>
+      <span class="tag">#인지된민감성</span>
+      <span class="tag">#창간사</span>
+      <span class="tag">#보건교육</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-body">
+
+  <p class="narrative-lead">1958년, 미국 공중보건국의 연구자 고드프리 호크바움은 이상한 현상을 발견했습니다.</p>
+
+  <p>결핵 X선 검진이 무료로 제공되는데도, 사람들이 받으러 오지 않았습니다. "결핵은 위험하다"는 사실을 모르는 게 아니었습니다. 포스터도 있었고, 의사들도 권고했습니다. 그런데도 수검률은 낮았습니다.</p>
+
+  <p>호크바움이 수천 명을 인터뷰한 끝에 찾아낸 답은 단순했습니다.</p>
+
+  <div class="block-quote">
+    <p>"사람들은 '결핵이 위험하다'는 걸 알았다. 다만 '내가 결핵에 걸릴 수 있다'고는 생각하지 않았다."</p>
+  </div>
+
+  <h2>위험을 알아도 행동하지 않는 이유</h2>
+
+  <p>8년 후인 1966년, 어윈 로젠스톡은 이 발견을 건강신념모델(Health Belief Model)로 체계화했습니다. 핵심은 두 가지였습니다.</p>
+
+  <div class="concept-pair">
+    <div class="concept-card">
+      <div class="concept-label">HBM 첫 번째 축</div>
+      <div class="concept-title">인지된 심각성</div>
+      <p>"이 병이 얼마나 위험한가" — 대부분의 보건 교육이 집중하는 영역</p>
+    </div>
+    <div class="concept-card">
+      <div class="concept-label">HBM 두 번째 축</div>
+      <div class="concept-title">인지된 민감성</div>
+      <p>"이 위험이 나에게 해당되는가" — 행동 변화의 실제 트리거</p>
+    </div>
+  </div>
+
+  <p>로젠스톡이 발견한 것은, <strong>심각성만으로는 행동이 바뀌지 않는다</strong>는 것이었습니다. 두 가지가 동시에 활성화될 때만, 사람은 움직입니다.</p>
+
+  <p>"흡연은 폐암을 일으킵니다"라는 문장은 심각성입니다. 그 문장을 읽은 흡연자의 속마음은 대부분 이렇습니다.</p>
+
+  <div class="block-quote">
+    <p style="font-style:italic;color:#6b7a99;">"알아. 근데 나는 괜찮을 것 같아."</p>
+  </div>
+
+  <p>이것이 수십 년간 건강 교육이 반복해온 패턴입니다. 심각성을 강조하면 할수록, 사람들은 그것을 "남의 이야기"로 처리합니다. 공포 캠페인이 단기적으로 주목을 끌어도 행동 변화로 이어지지 않는 이유입니다.</p>
+
+  <h2>알쓰패치가 다른 이유</h2>
+
+  <p>알쓰패치는 이 문제를 정면으로 다룹니다.</p>
+
+  <p>7분. 패치를 붙이고 기다리면, 피부가 반응하거나 반응하지 않습니다. 그 결과가 나오는 순간, 사람들은 처음으로 이렇게 묻습니다.</p>
+
+  <div class="insight-moment">
+    <div class="moment-label">인지된 민감성의 활성화 순간</div>
+    <div class="moment-quote">"이게 나한테 해당되는 건가요?"</div>
+    <div class="moment-desc">통계가 아니라, 내 몸의 반응으로 "이건 내 얘기"가 되는 순간. 로젠스톡이 말한 인지된 민감성의 직접 자극입니다.</div>
+  </div>
+
+  <p>그러나 알쓰패치가 단순한 체험 도구에 머문다면, 호크바움이 발견한 문제의 절반만 푸는 것입니다. 인지된 민감성이 생긴 그 5분이 "교육의 황금 시간"입니다. 이 순간에 올바른 정보와 다음 행동 안내가 연결되어야 비로소 행동 변화로 이어집니다.</p>
+
+  <div class="flow-diagram">
+    <div class="flow-step">
+      <div class="flow-arrow">①</div>
+      <div class="flow-content">
+        <div class="flow-title">알쓰패치 체험 → 체질 판정</div>
+        <div class="flow-sub">7분. 내 몸이 반응한다. 인지된 민감성 활성화.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-arrow">②</div>
+      <div class="flow-content">
+        <div class="flow-title">개인화된 위험 인식</div>
+        <div class="flow-sub">AG형·GG형·AA형 — 체질별 위험 해석. "남의 이야기"가 아니라 "내 이야기".</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-arrow">③</div>
+      <div class="flow-content">
+        <div class="flow-title">교육자료 연동</div>
+        <div class="flow-sub">금주·금연 교육 프로그램과 연계. 심각성 + 민감성 동시 활성화.</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-arrow">④</div>
+      <div class="flow-content">
+        <div class="flow-title">행동 계획 수립</div>
+        <div class="flow-sub">다음 행동 안내. 교육의 황금 시간을 행동 변화로 연결.</div>
+      </div>
+    </div>
+  </div>
+
+  <h2>APS 보건교육 인사이트를 시작하는 이유</h2>
+
+  <p>APS 건강증진 교육연구소는 이 흐름을 설계하는 과정에서 수십 년간 축적된 보건교육 이론들을 현장에 적용하고 있습니다. 동기면담(MI), 변화단계모델(TTM), 사회인지이론(SCT), 넛지 이론… 각각의 이론이 교육 프로그램의 어느 지점에서 어떻게 작동하는지를 정리하고, 보건관리자·보건교사·보건소 담당자와 공유하기 위해 이 시리즈를 시작합니다.</p>
+
+  <p>매번 발행되는 인사이트는 하나의 질문에 답합니다.</p>
+
+  <div class="block-quote">
+    <p>"이 교육이 왜 효과적인가?"</p>
+  </div>
+
+  <h2>이 시리즈에서 다루는 것</h2>
+
+  <table class="series-table">
+    <tr><th>#</th><th>주제</th><th>핵심 질문</th></tr>
+    <tr><td><strong>#001</strong></td><td>생물지표 피드백과 행동변화</td><td>바이오마커 피드백이 행동변화에 효과적인 조건</td></tr>
+    <tr><td><strong>#002</strong></td><td>사업장 음주와 산재</td><td>음주가 실제로 얼마나 많은 사고를 만드는가</td></tr>
+    <tr><td><strong>#003</strong></td><td>금연 참여자의 위험 음주</td><td>금연클리닉에서 놓치는 교차 개입 기회</td></tr>
+    <tr><td><strong>#004</strong></td><td>5분 체험 교육의 행동변화 근거</td><td>짧은 체험이 긴 강의보다 효과적인 이유</td></tr>
+    <tr><td><strong>#005</strong></td><td>금연클리닉에서 체질 판정의 역할</td><td>체질이 상담 효율을 어떻게 바꾸는가</td></tr>
+    <tr><td><strong>#006</strong></td><td>교육 효과를 측정해야 예산이 살아남는다</td><td>Kirkpatrick 4단계와 보건관리자 KPI</td></tr>
+    <tr><td><strong>#007</strong></td><td>보건교사가 청소년 음주를 선별해야 하는 이유</td><td>CRAFFT와 학교 현장 적용</td></tr>
+  </table>
+
+  <div class="article-nav">
+    <a href="007.html" class="nav-btn prev">← #007 읽기</a>
+    <a href="https://edu.aps7.net/insights/" class="nav-btn list">인사이트 목록 →</a>
+  </div>
+
+</div>
+</body>
+</html>

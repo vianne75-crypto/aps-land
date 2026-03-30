@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>인사이트 #004 — "5분으로 뭐가 바뀌나요?" — 단시간 체험 교육의 행동변화 근거 | APS 보건교육연구소</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Apple SD Gothic Neo', 'Noto Sans KR', sans-serif; background: #F5F8FF; color: #1a1a2e; }
+    .site-header { background: #1a3a5c; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; }
+    .site-header .logo { color: #fff; font-size: 18px; font-weight: 700; text-decoration: none; }
+    .site-header nav a { color: #b3c9e0; font-size: 14px; margin-left: 20px; text-decoration: none; }
+    .site-header nav a:hover { color: #fff; }
+    .article-hero { background: #1a3a5c; padding: 40px 24px 36px; }
+    .article-hero .container { max-width: 720px; margin: 0 auto; }
+    .breadcrumb { font-size: 13px; color: #7ec8e3; margin-bottom: 20px; }
+    .breadcrumb a { color: #7ec8e3; text-decoration: none; }
+    .article-no { display: inline-block; background: rgba(255,255,255,0.1); color: #7ec8e3; font-size: 11px; font-weight: 700; letter-spacing: 2px; padding: 4px 12px; border-radius: 20px; margin-bottom: 16px; text-transform: uppercase; }
+    .article-hero h1 { color: #fff; font-size: 26px; font-weight: 800; line-height: 1.4; margin-bottom: 16px; }
+    .article-meta { color: #b3c9e0; font-size: 13px; }
+    .tags-row { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 16px; }
+    .tag { font-size: 11px; font-weight: 600; color: #1a6bb5; background: #e8f0fa; padding: 3px 10px; border-radius: 12px; }
+    .article-body { max-width: 720px; margin: 48px auto; padding: 0 24px; }
+    .key-quote { background: #fff; border-left: 4px solid #1a6bb5; padding: 20px 24px; border-radius: 0 8px 8px 0; margin-bottom: 32px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .key-quote p { font-size: 15px; line-height: 1.7; color: #2c3e50; font-style: italic; }
+    .key-quote .source { font-size: 12px; color: #9aa3b8; margin-top: 8px; font-style: normal; }
+    h2 { font-size: 20px; font-weight: 700; color: #1a1a2e; margin: 36px 0 16px; border-bottom: 2px solid #e8f0fa; padding-bottom: 10px; }
+    h3 { font-size: 16px; font-weight: 700; color: #1a3a5c; margin: 24px 0 10px; }
+    p { font-size: 15px; line-height: 1.8; color: #3a4060; margin-bottom: 16px; }
+    .stat-highlight { background: #1a6bb5; color: #fff; border-radius: 12px; padding: 24px 28px; margin: 24px 0; text-align: center; }
+    .stat-highlight .number { font-size: 48px; font-weight: 800; line-height: 1; }
+    .stat-highlight .label { font-size: 14px; margin-top: 8px; opacity: 0.85; }
+    table { width: 100%; border-collapse: collapse; margin: 20px 0; background: #fff; border-radius: 10px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    th { background: #1a3a5c; color: #fff; font-size: 13px; font-weight: 600; padding: 12px 16px; text-align: left; }
+    td { font-size: 14px; padding: 12px 16px; border-bottom: 1px solid #f0f4fa; vertical-align: top; }
+    tr:last-child td { border-bottom: none; }
+    tr:nth-child(even) td { background: #f8fbff; }
+    td strong { color: #1a6bb5; }
+    .apply-box { background: #fff; border: 2px solid #1a6bb5; border-radius: 12px; padding: 24px; margin: 32px 0; }
+    .apply-box .apply-title { font-size: 14px; font-weight: 700; color: #1a6bb5; letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+    .apply-flow { background: #f5f8ff; border-radius: 8px; padding: 16px; font-size: 14px; line-height: 1.8; font-family: monospace; color: #2c3e50; margin: 12px 0; white-space: pre-line; }
+    .sources { background: #fff; border-radius: 10px; padding: 20px 24px; margin: 32px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.04); }
+    .sources h3 { font-size: 14px; color: #6b7a99; margin: 0 0 12px; }
+    .sources ul { list-style: none; }
+    .sources li { font-size: 13px; color: #6b7a99; padding: 4px 0; border-bottom: 1px solid #f0f4fa; }
+    .sources li:last-child { border-bottom: none; }
+    .article-nav { display: flex; justify-content: space-between; align-items: center; padding: 32px 0 64px; }
+    .nav-btn { display: inline-block; padding: 10px 20px; border-radius: 8px; font-size: 14px; font-weight: 600; text-decoration: none; }
+    .nav-btn.prev { background: #f0f4fa; color: #1a3a5c; }
+    .nav-btn.next { background: #1a6bb5; color: #fff; }
+    .nav-btn:hover { opacity: 0.85; }
+  </style>
+</head>
+<body>
+
+<header class="site-header">
+  <a class="logo" href="https://aps7.net">APS 보건교육연구소</a>
+  <nav>
+    <a href="https://aps7.net">홈</a>
+    <a href="https://edu.aps7.net/insights/">인사이트 목록</a>
+    <a href="https://aps7.net/page/scout">APS 스카우트</a>
+  </nav>
+</header>
+
+<section class="article-hero">
+  <div class="container">
+    <div class="breadcrumb"><a href="https://edu.aps7.net/insights/">보건교육 인사이트</a> › #004</div>
+    <div class="article-no">INSIGHT #004</div>
+    <h1>"5분으로 뭐가 바뀌나요?" — 단시간 체험 교육의 행동변화 근거</h1>
+    <div class="article-meta">2026-03-30 · APS 보건교육연구소 FORGE 벼리</div>
+    <div class="tags-row">
+      <span class="tag">#체험교육</span>
+      <span class="tag">#행동변화이론</span>
+      <span class="tag">#간략개입</span>
+      <span class="tag">#투자대비효과</span>
+      <span class="tag">#보건관리자</span>
+    </div>
+  </div>
+</section>
+
+<div class="article-body">
+
+  <div class="key-quote">
+    <p>"단 5~15분의 짧은 개입(Brief Intervention)이 고위험 음주자의 음주량을 평균 20~30% 감소시키며, 이 효과는 6~12개월 추적에서도 유지된다. 핵심 요소는 시간의 길이가 아니라 개인화된 피드백의 유무다."</p>
+    <div class="source">— WHO, Brief interventions for hazardous and harmful drinking (2010)</div>
+  </div>
+
+  <div class="stat-highlight">
+    <div class="number">20~30%</div>
+    <div class="label">짧은 개입(Brief Intervention) 후 음주량 감소 — 6~12개월 추적 유지</div>
+  </div>
+
+  <h2>왜 짧은 체험이 긴 강의보다 효과적인가 — 3가지 근거</h2>
+
+  <h3>1. 경험학습 이론 (Kolb, 1984)</h3>
+  <table>
+    <tr><th>학습 방식</th><th>기억 유지율</th><th>행동 전환율</th></tr>
+    <tr><td>강의 듣기</td><td>낮음</td><td>낮음</td></tr>
+    <tr><td>시각 자료 보기</td><td>중간</td><td>낮음</td></tr>
+    <tr><td><strong>직접 체험하기</strong></td><td><strong>높음</strong></td><td><strong>높음</strong></td></tr>
+  </table>
+  <p>"직접 해봄(Concrete Experience) → 관찰·반추 → 개념 형성 → 다음 행동" 사이클이 발동될 때 행동 변화가 일어난다. 강의는 개념 형성에서 끝나지만, 체험은 사이클 전체를 돌린다.</p>
+
+  <h3>2. 가르칠 수 있는 순간 (Teachable Moment, McBride et al., 2003)</h3>
+  <p>"건강 관련 사건이나 검사 결과를 직접 경험할 때, 사람들은 일시적으로 행동 변화에 더 개방적인 상태가 된다."</p>
+  <p>알쓰패치 체험이 만드는 순간: 패치 부착 → 7분 대기 → 결과 확인 → <strong>"이게 나한테 해당되는 건가요?"</strong> 질문 발생. 이 질문이 발생한 순간이 바로 Teachable Moment — 교육 개입의 최적 타이밍이다.</p>
+
+  <h3>3. 간략 개입(Brief Intervention)의 효과 조건 4가지</h3>
+  <table>
+    <tr><th>조건</th><th>내용</th></tr>
+    <tr><td><strong>개인화</strong></td><td>"당신의 결과"를 보여줄 것</td></tr>
+    <tr><td><strong>즉각성</strong></td><td>피드백이 체험 직후 제공될 것</td></tr>
+    <tr><td><strong>행동 안내</strong></td><td>결과 이후 "다음 행동"을 제시할 것</td></tr>
+    <tr><td><strong>비판단적 톤</strong></td><td>정죄가 아닌 정보 제공</td></tr>
+  </table>
+  <p>알쓰패치 7분 체험은 이 4가지 조건을 모두 충족한다.</p>
+
+  <h2>보건관리자를 위한 투자 대비 효과 비교</h2>
+  <div class="apply-box">
+    <div class="apply-title">APS 현장 적용 인사이트</div>
+    <p>보건관리자가 "5분짜리 체험이 뭐가 바뀌냐"고 묻는 이유는, 교육 효과를 시간으로 측정하는 관행 때문이다.</p>
+    <div class="apply-flow">[보건관리자의 기존 기준]  강의 2시간 = 충분한 교육
+[Brief Intervention 근거] 5분 개인화 체험 > 2시간 일반 강의
+[APS 포지셔닝]          "7분이 짧은 것이 아니라 정확히 긴 것입니다"</div>
+  </div>
+
+  <table>
+    <tr><th>항목</th><th>일반 강의</th><th>알쓰패치 체험 교육</th></tr>
+    <tr><td>소요 시간</td><td>60~120분</td><td>7분 (체험) + 5분 (교육 연계)</td></tr>
+    <tr><td>개인화 수준</td><td>낮음 (집단)</td><td>높음 (개인 결과)</td></tr>
+    <tr><td>행동 변화 의도</td><td>낮음~중간</td><td>높음 (Teachable Moment 활용)</td></tr>
+    <tr><td>추적 측정</td><td>어려움</td><td>F4 사전/사후 측정 가능</td></tr>
+  </table>
+
+  <div class="sources">
+    <h3>출처</h3>
+    <ul>
+      <li>WHO. Brief intervention for hazardous and harmful drinking: A manual for use in primary care. Geneva: WHO, 2010.</li>
+      <li>Kolb DA. Experiential Learning: Experience as the Source of Learning and Development. Prentice Hall, 1984.</li>
+      <li>McBride CM et al. "Understanding the Potential of Teachable Moments." Health Education Research 18(2), 2003.</li>
+      <li>Bertholet N et al. "Alcohol drinking patterns and factors associated with alcohol brief intervention." Addiction 105(4), 2010.</li>
+    </ul>
+  </div>
+
+  <div class="article-nav">
+    <a href="003.html" class="nav-btn prev">← 이전 인사이트</a>
+    <a href="005.html" class="nav-btn next">다음 인사이트 →</a>
+  </div>
+
+</div>
+</body>
+</html>
