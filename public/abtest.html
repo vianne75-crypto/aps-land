@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>알쓰패치 카피 AB테스트</title>
+<meta property="og:type" content="website">
+<meta property="og:title" content="나는 알쓰인가? — 어떤 문구가 더 끌리나요?">
+<meta property="og:description" content="30초 테스트로 알려주세요. A안 vs B안, 당신의 선택은?">
+<meta property="og:image" content="https://edu.aps7.net/abtest-og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:url" content="https://edu.aps7.net/abtest.html">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="나는 알쓰인가? — 어떤 문구가 더 끌리나요?">
+<meta name="twitter:description" content="30초 테스트로 알려주세요. A안 vs B안, 당신의 선택은?">
+<meta name="twitter:image" content="https://edu.aps7.net/abtest-og.png">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:-apple-system,'Malgun Gothic','맑은 고딕',sans-serif;background:#0f0f1a;color:#e0e0e0;min-height:100vh;display:flex;justify-content:center;align-items:center}
+.wrap{max-width:480px;width:100%;padding:24px 20px;margin:0 auto}
+
+/* 프로그레스 */
+.progress{height:4px;background:rgba(255,255,255,.1);border-radius:2px;margin-bottom:28px;overflow:hidden}
+.progress-bar{height:100%;background:linear-gradient(90deg,#1D9E75,#378ADD);border-radius:2px;transition:width .4s ease}
+
+/* 스크린 */
+.screen{display:none;animation:fadeIn .4s ease}
+.screen.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+
+/* 인트로 */
+.intro-title{font-size:24px;font-weight:800;text-align:center;margin-bottom:8px;color:#fff}
+.intro-sub{font-size:14px;text-align:center;color:rgba(255,255,255,.5);margin-bottom:32px;line-height:1.6}
+
+/* 카드 */
+.card{border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:28px 24px;margin-bottom:24px;backdrop-filter:blur(8px);background:rgba(255,255,255,.04);text-align:center;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px}
+.card-a::before{background:#1D9E75}
+.card-b::before{background:#378ADD}
+.card .tag{display:inline-block;font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 12px;border-radius:20px;margin-bottom:14px}
+.card-a .tag{background:rgba(29,158,117,.15);color:#1D9E75}
+.card-b .tag{background:rgba(55,138,221,.15);color:#378ADD}
+.card .headline{font-size:28px;font-weight:900;color:#fff;margin-bottom:8px}
+.card .sub{font-size:14px;color:rgba(255,255,255,.6);line-height:1.5}
+
+/* 질문 */
+.q-label{font-size:11px;font-weight:700;letter-spacing:1px;color:rgba(255,255,255,.35);margin-bottom:6px}
+.q-text{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px;line-height:1.5}
+.options{display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.opt-btn{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:14px 16px;font-size:14px;color:#e0e0e0;cursor:pointer;text-align:left;transition:all .2s}
+.opt-btn:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.25);transform:translateX(4px)}
+.opt-btn.selected-a{background:rgba(29,158,117,.15);border-color:#1D9E75;color:#1D9E75}
+.opt-btn.selected-b{background:rgba(55,138,221,.15);border-color:#378ADD;color:#378ADD}
+
+/* 버튼 */
+.btn{display:block;width:100%;padding:16px;border:none;border-radius:12px;font-size:16px;font-weight:700;cursor:pointer;transition:all .2s;text-align:center}
+.btn-green{background:#1D9E75;color:#fff}
+.btn-green:hover{background:#17865f;transform:translateY(-2px)}
+.btn-blue{background:#378ADD;color:#fff}
+.btn-blue:hover{background:#2a74c4;transform:translateY(-2px)}
+.btn-white{background:rgba(255,255,255,.1);color:#fff;border:1px solid rgba(255,255,255,.2)}
+.btn-white:hover{background:rgba(255,255,255,.15)}
+.btn:disabled{opacity:.4;cursor:not-allowed;transform:none}
+
+/* 결과 */
+.result-title{font-size:22px;font-weight:800;text-align:center;color:#fff;margin-bottom:24px}
+.bar-wrap{margin-bottom:20px}
+.bar-label{display:flex;justify-content:space-between;font-size:13px;margin-bottom:6px}
+.bar-label .name{font-weight:700}
+.bar-label .score{color:rgba(255,255,255,.5)}
+.bar-track{height:32px;background:rgba(255,255,255,.06);border-radius:8px;overflow:hidden;position:relative}
+.bar-fill{height:100%;border-radius:8px;display:flex;align-items:center;justify-content:flex-end;padding-right:10px;font-size:13px;font-weight:800;color:#fff;transition:width 1s ease;min-width:30px}
+.bar-fill-a{background:linear-gradient(90deg,#1D9E75,#25b888)}
+.bar-fill-b{background:linear-gradient(90deg,#378ADD,#5aa3ee)}
+.badge{display:inline-block;font-size:13px;font-weight:800;padding:6px 16px;border-radius:20px;text-align:center;margin:16px auto;color:#fff}
+.badge-a{background:#1D9E75}
+.badge-b{background:#378ADD}
+.badge-tie{background:rgba(255,255,255,.15)}
+.insight{font-size:14px;color:rgba(255,255,255,.6);text-align:center;line-height:1.7;margin:16px 0 28px;padding:0 8px}
+.divider{height:1px;background:rgba(255,255,255,.08);margin:20px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="progress"><div class="progress-bar" id="pbar" style="width:0%"></div></div>
+
+  <!-- 인트로 -->
+  <div class="screen active" id="s-intro">
+    <div class="intro-title">알쓰패치 카피 테스트</div>
+    <div class="intro-sub">두 가지 패키지 문구를 보고<br>솔직한 느낌을 골라주세요.<br>30초면 끝나요!</div>
+    <button class="btn btn-green" onclick="go('s-a')">시작하기</button>
+  </div>
+
+  <!-- A안 -->
+  <div class="screen" id="s-a">
+    <div class="card card-a">
+      <div class="tag">음주위험체질 선별검사</div>
+      <div class="headline">나는 알쓰인가?</div>
+      <div class="sub">알코올 분해 효소 결핍 검사</div>
+    </div>
+    <div class="q-label">Q1 / 3</div>
+    <div class="q-text">이 포장을 처음 봤을 때 어떤 느낌인가요?</div>
+    <div class="options" id="a-q1">
+      <div class="opt-btn" data-v="3" onclick="pick(this,'a',1)">바로 집어들고 싶다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'a',1)">흥미롭지만 천천히 보겠다</div>
+      <div class="opt-btn" data-v="1" onclick="pick(this,'a',1)">잘 모르겠다</div>
+      <div class="opt-btn" data-v="0" onclick="pick(this,'a',1)">별로 끌리지 않는다</div>
+    </div>
+    <div class="q-label">Q2 / 3</div>
+    <div class="q-text">이 제품을 구매할 가능성은?</div>
+    <div class="options" id="a-q2">
+      <div class="opt-btn" data-v="3" onclick="pick(this,'a',2)">바로 살 것 같다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'a',2)">한번 더 생각해볼 것 같다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'a',2)">지인에게 추천할 것 같다</div>
+      <div class="opt-btn" data-v="0" onclick="pick(this,'a',2)">필요 없을 것 같다</div>
+    </div>
+    <div class="q-label">Q3 / 3</div>
+    <div class="q-text">이 문구가 술자리 전에 검사를 해보고 싶게 만드나요?</div>
+    <div class="options" id="a-q3">
+      <div class="opt-btn" data-v="3" onclick="pick(this,'a',3)">꼭 해보고 싶다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'a',3)">생각해볼 것 같다</div>
+      <div class="opt-btn" data-v="1" onclick="pick(this,'a',3)">잘 모르겠다</div>
+      <div class="opt-btn" data-v="0" onclick="pick(this,'a',3)">그렇지 않다</div>
+    </div>
+    <button class="btn btn-blue" id="btn-to-b" disabled onclick="go('s-b')">다음 안 보기 →</button>
+  </div>
+
+  <!-- B안 -->
+  <div class="screen" id="s-b">
+    <div class="card card-b">
+      <div class="tag">알코올 분해 효소 결핍 검사</div>
+      <div class="headline">나는 알쓰인가?</div>
+      <div class="sub">모르고 마시기 전에, 먼저 확인하세요</div>
+    </div>
+    <div class="q-label">Q1 / 3</div>
+    <div class="q-text">이 포장을 처음 봤을 때 어떤 느낌인가요?</div>
+    <div class="options" id="b-q1">
+      <div class="opt-btn" data-v="3" onclick="pick(this,'b',1)">바로 집어들고 싶다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'b',1)">흥미롭지만 천천히 보겠다</div>
+      <div class="opt-btn" data-v="1" onclick="pick(this,'b',1)">잘 모르겠다</div>
+      <div class="opt-btn" data-v="0" onclick="pick(this,'b',1)">별로 끌리지 않는다</div>
+    </div>
+    <div class="q-label">Q2 / 3</div>
+    <div class="q-text">이 제품을 구매할 가능성은?</div>
+    <div class="options" id="b-q2">
+      <div class="opt-btn" data-v="3" onclick="pick(this,'b',2)">바로 살 것 같다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'b',2)">한번 더 생각해볼 것 같다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'b',2)">지인에게 추천할 것 같다</div>
+      <div class="opt-btn" data-v="0" onclick="pick(this,'b',2)">필요 없을 것 같다</div>
+    </div>
+    <div class="q-label">Q3 / 3</div>
+    <div class="q-text">이 문구가 술자리 전에 검사를 해보고 싶게 만드나요?</div>
+    <div class="options" id="b-q3">
+      <div class="opt-btn" data-v="3" onclick="pick(this,'b',3)">꼭 해보고 싶다</div>
+      <div class="opt-btn" data-v="2" onclick="pick(this,'b',3)">생각해볼 것 같다</div>
+      <div class="opt-btn" data-v="1" onclick="pick(this,'b',3)">잘 모르겠다</div>
+      <div class="opt-btn" data-v="0" onclick="pick(this,'b',3)">그렇지 않다</div>
+    </div>
+    <button class="btn btn-green" id="btn-result" disabled onclick="showResult()">결과 보기</button>
+  </div>
+
+  <!-- 결과 -->
+  <div class="screen" id="s-result">
+    <div class="result-title">테스트 결과</div>
+    <div class="bar-wrap">
+      <div class="bar-label"><span class="name" style="color:#1D9E75">A안 — 체질 프레임</span><span class="score" id="score-a-label">0 / 9</span></div>
+      <div class="bar-track"><div class="bar-fill bar-fill-a" id="bar-a" style="width:0%"></div></div>
+    </div>
+    <div class="bar-wrap">
+      <div class="bar-label"><span class="name" style="color:#378ADD">B안 — 안전욕구</span><span class="score" id="score-b-label">0 / 9</span></div>
+      <div class="bar-track"><div class="bar-fill bar-fill-b" id="bar-b" style="width:0%"></div></div>
+    </div>
+    <div style="text-align:center"><span class="badge" id="winner-badge"></span></div>
+    <div class="insight" id="insight-text"></div>
+    <div class="divider"></div>
+    <button class="btn btn-white" onclick="share()" style="margin-bottom:12px">📤 카카오톡으로 공유하기</button>
+    <button class="btn btn-white" onclick="copyLink()" style="margin-bottom:12px">🔗 링크 복사</button>
+    <button class="btn btn-white" onclick="reset()" style="margin-bottom:12px">다시 하기</button>
+    <div id="copy-toast" style="display:none;text-align:center;font-size:13px;color:#1D9E75;margin:8px 0">✓ 링크가 복사되었습니다</div>
+    <div id="submit-status" style="text-align:center;font-size:12px;color:rgba(255,255,255,.3);margin:8px 0"></div>
+    <div style="font-size:11px;color:rgba(255,255,255,.3);text-align:center;margin-top:12px">APS[앱스]알쓰패치솔루션 · aps7.net</div>
+  </div>
+</div>
+
+<script>
+var scores={a:{1:null,2:null,3:null},b:{1:null,2:null,3:null}};
+var steps={intro:0,'s-a':14,'s-b':57,'s-result':100};
+
+function go(id){
+  document.querySelectorAll('.screen').forEach(function(s){s.classList.remove('active')});
+  document.getElementById(id).classList.add('active');
+  document.getElementById('pbar').style.width=(steps[id]||0)+'%';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function pick(el,group,q){
+  var opts=el.parentElement.children;
+  for(var i=0;i<opts.length;i++){opts[i].classList.remove('selected-a','selected-b')}
+  el.classList.add(group==='a'?'selected-a':'selected-b');
+  scores[group][q]=parseInt(el.dataset.v);
+  checkReady(group);
+  /* 프로그레스 업데이트 */
+  var answered=0;
+  for(var k in scores[group]){if(scores[group][k]!==null)answered++}
+  if(group==='a'){document.getElementById('pbar').style.width=(14+answered*14)+'%'}
+  else{document.getElementById('pbar').style.width=(57+answered*14)+'%'}
+}
+
+function checkReady(group){
+  var s=scores[group],ready=s[1]!==null&&s[2]!==null&&s[3]!==null;
+  if(group==='a')document.getElementById('btn-to-b').disabled=!ready;
+  else document.getElementById('btn-result').disabled=!ready;
+}
+
+function showResult(){
+  var sa=scores.a[1]+scores.a[2]+scores.a[3];
+  var sb=scores.b[1]+scores.b[2]+scores.b[3];
+  go('s-result');
+  document.getElementById('score-a-label').textContent=sa+' / 9';
+  document.getElementById('score-b-label').textContent=sb+' / 9';
+  setTimeout(function(){
+    document.getElementById('bar-a').style.width=Math.round(sa/9*100)+'%';
+    document.getElementById('bar-a').textContent=sa+'점';
+    document.getElementById('bar-b').style.width=Math.round(sb/9*100)+'%';
+    document.getElementById('bar-b').textContent=sb+'점';
+  },100);
+  var badge=document.getElementById('winner-badge');
+  var insight=document.getElementById('insight-text');
+  var diff=sa-sb;
+  if(diff>=3){
+    badge.className='badge badge-a';badge.textContent='A안 우세';
+    insight.textContent='체질 프레임과 친숙한 언어가 입장 장벽을 낮췄어요';
+  }else if(diff>=1){
+    badge.className='badge badge-a';badge.textContent='A안 약간 우세';
+    insight.textContent='체질 프레임이 살짝 앞서지만, 추가 표본으로 확인이 필요해요';
+  }else if(diff===0){
+    badge.className='badge badge-tie';badge.textContent='동점';
+    insight.textContent='추가 표본이 필요해요 — 두 요소 조합을 고려해보세요';
+  }else if(diff>=-2){
+    badge.className='badge badge-b';badge.textContent='B안 약간 우세';
+    insight.textContent='안전욕구 메시지가 살짝 앞서지만, 추가 표본으로 확인이 필요해요';
+  }else{
+    badge.className='badge badge-b';badge.textContent='B안 우세';
+    insight.textContent='효소 결핍 + 안전욕구 조합이 구매 전환에 더 강하게 작동했어요';
+  }
+  /* 결과 수집 */
+  var winLabel = diff>0 ? 'A' : diff<0 ? 'B' : 'TIE';
+  submitResult(sa, sb, winLabel);
+}
+
+/* ── 결과 수집 (Supabase — cory DB) ── */
+var SB_URL = 'https://rvqkoiqjjhlrgqitnxwt.supabase.co';
+var SB_KEY = 'sb_publishable_LhUYFVbX3M_8zbiBzaLgZQ_MSOfc1TU';
+
+function submitResult(sa, sb, winner) {
+  var data = {
+    score_a: sa,
+    score_b: sb,
+    winner: winner,
+    a_q1: scores.a[1], a_q2: scores.a[2], a_q3: scores.a[3],
+    b_q1: scores.b[1], b_q2: scores.b[2], b_q3: scores.b[3],
+    ua: navigator.userAgent.substring(0, 100)
+  };
+  fetch(SB_URL + '/rest/v1/abtest_results', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'apikey': SB_KEY,
+      'Authorization': 'Bearer ' + SB_KEY,
+      'Prefer': 'return=minimal'
+    },
+    body: JSON.stringify(data)
+  }).then(function(r) {
+    if (r.ok) document.getElementById('submit-status').textContent = '✓ 응답이 기록되었습니다';
+  }).catch(function() {});
+}
+
+/* ── 카카오톡 공유 (웹 공유 API fallback) ── */
+function share() {
+  var url = 'https://edu.aps7.net/abtest.html';
+  var text = '나는 알쓰인가? — 어떤 문구가 더 끌리는지 30초 테스트로 알려주세요!';
+  if (navigator.share) {
+    navigator.share({ title: '알쓰패치 카피 AB테스트', text: text, url: url });
+  } else {
+    /* 모바일 카카오톡 딥링크 — fallback: 클립보드 */
+    var kakaoUrl = 'https://sharer.kakao.com/talk/friends/picker/link?url=' + encodeURIComponent(url);
+    window.open(kakaoUrl, '_blank');
+  }
+}
+
+function copyLink() {
+  var url = 'https://edu.aps7.net/abtest.html';
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function() {
+      var t = document.getElementById('copy-toast');
+      t.style.display = 'block';
+      setTimeout(function() { t.style.display = 'none'; }, 2000);
+    });
+  } else {
+    var inp = document.createElement('input');
+    inp.value = url;
+    document.body.appendChild(inp);
+    inp.select();
+    document.execCommand('copy');
+    document.body.removeChild(inp);
+    var t = document.getElementById('copy-toast');
+    t.style.display = 'block';
+    setTimeout(function() { t.style.display = 'none'; }, 2000);
+  }
+}
+
+function reset(){
+  scores={a:{1:null,2:null,3:null},b:{1:null,2:null,3:null}};
+  document.querySelectorAll('.opt-btn').forEach(function(b){b.classList.remove('selected-a','selected-b')});
+  document.getElementById('btn-to-b').disabled=true;
+  document.getElementById('btn-result').disabled=true;
+  document.getElementById('bar-a').style.width='0%';
+  document.getElementById('bar-a').textContent='';
+  document.getElementById('bar-b').style.width='0%';
+  document.getElementById('bar-b').textContent='';
+  go('s-intro');
+}
+</script>
+</body>
+</html>
