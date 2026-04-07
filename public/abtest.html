@@ -174,6 +174,31 @@ body{font-family:-apple-system,'Malgun Gothic','맑은 고딕',sans-serif;backgr
     <div style="text-align:center"><span class="badge" id="winner-badge"></span></div>
     <div class="insight" id="insight-text"></div>
     <div class="divider"></div>
+    <!-- 실시간 집계 -->
+    <div id="agg-panel" style="display:none;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:12px;padding:20px;margin-bottom:20px">
+      <div style="font-size:13px;font-weight:700;color:rgba(255,255,255,.5);margin-bottom:14px;text-align:center">전체 참여자 집계</div>
+      <div style="display:flex;gap:12px;margin-bottom:14px">
+        <div style="flex:1;text-align:center">
+          <div style="font-size:24px;font-weight:900;color:#1D9E75" id="agg-a-pct">-</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4)">A안 우세</div>
+        </div>
+        <div style="flex:1;text-align:center">
+          <div style="font-size:24px;font-weight:900;color:rgba(255,255,255,.3)" id="agg-tie">-</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4)">동점</div>
+        </div>
+        <div style="flex:1;text-align:center">
+          <div style="font-size:24px;font-weight:900;color:#378ADD" id="agg-b-pct">-</div>
+          <div style="font-size:11px;color:rgba(255,255,255,.4)">B안 우세</div>
+        </div>
+      </div>
+      <div style="display:flex;height:8px;border-radius:4px;overflow:hidden;margin-bottom:8px">
+        <div id="agg-bar-a" style="background:#1D9E75;transition:width .6s"></div>
+        <div id="agg-bar-tie" style="background:rgba(255,255,255,.15);transition:width .6s"></div>
+        <div id="agg-bar-b" style="background:#378ADD;transition:width .6s"></div>
+      </div>
+      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,.3)" id="agg-total">총 0명 참여</div>
+      <div style="text-align:center;font-size:11px;color:rgba(255,255,255,.25);margin-top:4px">A 평균 <span id="agg-avg-a">-</span>점 · B 평균 <span id="agg-avg-b">-</span>점 (9점 만점)</div>
+    </div>
     <button class="btn btn-white" onclick="share()" style="margin-bottom:12px">📤 카카오톡으로 공유하기</button>
     <button class="btn btn-white" onclick="copyLink()" style="margin-bottom:12px">🔗 링크 복사</button>
     <button class="btn btn-white" onclick="reset()" style="margin-bottom:12px">다시 하기</button>
@@ -244,9 +269,10 @@ function showResult(){
     badge.className='badge badge-b';badge.textContent='B안 우세';
     insight.textContent='효소 결핍 + 안전욕구 조합이 구매 전환에 더 강하게 작동했어요';
   }
-  /* 결과 수집 */
+  /* 결과 수집 + 집계 로드 */
   var winLabel = diff>0 ? 'A' : diff<0 ? 'B' : 'TIE';
   submitResult(sa, sb, winLabel);
+  setTimeout(loadAggregate, 1500);
 }
 
 /* ── 결과 수집 (Supabase — cory DB) ── */
@@ -274,6 +300,39 @@ function submitResult(sa, sb, winner) {
   }).then(function(r) {
     if (r.ok) document.getElementById('submit-status').textContent = '✓ 응답이 기록되었습니다';
   }).catch(function() {});
+}
+
+/* ── 실시간 집계 조회 ── */
+function loadAggregate() {
+  fetch(SB_URL + '/rest/v1/abtest_results?select=score_a,score_b,winner', {
+    headers: { 'apikey': SB_KEY, 'Authorization': 'Bearer ' + SB_KEY }
+  }).then(function(r){ return r.json(); })
+  .then(function(rows) {
+    if (!rows || !rows.length) return;
+    var panel = document.getElementById('agg-panel');
+    panel.style.display = 'block';
+    var total = rows.length;
+    var aWin = 0, bWin = 0, tie = 0, sumA = 0, sumB = 0;
+    rows.forEach(function(r) {
+      if (r.winner === 'A') aWin++;
+      else if (r.winner === 'B') bWin++;
+      else tie++;
+      sumA += r.score_a;
+      sumB += r.score_b;
+    });
+    var pA = Math.round(aWin/total*100);
+    var pB = Math.round(bWin/total*100);
+    var pT = 100 - pA - pB;
+    document.getElementById('agg-a-pct').textContent = pA + '%';
+    document.getElementById('agg-b-pct').textContent = pB + '%';
+    document.getElementById('agg-tie').textContent = pT + '%';
+    document.getElementById('agg-bar-a').style.width = pA + '%';
+    document.getElementById('agg-bar-tie').style.width = pT + '%';
+    document.getElementById('agg-bar-b').style.width = pB + '%';
+    document.getElementById('agg-total').textContent = '총 ' + total + '명 참여';
+    document.getElementById('agg-avg-a').textContent = (sumA/total).toFixed(1);
+    document.getElementById('agg-avg-b').textContent = (sumB/total).toFixed(1);
+  }).catch(function(){});
 }
 
 /* ── 카카오톡 공유 (웹 공유 API fallback) ── */
