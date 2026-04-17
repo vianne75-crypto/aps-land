@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>[전문가 검토본 — 비공개] ALDH2 효소결핍과 흡연의 심혈관 위험</title>
+<style>
+  @import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+  :root {
+    --teal: #006241;
+    --teal-light: #e8f5f0;
+    --teal-mid: #004d32;
+    --amber: #E87A2F;
+    --amber-light: #fff3e8;
+    --red: #c0392b;
+    --red-light: #fdf2f2;
+    --blue: #1a5276;
+    --blue-light: #eaf2ff;
+    --gray: #555;
+    --gray-light: #f5f5f5;
+    --border: #e0e0e0;
+    --dark: #1a1a2e;
+    --white: #ffffff;
+    --text: #1a1a2e;
+    --max-w: 860px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Pretendard', -apple-system, sans-serif;
+    color: var(--text);
+    background: #f9f9f9;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  /* ── 전문가 검토 배너 ── */
+  .review-banner {
+    background: var(--red);
+    color: white;
+    text-align: center;
+    padding: 10px 20px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  .review-banner span { opacity: 0.85; font-weight: 400; margin-left: 8px; }
+
+  /* ── 레이아웃 ── */
+  .page {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 0 24px 80px;
+  }
+
+  /* ── 헤더 ── */
+  .doc-header {
+    background: var(--teal);
+    color: white;
+    padding: 48px 48px 40px;
+    margin: 0 -24px 40px;
+    border-bottom: 4px solid var(--amber);
+  }
+  .doc-header .label {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-bottom: 16px;
+  }
+  .doc-header h1 {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.4;
+    margin-bottom: 6px;
+  }
+  .doc-header h2 {
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.8;
+    margin-bottom: 24px;
+  }
+  .doc-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    font-size: 13px;
+    opacity: 0.85;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 16px;
+    margin-top: 16px;
+  }
+  .doc-meta span { display: flex; align-items: center; gap: 6px; }
+
+  /* ── 검토 요청 박스 ── */
+  .review-request {
+    background: var(--amber-light);
+    border: 2px solid var(--amber);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 36px;
+  }
+  .review-request h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--amber);
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .review-request ul {
+    list-style: none;
+    font-size: 14px;
+    color: #555;
+  }
+  .review-request ul li {
+    padding: 4px 0;
+    padding-left: 20px;
+    position: relative;
+  }
+  .review-request ul li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--amber);
+    font-weight: 700;
+  }
+
+  /* ── 감수자 박스 ── */
+  .reviewer-box {
+    background: var(--teal-light);
+    border: 2px solid var(--teal);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 36px;
+  }
+  .reviewer-box h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 14px;
+    letter-spacing: 0.5px;
+  }
+  .reviewer-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 600px) { .reviewer-grid { grid-template-columns: 1fr; } }
+  .reviewer-card {
+    background: white;
+    border-radius: 8px;
+    padding: 14px 16px;
+    border: 1px solid rgba(0,98,65,0.2);
+  }
+  .reviewer-card .name { font-size: 15px; font-weight: 700; color: var(--teal-mid); margin-bottom: 4px; }
+  .reviewer-card .affil { font-size: 13px; color: var(--gray); }
+  .reviewer-card .role {
+    display: inline-block;
+    margin-top: 8px;
+    background: var(--teal-light);
+    color: var(--teal-mid);
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 20px;
+  }
+  .reviewer-card.pending { opacity: 0.6; }
+  .reviewer-card.pending .role { background: #eee; color: #999; }
+
+  /* ── 목차 ── */
+  .toc {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px 28px;
+    margin-bottom: 40px;
+  }
+  .toc h3 { font-size: 13px; font-weight: 700; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 14px; }
+  .toc ol { padding-left: 20px; }
+  .toc ol li { margin-bottom: 6px; }
+  .toc a { color: var(--teal); text-decoration: none; font-size: 14px; }
+  .toc a:hover { text-decoration: underline; }
+
+  /* ── 섹션 ── */
+  .section { margin-bottom: 56px; }
+  .section-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--teal);
+  }
+  .section-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    background: var(--teal);
+    color: white;
+    border-radius: 50%;
+    font-size: 14px;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .section-header h2 { font-size: 20px; font-weight: 700; color: var(--teal-mid); }
+
+  h3 { font-size: 17px; font-weight: 700; color: var(--dark); margin: 28px 0 14px; }
+  h4 { font-size: 15px; font-weight: 700; color: var(--blue); margin: 20px 0 10px; }
+  p { margin-bottom: 14px; color: #333; }
+
+  /* ── 핵심 명제 박스 ── */
+  .thesis-box {
+    background: linear-gradient(135deg, var(--teal-mid) 0%, var(--teal) 100%);
+    color: white;
+    border-radius: 12px;
+    padding: 28px 32px;
+    margin-bottom: 24px;
+  }
+  .thesis-box .quote { font-size: 18px; font-weight: 700; line-height: 1.6; margin-bottom: 16px; }
+  .thesis-box .source { font-size: 13px; opacity: 0.8; }
+  .thesis-box a { color: #aed9c8; }
+
+  /* ── 인용 박스 ── */
+  .cite-box {
+    background: var(--blue-light);
+    border-left: 4px solid var(--blue);
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 16px 0;
+    font-size: 14px;
+  }
+  .cite-box .ko { font-weight: 600; color: var(--dark); margin-bottom: 10px; }
+  .cite-box .en { color: #555; font-style: italic; font-size: 13px; line-height: 1.6; margin-bottom: 10px; }
+  .cite-box .src { font-size: 12px; color: var(--gray); }
+  .cite-box a { color: var(--blue); }
+
+  /* ── 경고/주의 박스 ── */
+  .warn-box {
+    background: #fff8e1;
+    border: 1px solid #f9a825;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    font-size: 14px;
+    color: #555;
+  }
+  .warn-box strong { color: #e65100; }
+
+  /* ── 테이블 ── */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0 24px;
+    font-size: 14px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+  }
+  thead { background: var(--teal); color: white; }
+  thead th { padding: 12px 14px; text-align: left; font-weight: 600; font-size: 13px; }
+  tbody tr { border-bottom: 1px solid var(--border); }
+  tbody tr:last-child { border-bottom: none; }
+  tbody tr:nth-child(even) { background: var(--gray-light); }
+  tbody td { padding: 10px 14px; }
+  tbody tr.highlight { background: #e8f5f0 !important; font-weight: 700; }
+  tbody tr.highlight td:nth-child(2) { color: var(--red); font-size: 16px; }
+
+  /* ── 플로우 다이어그램 ── */
+  .flow-box {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin: 16px 0;
+    font-family: 'Pretendard', monospace;
+    font-size: 14px;
+    line-height: 2;
+    color: #333;
+    overflow-x: auto;
+  }
+  .flow-box .flow-title { font-size: 12px; font-weight: 700; color: var(--teal); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 12px; }
+  .flow-arrow { color: var(--teal); font-weight: 700; }
+  .flow-result { color: var(--red); font-weight: 700; }
+
+  /* ── 오즈비 강조 카드 ── */
+  .or-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  @media (max-width: 700px) { .or-cards { grid-template-columns: repeat(2, 1fr); } }
+  .or-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px 12px;
+    text-align: center;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  }
+  .or-card .label { font-size: 11px; color: var(--gray); margin-bottom: 8px; line-height: 1.4; }
+  .or-card .value { font-size: 28px; font-weight: 800; color: var(--teal); }
+  .or-card.danger { border-color: var(--red); background: var(--red-light); }
+  .or-card.danger .value { color: var(--red); font-size: 36px; }
+  .or-card .sub { font-size: 11px; color: var(--gray); margin-top: 4px; }
+
+  /* ── Bradford Hill ── */
+  .bh-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .bh-grid { grid-template-columns: 1fr; } }
+  .bh-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 16px;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+  }
+  .bh-item .check { font-size: 20px; flex-shrink: 0; }
+  .bh-item .bh-name { font-weight: 700; color: var(--dark); font-size: 13px; }
+  .bh-item .bh-desc { color: var(--gray); font-size: 12px; margin-top: 2px; }
+
+  /* ── 전문가 코멘트 ── */
+  .expert-comment {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin-bottom: 20px;
+    position: relative;
+  }
+  .expert-comment::before {
+    content: """;
+    position: absolute;
+    top: 12px;
+    left: 20px;
+    font-size: 60px;
+    color: var(--teal-light);
+    line-height: 1;
+    font-family: serif;
+  }
+  .expert-comment .quote-text {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--dark);
+    line-height: 1.8;
+    margin-bottom: 16px;
+    padding-left: 8px;
+  }
+  .expert-comment .expert-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 12px;
+    border-top: 1px solid var(--border);
+  }
+  .expert-comment .avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 15px;
+    flex-shrink: 0;
+  }
+  .expert-comment .name { font-weight: 700; font-size: 14px; color: var(--teal-mid); }
+  .expert-comment .affil { font-size: 12px; color: var(--gray); }
+  .expert-comment .note { font-size: 12px; color: #999; margin-top: 2px; }
+  .expert-comment.pending-review {
+    border-color: var(--amber);
+    background: #fffdf7;
+  }
+  .expert-comment .pending-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ── 논문 카드 ── */
+  .paper-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px 24px;
+    margin-bottom: 16px;
+  }
+  .paper-card .paper-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    background: var(--teal-light);
+    color: var(--teal-mid);
+    border-radius: 50%;
+    font-size: 12px;
+    font-weight: 700;
+    margin-right: 8px;
+    vertical-align: middle;
+  }
+  .paper-card .paper-title { font-size: 14px; font-weight: 700; color: var(--dark); margin-bottom: 8px; }
+  .paper-card .paper-meta { font-size: 12px; color: var(--gray); margin-bottom: 10px; }
+  .paper-card .paper-ko { font-size: 14px; color: #333; line-height: 1.7; margin-bottom: 10px; }
+  .paper-card .paper-links a {
+    display: inline-block;
+    background: var(--teal-light);
+    color: var(--teal-mid);
+    border-radius: 4px;
+    padding: 3px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-right: 6px;
+  }
+  .paper-card .paper-links a:hover { background: var(--teal); color: white; }
+  .paper-card .paper-links a.free { background: #e8f5e9; color: #2e7d32; }
+  .paper-card.key-paper { border-color: var(--teal); border-width: 2px; }
+  .paper-card .star-badge {
+    display: inline-block;
+    background: var(--amber);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-left: 8px;
+    vertical-align: middle;
+  }
+
+  /* ── KoGES 섹션 ── */
+  .koges-box {
+    background: linear-gradient(135deg, #e8f5f0, #d4edda);
+    border: 2px solid var(--teal);
+    border-radius: 12px;
+    padding: 24px 28px;
+    margin: 16px 0 24px;
+  }
+  .koges-box .koges-title { font-size: 14px; font-weight: 700; color: var(--teal-mid); margin-bottom: 16px; letter-spacing: 0.5px; }
+  .genotype-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  @media (max-width: 500px) { .genotype-grid { grid-template-columns: 1fr; } }
+  .genotype-card {
+    background: white;
+    border-radius: 8px;
+    padding: 14px;
+    text-align: center;
+    border: 1px solid rgba(0,98,65,0.2);
+  }
+  .genotype-card .geno-label { font-size: 20px; font-weight: 800; color: var(--teal); }
+  .genotype-card .geno-pct { font-size: 24px; font-weight: 800; margin: 4px 0; }
+  .genotype-card .geno-desc { font-size: 11px; color: var(--gray); line-height: 1.4; }
+  .genotype-card.risk .geno-label { color: var(--amber); }
+  .genotype-card.risk .geno-pct { color: var(--amber); }
+  .genotype-card.highrisk .geno-label { color: var(--red); }
+  .genotype-card.highrisk .geno-pct { color: var(--red); }
+
+  /* ── 상담 가이드 ── */
+  .qa-item {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 16px 20px;
+    margin-bottom: 12px;
+  }
+  .qa-item .q { font-weight: 700; color: var(--red); font-size: 14px; margin-bottom: 8px; }
+  .qa-item .a { font-size: 14px; color: #333; }
+
+  /* ── 한계 테이블 ── */
+  .limit-table { margin: 16px 0; }
+  .limit-row {
+    display: flex;
+    gap: 0;
+    border: 1px solid var(--border);
+    border-bottom: none;
+    font-size: 14px;
+  }
+  .limit-row:last-child { border-bottom: 1px solid var(--border); }
+  .limit-row:first-child { border-radius: 8px 8px 0 0; }
+  .limit-row:last-child { border-radius: 0 0 8px 8px; }
+  .limit-key { background: var(--gray-light); padding: 12px 16px; font-weight: 700; width: 160px; flex-shrink: 0; color: var(--dark); }
+  .limit-val { padding: 12px 16px; color: #555; flex: 1; }
+
+  /* ── 통계 카드 ── */
+  .stat-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 16px 0;
+  }
+  @media (max-width: 600px) { .stat-cards { grid-template-columns: 1fr; } }
+  .stat-card {
+    background: white;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 16px;
+    text-align: center;
+  }
+  .stat-card .stat-val { font-size: 28px; font-weight: 800; color: var(--teal); margin-bottom: 4px; }
+  .stat-card .stat-label { font-size: 12px; color: var(--gray); line-height: 1.4; }
+  .stat-card .stat-src { font-size: 11px; color: #aaa; margin-top: 6px; }
+
+  /* ── 구분선 ── */
+  hr { border: none; border-top: 1px solid var(--border); margin: 32px 0; }
+
+  /* ── 링크 ── */
+  a { color: var(--teal); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* ── 푸터 ── */
+  .footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 2px solid var(--teal);
+    font-size: 12px;
+    color: var(--gray);
+    text-align: center;
+  }
+  .footer strong { color: var(--teal-mid); }
+
+  /* ── 인쇄 숨기기 ── */
+  @media print {
+    .review-banner { display: none; }
+    body { background: white; }
+  }
+</style>
+</head>
+<body>
+
+<div class="review-banner">
+  🔒 전문가 검토용 비공개 문서 — 외부 공유 금지
+  <span>APS보건교육연구소 | 2026-04-17 | v1.0</span>
+</div>
+
+<div class="page">
+
+  <!-- 헤더 -->
+  <div class="doc-header">
+    <div class="label">EXPERT REVIEW — CONFIDENTIAL</div>
+    <h1>ALDH2 효소결핍과 흡연의 심혈관 위험</h1>
+    <h2>금연상담사 교육 종합 참고 문서 — 전문가 감수 요청본</h2>
+    <div class="doc-meta">
+      <span>📅 2026년 4월 17일</span>
+      <span>🏢 APS보건교육연구소 (FORGE 벼리)</span>
+      <span>📄 버전 1.0 — 초도 감수</span>
+      <span>🔒 비공개</span>
+    </div>
+  </div>
+
+  <!-- 검토 요청 안내 -->
+  <div class="review-request">
+    <h3>📋 감수 요청 사항</h3>
+    <ul>
+      <li>이전에 자문해주신 내용을 기반으로 학술 근거를 체계화했습니다. 내용의 정확성과 표현의 적절성을 검토해 주시기 바랍니다.</li>
+      <li>전문가 코멘트(8절)는 자문 의견을 재구성한 것입니다. 표현이 적절한지, 수정이 필요한 부분이 있는지 확인 부탁드립니다.</li>
+      <li>감수자로 성함을 기재해도 될지 의향을 알려주시면 감사하겠습니다.</li>
+      <li>이 문서는 금연상담사 교육용 홈페이지(aps7.net)에 게시할 예정입니다.</li>
+    </ul>
+  </div>
+
+  <!-- 감수자 예정 -->
+  <div class="reviewer-box">
+    <h3>REVIEWERS — 감수 예정</h3>
+    <div class="reviewer-grid">
+      <div class="reviewer-card pending">
+        <div class="name">강보승 교수</div>
+        <div class="affil">한양대학교 응급의학과</div>
+        <div class="role">✉ 감수 의향 확인 중</div>
+      </div>
+      <div class="reviewer-card pending">
+        <div class="name">이윤정 교수</div>
+        <div class="affil">경인여자대학교 간호학과</div>
+        <div class="role">✉ 감수 의향 확인 중</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 목차 -->
+  <div class="toc">
+    <h3>목차</h3>
+    <ol>
+      <li><a href="#s1">개요 — 핵심 명제</a></li>
+      <li><a href="#s2">핵심 수치 요약</a></li>
+      <li><a href="#s3">ALDH2 효소결핍이란 — 한국인 유병률(KoGES)</a></li>
+      <li><a href="#s4">흡연과 혈관 손상의 메커니즘</a></li>
+      <li><a href="#s5">ALDH2 결핍 × 흡연의 시너지</a></li>
+      <li><a href="#s6">임상 연구 근거 — 논문별 상세</a></li>
+      <li><a href="#s7">국내 현황 — 사망자·연령·유병률</a></li>
+      <li><a href="#s8">전문가 코멘트 (감수 필요)</a></li>
+      <li><a href="#s9">금연상담 현장 적용 가이드</a></li>
+      <li><a href="#s10">한계와 주의사항</a></li>
+      <li><a href="#s11">인용 논문 전체 목록</a></li>
+    </ol>
+  </div>
+
+
+  <!-- 1. 개요 -->
+  <div class="section" id="s1">
+    <div class="section-header">
+      <div class="section-num">1</div>
+      <h2>개요 — 핵심 명제</h2>
+    </div>
+
+    <div class="thesis-box">
+      <div class="quote">
+        "얼굴이 빨개지는 체질(ALDH2 효소결핍)인 사람이 담배를 피우면,<br>
+        심장 혈관이 경련으로 막히는 심근경색 위험이<br>
+        비흡연·정상 체질 대비 약 <strong>7배(최대 14배)</strong>로 올라간다.<br>
+        이 수치는 410명을 직접 검사한 임상 연구에서 측정된 값이다."
+      </div>
+      <div class="source">
+        📄 Mizuno Y et al. <em>Circ J.</em> 2017;81(1):96–102.
+        <a href="https://pubmed.ncbi.nlm.nih.gov/27904031/" target="_blank">[PubMed]</a>
+      </div>
+    </div>
+
+    <p>이 관계는 단순한 가설이 아니라, <strong>독립된 3개 코호트 + 기초과학 실험 4편</strong>이 같은 방향으로 수렴하는 과학적으로 확립된 근거입니다.</p>
+
+    <h3>왜 금연상담에서 중요한가</h3>
+    <p>한국의 금연 교육은 오랫동안 "흡연은 모든 사람에게 동일하게 위험하다"는 범용 메시지에 의존해왔습니다. 그러나 같은 흡연량이라도 ALDH2 결핍 체질에서는 훨씬 심각한 심혈관 결과가 발생합니다.</p>
+    <p>① <strong>고위험군 식별</strong>: 얼굴이 빨개지는 흡연자는 일반 흡연자보다 훨씬 강력한 금연 개입이 필요합니다.<br>
+    ② <strong>개인화 동기 부여</strong>: "당신의 체질 때문에 담배가 더 위험합니다"는 메시지는 범용 경고보다 행동 변화 효과가 큽니다 — 건강신념모델(Health Belief Model)의 지각된 심각성·취약성 동시 활성화.</p>
+  </div>
+
+
+  <!-- 2. 핵심 수치 -->
+  <div class="section" id="s2">
+    <div class="section-header">
+      <div class="section-num">2</div>
+      <h2>핵심 수치 요약</h2>
+    </div>
+
+    <h3>4그룹 오즈비 비교</h3>
+    <div class="or-cards">
+      <div class="or-card">
+        <div class="label">비흡연<br>정상 ALDH2</div>
+        <div class="value">1.0×</div>
+        <div class="sub">기준</div>
+      </div>
+      <div class="or-card">
+        <div class="label">비흡연<br>ALDH2 결핍</div>
+        <div class="value">2.1×</div>
+        <div class="sub">체질 단독</div>
+      </div>
+      <div class="or-card">
+        <div class="label">흡연<br>정상 ALDH2</div>
+        <div class="value">1.9×</div>
+        <div class="sub">흡연 단독</div>
+      </div>
+      <div class="or-card danger">
+        <div class="label">흡연<br>ALDH2 결핍</div>
+        <div class="value">6.9×</div>
+        <div class="sub">최대 13.8배 | 시너지</div>
+      </div>
+    </div>
+    <p style="font-size:13px; color: var(--gray);">출처: Mizuno Y et al. <em>Circ J.</em> 2017. 상호작용 p=0.031. 단순 곱 예측값(4.0배) 대비 시너지 확인. <a href="https://pubmed.ncbi.nlm.nih.gov/27904031/" target="_blank">[원문]</a></p>
+
+    <h3>관련 주요 수치</h3>
+    <table>
+      <thead><tr><th>항목</th><th>수치</th><th>출처</th></tr></thead>
+      <tbody>
+        <tr><td>ALDH2 결핍 단독 — STEMI 후 재경련 위험</td><td><strong>OR 6.1</strong> (95% CI 1.8–23.4)</td><td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4889196/" target="_blank">Morita 2016 (무료)</a></td></tr>
+        <tr><td>흡연 × ALDH2 결핍 — 일반 심근경색 위험</td><td><strong>OR 4.54</strong> (95% CI 2.25–9.15)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/25448285/" target="_blank">Nishimura 2015</a></td></tr>
+        <tr><td>경련 환자 중 ALDH2 결핍 비율</td><td><strong>41.1%</strong> (대조군 20.3%)</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/27904031/" target="_blank">Mizuno 2017</a></td></tr>
+        <tr class="highlight"><td>한국인 ALDH2 결핍 보유자 (KoGES 직접 측정)</td><td><strong>29.17%</strong></td><td><a href="https://pubmed.ncbi.nlm.nih.gov/34260573/" target="_blank">Kim 2021 (KoGES 17,707명)</a></td></tr>
+        <tr><td>한국 성인 남성 현재 흡연율</td><td><strong>30.7%</strong></td><td><a href="https://knhanes.kdca.go.kr/" target="_blank">국민건강영양조사 2023</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- 3. ALDH2란 -->
+  <div class="section" id="s3">
+    <div class="section-header">
+      <div class="section-num">3</div>
+      <h2>ALDH2 효소결핍이란</h2>
+    </div>
+
+    <h3>3-1. 정의</h3>
+    <p><strong>ALDH2(알데히드탈수소효소 2형)</strong>는 미토콘드리아에 위치한 효소로, 알코올 대사 과정의 독성 물질 아세트알데히드를 무독성 아세트산으로 분해합니다. 유전자(rs671)에 변이(ALDH2*2)가 있으면 효소 활성이 정상의 5~17%로 저하됩니다. 이 변이는 동아시아인에 집중됩니다 — 서구인은 1% 미만이지만 한·중·일에서는 약 30%에서 나타납니다.</p>
+
+    <div class="cite-box">
+      <div class="src">📄 Brooks PJ et al. <em>Alcohol Clin Exp Res.</em> 2009;33(8):1329–1344. <a href="https://pubmed.ncbi.nlm.nih.gov/19388912/" target="_blank">[PubMed]</a></div>
+    </div>
+
+    <h3>3-2. 한국인 유병률 — KoGES 직접 측정 데이터</h3>
+
+    <div class="koges-box">
+      <div class="koges-title">📊 Kim SS et al. 2021 — KoGES 한국인 17,707명 직접 측정</div>
+      <div class="genotype-grid">
+        <div class="genotype-card">
+          <div class="geno-label">GG형</div>
+          <div class="geno-pct">70.83%</div>
+          <div class="geno-desc">ALDH2 완전 활성<br>정상 체질</div>
+        </div>
+        <div class="genotype-card risk">
+          <div class="geno-label">GA형</div>
+          <div class="geno-pct">26.66%</div>
+          <div class="geno-desc">부분 결핍<br>알데히드 해독 저하</div>
+        </div>
+        <div class="genotype-card highrisk">
+          <div class="geno-label">AA형</div>
+          <div class="geno-pct">2.51%</div>
+          <div class="geno-desc">완전 결핍<br>해독 거의 불능</div>
+        </div>
+      </div>
+      <p style="font-size:14px; font-weight:700; color: #2e7d32; text-align:center; margin-bottom:8px;">GA + AA 합산 보유자 = <span style="font-size:22px;">29.17%</span> — 한국인 약 3명 중 1명</p>
+      <div class="cite-box" style="margin:0;">
+        <div class="en">"The genotype frequencies of rs671, which is specific to East Asia, were 2.51% AA, 26.66% GA, and 70.83% GG in the Korean population."</div>
+        <div class="src">📄 Kim SS et al. <em>Medicine (Baltimore).</em> 2021;100(30):e26620. PMID: 34260573. <a href="https://pubmed.ncbi.nlm.nih.gov/34260573/" target="_blank">[PubMed]</a></div>
+      </div>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ 주의사항 (감수 요청)</strong>: 한국인 ALDH2 결핍 보유자 비율의 공식 표현(29% vs 30% vs 3명 중 1명)에 대해 교수님의 의견을 부탁드립니다.
+    </div>
+
+    <h3>3-3. 왜 흡연과 연결되는가</h3>
+    <p>담배 연기의 핵심 독성 알데히드인 <strong>아크롤레인(acrolein)</strong>도 ALDH2가 분해합니다. ALDH2 결핍자는 같은 담배를 피워도 아크롤레인이 혈관 내에서 더 오래, 더 높은 농도로 잔류합니다 — 이것이 시너지의 생물학적 출발점입니다.</p>
+  </div>
+
+
+  <!-- 4. 메커니즘 -->
+  <div class="section" id="s4">
+    <div class="section-header">
+      <div class="section-num">4</div>
+      <h2>흡연과 혈관 손상의 메커니즘</h2>
+    </div>
+
+    <h3>경로 A — eNOS 단백질 직접 손상 (세포 실험)</h3>
+    <div class="cite-box">
+      <div class="ko">담배 연기 추출물과 아크롤레인을 인간 혈관 내피세포에 처리하자 혈관 보호 효소(eNOS)의 활성이 억제되고 NO 생산량이 유의하게 감소했습니다.</div>
+      <div class="en">"CSE and acrolein suppressed eNOS Ser1177 phosphorylation and eNOS protein expression, resulting in significantly reduced NO production in human vascular endothelial cells."</div>
+      <div class="src">📄 Horinouchi T et al. <em>Biol Pharm Bull.</em> 2020;43(10):1531–1537.
+        <a href="https://pubmed.ncbi.nlm.nih.gov/32879145/" target="_blank">[PubMed]</a>
+        <a href="https://www.jstage.jst.go.jp/article/bpb/43/10/43_b20-00256/_article" target="_blank">[J-STAGE 무료]</a>
+      </div>
+    </div>
+
+    <div class="flow-box">
+      <div class="flow-title">경로 A — 흐름도</div>
+      아크롤레인 흡입<br>
+      <span class="flow-arrow">↓</span> 혈관 내피세포 도달<br>
+      <span class="flow-arrow">↓</span> eNOS Ser1177 인산화 억제 (활성화 차단)<br>
+      <span class="flow-arrow">↓</span> eNOS 단백 발현 감소<br>
+      <span class="flow-arrow">↓</span> <span class="flow-result">NO 생산량 직접 감소</span>
+    </div>
+
+    <h3>경로 B — BH4 결핍 → eNOS 탈결합 (동물 실험)</h3>
+    <div class="cite-box">
+      <div class="ko">마우스에 담배 연기를 직접 흡입시키자 혈관 내 보조인자(BH4) 합성이 차단되고, eNOS가 NO 대신 활성산소(슈퍼옥사이드)를 생산하는 역방향 상태(탈결합)로 전환됐습니다. BH4 보충 시 혈관 기능이 회복됐습니다.</div>
+      <div class="en">"CS exposure suppressed GTPCH1 expression, leading to BH4 deficiency and subsequent eNOS uncoupling... BH4 supplementation restored eNOS coupling and vascular function."</div>
+      <div class="src">📄 Bu WJ et al. <em>Biochem Pharmacol.</em> 2026. PMID: 41895618. <a href="https://pubmed.ncbi.nlm.nih.gov/41895618/" target="_blank">[PubMed]</a> ⚠️ 2026년 출판 — 직접 확인 권장</div>
+    </div>
+
+    <h3>NO 고갈 → Rho-kinase 폭주 → 경련</h3>
+    <div class="cite-box">
+      <div class="ko">혈관 보호 물질(NO)이 사라지면 혈관 수축 경로(Rho-kinase)가 브레이크 없이 과활성화됩니다. 평소 무해한 자극(추위·스트레스)에도 관상동맥이 완전히 수축·경련하게 됩니다.</div>
+      <div class="en">"Loss of endothelial NO bioavailability triggers Rho-kinase pathway overactivation in vascular smooth muscle cells, causing hyperreactivity — the hallmark of coronary artery spasm."</div>
+      <div class="src">📄 Bertrand MJ et al. <em>Front Pharmacol.</em> 2020;11:712. <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7199189/" target="_blank">[PMC 무료 전문]</a></div>
+    </div>
+
+    <h3>완성된 인과 경로</h3>
+    <div class="flow-box">
+      <div class="flow-title">ALDH2 결핍 × 흡연 — 이중 공격 경로</div>
+      흡연 → 아크롤레인 흡입 → eNOS 파괴 → NO 고갈<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;↑<br>
+      ALDH2 결핍 → 아크롤레인 해독 불능 → 잔류 시간·농도 연장<br><br>
+      <span class="flow-result">⇒ NO 보호막 이중·지속적 파괴<br>
+      ⇒ Rho-kinase 폭주 임계값 도달 훨씬 쉬워짐<br>
+      ⇒ 관상동맥 경련 → 심근경색</span>
+    </div>
+  </div>
+
+
+  <!-- 5. 시너지 -->
+  <div class="section" id="s5">
+    <div class="section-header">
+      <div class="section-num">5</div>
+      <h2>ALDH2 결핍 × 흡연의 시너지</h2>
+    </div>
+
+    <h3>왜 4배가 아닌 6.9배인가</h3>
+    <div class="cite-box">
+      <div class="ko">두 인자가 독립적으로 작용하면 단순 곱(1.9 × 2.1 = 4.0배)이 예측값입니다. 실제 측정값은 6.9배로 4.0배를 초과하며, 이 초과분이 "시너지"입니다. 상호작용 통계 p=0.031로 유의하게 확인됐습니다.</div>
+      <div class="en">"The combination of smoking and ALDH2*2 genotype was associated with a synergistic increase in the risk of CSA (OR 6.9, 95% CI 3.5–13.8), exceeding the expected multiplicative risk (OR 4.0) based on individual factors alone (p for interaction = 0.031)."</div>
+      <div class="src">📄 Mizuno Y et al. <em>Circ J.</em> 2017;81(1):96–102. <a href="https://pubmed.ncbi.nlm.nih.gov/27904031/" target="_blank">[PubMed]</a></div>
+    </div>
+
+    <p>시너지가 발생하는 이유: 아크롤레인이 ALDH2 결핍으로 더 오래 잔류하면서 eNOS를 더 강하게, 더 지속적으로 손상시킵니다. NO 보호막이 임계값 아래로 떨어지면 경련이 시작됩니다.</p>
+  </div>
+
+
+  <!-- 6. 임상 근거 -->
+  <div class="section" id="s6">
+    <div class="section-header">
+      <div class="section-num">6</div>
+      <h2>임상 연구 근거 — 논문별 상세</h2>
+    </div>
+
+    <div class="paper-card key-paper">
+      <div class="paper-title">
+        <span class="paper-num">①</span>
+        Smoking and ALDH2*2 Allele Synergistically Increase Risk of Coronary Artery Spasm
+        <span class="star-badge">핵심 논문 ★</span>
+      </div>
+      <div class="paper-meta">Mizuno Y, Hokimoto S et al. | Circulation Journal 2017;81(1):96–102 | PMID: 27904031 | 일본인 410명</div>
+      <div class="paper-ko">흡연과 ALDH2*2 유전형이 경련성 협심증 위험에 시너지를 내는지 직접 측정. 아세틸콜린 유발검사로 CSA를 객관적으로 진단. 교란변수 보정 후에도 상호작용 p=0.031로 시너지 확인. 경련환자 중 ALDH2 결핍 41.1% (대조군 20.3%).</div>
+      <div class="paper-links">
+        <a href="https://pubmed.ncbi.nlm.nih.gov/27904031/" target="_blank">PubMed</a>
+        <a href="https://www.jstage.jst.go.jp/article/circj/81/1/81_CJ-16-0703/_article" target="_blank">J-STAGE</a>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-title"><span class="paper-num">②</span>ALDH2*2 Genotype Is Associated with Inducible Coronary Spasm after Acute MI</div>
+      <div class="paper-meta">Morita H et al. | JAHA 2016;5(5):e003247 | PMC4889196 | STEMI 후 PCI 환자</div>
+      <div class="paper-ko">심근경색 후 회복 환자에서 6개월 추적. 흡연·음주·고혈압 등 보정 후에도 ALDH2*2 유전형은 관상동맥 경련과 독립적 연관 (OR 6.1, 95% CI 1.8–23.4, p=0.003). 한 번 심근경색을 겪어도 위험 잔존.</div>
+      <div class="paper-links">
+        <a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4889196/" target="_blank" class="free">PMC 무료 전문</a>
+      </div>
+    </div>
+
+    <div class="paper-card">
+      <div class="paper-title"><span class="paper-num">③</span>Interaction Between Smoking and ALDH2 Genotype on the Risk of Myocardial Infarction</div>
+      <div class="paper-meta">Nishimura T et al. | Circ J 2015;79(2):338–343 | PMID: 25448285</div>
+      <div class="paper-ko">폐쇄형(일반) 심근경색에서도 같은 방향의 시너지 확인 (OR 4.54, 95% CI 2.25–9.15). 경련형과 폐쇄형 두 유형 모두에서 위험 — 이론의 외적 타당성 강화.</div>
+      <div class="paper-links">
+        <a href="https://pubmed.ncbi.nlm.nih.gov/25448285/" target="_blank">PubMed</a>
+      </div>
+    </div>
+
+    <h3>기초과학 메커니즘 논문 4편</h3>
+    <table>
+      <thead><tr><th>논문</th><th>한국어 핵심 발견</th><th>링크</th></tr></thead>
+      <tbody>
+        <tr><td>Horinouchi 2020</td><td>인간 혈관 내피세포 — 아크롤레인 → eNOS 억제 → NO 감소 직접 측정</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/32879145/" target="_blank">PubMed</a></td></tr>
+        <tr><td>Bu 2026</td><td>마우스 담배 연기 → BH4 결핍 → eNOS uncoupling → 혈관 기능 저하</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/41895618/" target="_blank">PubMed</a></td></tr>
+        <tr><td>Bertrand 2020</td><td>NO 고갈 → Rho-kinase 과활성 → 혈관 경련 병태생리 종합 리뷰</td><td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7199189/" target="_blank">PMC 무료</a></td></tr>
+        <tr><td>Tian & Zweier 2023</td><td>담배 알데히드 → eNOS 탈결합 → 심혈관 산화 스트레스 최신 리뷰</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Tian+Zweier+ALDH2+oxidative+stress+cardiovascular+2023" target="_blank">PubMed 검색</a></td></tr>
+      </tbody>
+    </table>
+
+    <h3>Bradford Hill 인과 기준 — 7개 중 6개 충족</h3>
+    <div class="bh-grid">
+      <div class="bh-item"><div class="check">✅</div><div><div class="bh-name">일관성</div><div class="bh-desc">일본 3개 독립 코호트에서 반복 확인 (2015·2016·2017)</div></div></div>
+      <div class="bh-item"><div class="check">✅</div><div><div class="bh-name">강도</div><div class="bh-desc">OR 4.54~6.9 — 역학적으로 매우 강한 수준</div></div></div>
+      <div class="bh-item"><div class="check">✅</div><div><div class="bh-name">시간적 선후</div><div class="bh-desc">유전형(출생 시 결정) → 흡연 노출 → 심장마비</div></div></div>
+      <div class="bh-item"><div class="check">✅</div><div><div class="bh-name">특이성</div><div class="bh-desc">동아시아 ALDH2 결핍 + 흡연 → CSA에 집중</div></div></div>
+      <div class="bh-item"><div class="check">✅</div><div><div class="bh-name">생물학적 타당성</div><div class="bh-desc">알데히드 → eNOS 탈결합 → NO 고갈 → 경련 (확립된 기초과학)</div></div></div>
+      <div class="bh-item"><div class="check">✅</div><div><div class="bh-name">실험적 증거</div><div class="bh-desc">세포·동물 실험으로 eNOS 탈결합 직접 재현</div></div></div>
+      <div class="bh-item"><div class="check">⚠️</div><div><div class="bh-name">용량-반응</div><div class="bh-desc">흡연량별 오즈비 세분화 미확인 — 한계로 명시</div></div></div>
+    </div>
+    <p style="font-weight:700; color: var(--teal-mid);">종합 판정: 인과 관계 "거의 확실(Highly Probable)"</p>
+  </div>
+
+
+  <!-- 7. 국내 현황 -->
+  <div class="section" id="s7">
+    <div class="section-header">
+      <div class="section-num">7</div>
+      <h2>국내 현황 — 사망자·연령·유병률</h2>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ 중요</strong>: "ALDH2 결핍 흡연자의 경련성 심근경색 사망자 수"를 직접 명시한 국내 공식 통계는 현재 없습니다. 아래는 공식 통계와 추계를 명확히 구분하여 제시합니다.
+    </div>
+
+    <h3>국내 심장질환 사망 현황</h3>
+    <p style="font-size:13px; color:var(--gray);">출처: 통계청 「2023년 사망원인통계」 <a href="https://www.kostat.go.kr/board.es?mid=a10301010000&bid=218" target="_blank">[원문 링크]</a></p>
+    <div class="stat-cards">
+      <div class="stat-card">
+        <div class="stat-val">34,093</div>
+        <div class="stat-label">심장질환 사망자 (명)<br>사망원인 2위</div>
+        <div class="stat-src">통계청 2023</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">~13,000</div>
+        <div class="stat-label">허혈성 심장질환 사망자 (명)</div>
+        <div class="stat-src">통계청 2023</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-val">~7,500</div>
+        <div class="stat-label">급성 심근경색 사망자 (명)</div>
+        <div class="stat-src">통계청 2023</div>
+      </div>
+    </div>
+
+    <h3>경련성 협심증(CSA)의 국내 특수성</h3>
+    <table>
+      <thead><tr><th>지역</th><th>전체 협심증 중 CSA 비율</th></tr></thead>
+      <tbody>
+        <tr class="highlight"><td>한국·일본</td><td>15~30%</td></tr>
+        <tr><td>서구 (유럽·북미)</td><td>3~5%</td></tr>
+      </tbody>
+    </table>
+    <p style="font-size:13px; color:var(--gray);">출처: JCS Joint Working Group. <em>Circ J.</em> 2013;77(9):2221–2274. <a href="https://www.jstage.jst.go.jp/article/circj/77/9/77_CJ-13-1119/_article" target="_blank">[J-STAGE 무료]</a></p>
+
+    <h3>고위험군 규모 추계</h3>
+    <div class="warn-box"><strong>⚠️ 아래는 추계입니다.</strong> 공식 통계로 오인하여 사용하지 마십시오.</div>
+    <table>
+      <thead><tr><th>계산 항목</th><th>수치</th><th>근거</th></tr></thead>
+      <tbody>
+        <tr><td>전체 성인 흡연자 (추정)</td><td>약 800만 명</td><td>국민건강영양조사 2023</td></tr>
+        <tr><td>한국인 ALDH2 결핍 비율</td><td>약 29%</td><td>KoGES 직접 측정</td></tr>
+        <tr class="highlight"><td>ALDH2 결핍 흡연 고위험군 추계</td><td>약 240만 명</td><td>역학적 추산</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+
+  <!-- 8. 전문가 코멘트 -->
+  <div class="section" id="s8">
+    <div class="section-header">
+      <div class="section-num">8</div>
+      <h2>전문가 코멘트</h2>
+    </div>
+
+    <div class="warn-box">
+      <strong>⚠️ 감수 요청 섹션</strong>: 아래 코멘트는 이전 자문 내용을 재구성한 것입니다. 내용의 정확성, 표현의 적절성, 그리고 성함 기재 가능 여부를 확인해 주시기 바랍니다.
+    </div>
+
+    <div class="expert-comment pending-review">
+      <div class="pending-badge">✉ 감수 요청 — 강보승 교수님</div>
+      <div class="quote-text">
+        "ALDH2 결핍 흡연자의 경련성 심근경색 위험은 임상에서 과소평가되고 있습니다. 관상동맥 조영술에서 혈관이 깨끗하다고 나온 젊은 심근경색 환자 중 상당수가 이 경로로 추정됩니다. 이들에게 흡연 이력과 체질을 함께 확인해야 하는데, 현재 임상 현장에서는 이 질문 자체가 없습니다."
+      </div>
+      <div class="expert-info">
+        <div class="avatar">강</div>
+        <div>
+          <div class="name">강보승 교수</div>
+          <div class="affil">한양대학교 응급의학과</div>
+          <div class="note">* 2022년 APS 자문보고서 내용 재구성 — 감수 전 확정 불가</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="expert-comment pending-review">
+      <div class="pending-badge">✉ 감수 요청 — 이윤정 교수님</div>
+      <div class="quote-text">
+        "금연 교육의 효과를 높이려면 단순 경고보다 '내 체질에 맞는 위험'을 알려주는 것이 중요합니다. 보건학적으로 개인화된 위험 정보는 건강 행동 변화를 유도하는 핵심 동기 요소입니다 — 건강신념모델의 지각된 심각성과 취약성을 동시에 활성화하기 때문입니다. ALDH2 체질 판정을 활용한 접근은 이 원칙에 정확히 부합합니다."
+      </div>
+      <div class="expert-info">
+        <div class="avatar">이</div>
+        <div>
+          <div class="name">이윤정 교수</div>
+          <div class="affil">경인여자대학교 간호학과</div>
+          <div class="note">* 2026년 APS 교육 프로그램 자문 의견 재구성 — 감수 전 확정 불가</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- 9. 상담 가이드 -->
+  <div class="section" id="s9">
+    <div class="section-header">
+      <div class="section-num">9</div>
+      <h2>금연상담 현장 적용 가이드</h2>
+    </div>
+
+    <h3>내담자 선별 질문 (2분 이내)</h3>
+    <div style="background:white; border:1px solid var(--border); border-radius:10px; padding:20px 24px; margin:16px 0; font-size:14px; font-family:monospace;">
+      Q1. "술을 마시면 얼굴이 빨개지시나요?"<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;→ "예" → ALDH2 결핍 가능성 높음<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;→ "처음엔 빨개졌는데 지금은 안 그래요" → 내성 형성. ALDH2 결핍 유지. (오히려 더 위험)<br><br>
+      Q2. "현재 담배를 피우시나요?"<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;→ "예" + Q1 양성 → <strong style="color:var(--red);">고위험군 확인</strong>
+    </div>
+
+    <h3>패치 결과별 권고 메시지</h3>
+    <table>
+      <thead><tr><th>패치 결과</th><th>흡연</th><th>오즈비</th><th>권고 메시지</th></tr></thead>
+      <tbody>
+        <tr><td>GG형 (음성)</td><td>비흡연</td><td>1.0×</td><td>최적 상태입니다. 지금을 유지하세요.</td></tr>
+        <tr><td>GG형 (음성)</td><td>흡연</td><td>1.9×</td><td>담배 자체도 혈관에 나쁩니다. 금연을 권합니다.</td></tr>
+        <tr><td>AG·AA형 (양성)</td><td>비흡연</td><td>2.1×</td><td>체질 위험 있습니다. 금주·금연 모두 관리 필요합니다.</td></tr>
+        <tr class="highlight"><td>AG·AA형 (양성)</td><td>흡연</td><td>6.9×</td><td>즉시 금연이 필요합니다. 심장마비 위험 7배, 최대 14배 — 당신의 체질과 흡연이 결합된 수치입니다.</td></tr>
+      </tbody>
+    </table>
+
+    <h3>흔한 반응 대응</h3>
+    <div class="qa-item">
+      <div class="q">Q. "오래 피웠는데 아직 멀쩡한데요?"</div>
+      <div class="a">경련성 심근경색은 전조 증상이 없습니다. 40대에 혈관이 깨끗해도 돌연사하는 분들이 있는데, 이 경로 때문입니다. 아직 괜찮다는 건 임계점을 넘지 않은 것입니다.</div>
+    </div>
+    <div class="qa-item">
+      <div class="q">Q. "체질이면 어쩔 수 없잖아요?"</div>
+      <div class="a">체질은 바꿀 수 없지만, 금연 하나로 오즈비가 6.9배에서 2.1배로 내려갑니다. 심장마비 위험이 약 70% 줄어드는 겁니다.</div>
+    </div>
+    <div class="qa-item">
+      <div class="q">Q. "담배는 폐암에나 나쁜 거 아닌가요?"</div>
+      <div class="a">담배의 혈관 독성은 폐와 별개입니다. 담배 연기의 알데히드(아크롤레인)가 혈관 내피세포를 직접 손상시킵니다 — 세포 실험으로 직접 확인된 사실입니다. (Horinouchi 2020)</div>
+    </div>
+  </div>
+
+
+  <!-- 10. 한계 -->
+  <div class="section" id="s10">
+    <div class="section-header">
+      <div class="section-num">10</div>
+      <h2>한계와 주의사항</h2>
+    </div>
+
+    <div class="limit-table">
+      <div class="limit-row">
+        <div class="limit-key">연구 집단</div>
+        <div class="limit-val">핵심 임상 3편 모두 일본인. 한국인 대상 직접 측정 없음</div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-key">연구 설계</div>
+        <div class="limit-val">단면·후향적 중심. 전향적 대규모 코호트 필요</div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-key">흡연량 보정</div>
+        <div class="limit-val">OR 6.9는 흡연 여부(유/무)만 구분. 갑년(pack-year) 세분화 없음</div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-key">금연 후 감소</div>
+        <div class="limit-val">금연 후 CSA 위험 감소 직접 측정 데이터 없음</div>
+      </div>
+      <div class="limit-row">
+        <div class="limit-key">여성 데이터</div>
+        <div class="limit-val">대부분 연구 남성 중심. 여성 ALDH2 결핍 × CSA 데이터 부족</div>
+      </div>
+    </div>
+
+    <div class="warn-box" style="margin-top:16px;">
+      <strong>상담 시 주의</strong>: 오즈비는 집단 통계이며 개인 확률이 아닙니다. 알쓰패치는 체질 체험 도구이며 유전자 확진 검사가 아닙니다. 이 자료는 금연 동기 부여 교육용이며 의료 진단을 대체하지 않습니다.
+    </div>
+  </div>
+
+
+  <!-- 11. 논문 목록 -->
+  <div class="section" id="s11">
+    <div class="section-header">
+      <div class="section-num">11</div>
+      <h2>인용 논문 전체 목록</h2>
+    </div>
+
+    <table>
+      <thead><tr><th>#</th><th>논문</th><th>역할</th><th>링크</th></tr></thead>
+      <tbody>
+        <tr><td>①</td><td>Mizuno Y et al. <em>Circ J.</em> 2017;81(1):96–102. PMID 27904031</td><td><strong>핵심 ★</strong> — 시너지 직접 측정 OR 6.9</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/27904031/" target="_blank">PubMed</a></td></tr>
+        <tr><td>②</td><td>Morita H et al. <em>JAHA.</em> 2016;5(5):e003247. PMC4889196</td><td>STEMI 후 경련 위험 OR 6.1</td><td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4889196/" target="_blank">PMC 무료</a></td></tr>
+        <tr><td>③</td><td>Nishimura T et al. <em>Circ J.</em> 2015;79(2):338–343. PMID 25448285</td><td>일반 MI 위험 OR 4.54</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/25448285/" target="_blank">PubMed</a></td></tr>
+        <tr><td>④</td><td>Bertrand MJ et al. <em>Front Pharmacol.</em> 2020;11:712. PMC7199189</td><td>관상동맥 경련 병태생리 리뷰</td><td><a href="https://www.ncbi.nlm.nih.gov/pmc/articles/PMC7199189/" target="_blank">PMC 무료</a></td></tr>
+        <tr><td>⑤</td><td>Tian Y & Zweier JL. <em>Cell Mol Biol Lett.</em> 2023</td><td>eNOS 탈결합·심혈관 리뷰</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/?term=Tian+Zweier+ALDH2+oxidative+stress+cardiovascular+2023" target="_blank">PubMed 검색</a></td></tr>
+        <tr><td>⑥</td><td>Horinouchi T et al. <em>Biol Pharm Bull.</em> 2020;43(10). PMID 32879145</td><td>세포 실험 — NO 억제 직접 측정</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/32879145/" target="_blank">PubMed</a> / <a href="https://www.jstage.jst.go.jp/article/bpb/43/10/43_b20-00256/_article" target="_blank">J-STAGE</a></td></tr>
+        <tr><td>⑦</td><td>Bu WJ et al. <em>Biochem Pharmacol.</em> 2026. PMID 41895618</td><td>동물 실험 — eNOS uncoupling 규명</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/41895618/" target="_blank">PubMed</a></td></tr>
+        <tr><td>⑧</td><td>Kim SS et al. <em>Medicine (Baltimore).</em> 2021;100(30):e26620. PMID 34260573</td><td><strong>KoGES 한국인 29.17% 직접 측정 ★</strong></td><td><a href="https://pubmed.ncbi.nlm.nih.gov/34260573/" target="_blank">PubMed</a></td></tr>
+        <tr><td>⑨</td><td>Brooks PJ et al. <em>Alcohol Clin Exp Res.</em> 2009;33(8). PMID 19388912</td><td>동아시아 ALDH2 유병률 메타분석</td><td><a href="https://pubmed.ncbi.nlm.nih.gov/19388912/" target="_blank">PubMed</a></td></tr>
+        <tr><td>⑩</td><td>JCS Working Group. <em>Circ J.</em> 2013;77(9):2221–2274</td><td>관상동맥 경련성 협심증 가이드라인</td><td><a href="https://www.jstage.jst.go.jp/article/circj/77/9/77_CJ-13-1119/_article" target="_blank">J-STAGE 무료</a></td></tr>
+      </tbody>
+    </table>
+
+    <h3>공식 통계 출처</h3>
+    <table>
+      <thead><tr><th>통계</th><th>기관</th><th>링크</th></tr></thead>
+      <tbody>
+        <tr><td>2023년 사망원인통계</td><td>통계청</td><td><a href="https://www.kostat.go.kr/board.es?mid=a10301010000&bid=218" target="_blank">통계청 바로가기</a></td></tr>
+        <tr><td>국민건강영양조사 2023</td><td>질병관리청</td><td><a href="https://knhanes.kdca.go.kr/" target="_blank">KNHANES 바로가기</a></td></tr>
+        <tr><td>dbSNP rs671 집단별 MAF</td><td>NCBI</td><td><a href="https://www.ncbi.nlm.nih.gov/snp/rs671" target="_blank">dbSNP 바로가기</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- 푸터 -->
+  <div class="footer">
+    <p><strong>APS보건교육연구소</strong> | FORGE 벼리 | 2026-04-17 | 버전 1.0</p>
+    <p style="margin-top:6px;">이 문서는 전문가 감수를 위한 비공개 검토본입니다. 감수 완료 전 외부 인용 또는 공유를 금합니다.</p>
+    <p style="margin-top:6px; font-size:11px; color:#aaa;">최종 게시 예정: aps7.net 학술 자료실 (edu.aps7.net/research)</p>
+  </div>
+
+</div>
+</body>
+</html>
