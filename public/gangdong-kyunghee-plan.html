@@ -339,6 +339,46 @@
     margin-top: 10px;
     opacity: 0.85;
   }
+  /* Layout Diagram */
+  .layout-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px;
+    border: 1px solid var(--line);
+    overflow-x: auto;
+  }
+  .layout-card svg {
+    width: 100%;
+    height: auto;
+    max-width: 720px;
+    display: block;
+    min-width: 480px;
+  }
+  .layout-legend {
+    margin-top: 14px;
+    display: grid;
+    gap: 8px;
+  }
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--ink);
+    line-height: 1.5;
+  }
+  .legend-num {
+    flex: 0 0 22px;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    color: var(--white);
+    font-weight: 700;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
   /* Emphasis */
   .tag {
     display: inline-block;
@@ -568,6 +608,91 @@
         <li>펜 여유분</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section>
+  <h2>공간 배치 & 동선 <span class="tag">인산홀</span></h2>
+  <p style="margin-bottom:14px;color:var(--ink-60);font-size:14px;">참여자 동선은 <strong style="color:var(--teal)">접수 → 체험존 → 작성존</strong> 순서로 자연스럽게 흐릅니다.</p>
+  <div class="layout-card">
+    <svg viewBox="0 0 720 480" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="강동경희의료원 인산홀 캠페인 동선">
+      <!-- 배경 -->
+      <rect x="40" y="40" width="640" height="400" fill="#FFFFFF" stroke="#1A2B3B" stroke-width="2"/>
+
+      <!-- 영상 (좌측 벽) -->
+      <rect x="40" y="40" width="50" height="400" fill="#F2F0EB" stroke="#1A2B3B" stroke-width="1"/>
+      <text x="65" y="240" fill="#1A2B3B" font-size="16" font-weight="600" text-anchor="middle" transform="rotate(-90 65 240)">영상</text>
+
+      <!-- 작성존 (좌측, 매니저 영역) -->
+      <rect x="120" y="80" width="240" height="280" fill="#E8F3EE" stroke="#006241" stroke-width="1.5" rx="6"/>
+      <text x="240" y="200" fill="#006241" font-size="15" font-weight="700" text-anchor="middle">작성존</text>
+      <text x="240" y="222" fill="#006241" font-size="12" text-anchor="middle">개별 대응 · 매니저</text>
+      <text x="240" y="242" fill="#5A6875" font-size="11" text-anchor="middle">착석 · 시트작성 (보조2)</text>
+
+      <!-- 책상 표시 (작성존 내부) -->
+      <rect x="140" y="100" width="40" height="50" fill="#FFFFFF" stroke="#006241" stroke-width="0.8"/>
+      <rect x="200" y="100" width="40" height="50" fill="#FFFFFF" stroke="#006241" stroke-width="0.8"/>
+      <rect x="260" y="100" width="40" height="50" fill="#FFFFFF" stroke="#006241" stroke-width="0.8"/>
+      <rect x="140" y="290" width="40" height="50" fill="#FFFFFF" stroke="#006241" stroke-width="0.8"/>
+      <rect x="200" y="290" width="40" height="50" fill="#FFFFFF" stroke="#006241" stroke-width="0.8"/>
+      <rect x="260" y="290" width="40" height="50" fill="#FFFFFF" stroke="#006241" stroke-width="0.8"/>
+
+      <!-- 패널설치 (가운데) -->
+      <rect x="375" y="120" width="20" height="160" fill="#FDF2E8" stroke="#E87A2F" stroke-width="1.5"/>
+      <text x="385" y="200" fill="#E87A2F" font-size="11" font-weight="600" text-anchor="middle" transform="rotate(-90 385 200)">패널설치</text>
+
+      <!-- 패널설치 (위쪽) -->
+      <rect x="395" y="50" width="200" height="20" fill="#FDF2E8" stroke="#E87A2F" stroke-width="1.5"/>
+      <text x="495" y="64" fill="#E87A2F" font-size="11" font-weight="600" text-anchor="middle">패널설치</text>
+
+      <!-- 패널설치 (오른쪽 벽) -->
+      <rect x="610" y="80" width="20" height="200" fill="#FDF2E8" stroke="#E87A2F" stroke-width="1.5"/>
+      <text x="620" y="180" fill="#E87A2F" font-size="11" font-weight="600" text-anchor="middle" transform="rotate(-90 620 180)">패널설치</text>
+
+      <!-- 체험존 (APS 프로) - 곡선 영역 -->
+      <path d="M 420 90 Q 600 100 595 200 Q 590 300 500 320 Q 430 330 420 250 Z" fill="#E8F3EE" stroke="#006241" stroke-width="2"/>
+      <text x="500" y="200" fill="#006241" font-size="16" font-weight="700" text-anchor="middle">체험존</text>
+      <text x="500" y="222" fill="#006241" font-size="12" text-anchor="middle">APS 프로</text>
+
+      <!-- 접수 (오른쪽 하단) -->
+      <rect x="565" y="370" width="65" height="50" fill="#FDF2E8" stroke="#E87A2F" stroke-width="1.5" rx="4"/>
+      <text x="597" y="392" fill="#E87A2F" font-size="13" font-weight="700" text-anchor="middle">접수</text>
+      <text x="597" y="408" fill="#5A6875" font-size="10" text-anchor="middle">보조1</text>
+
+      <!-- 동선 안내 (가운데 하단) -->
+      <rect x="370" y="380" width="60" height="40" fill="#F2F0EB" stroke="#1A2B3B" stroke-width="0.8" rx="4"/>
+      <text x="400" y="398" fill="#1A2B3B" font-size="11" font-weight="600" text-anchor="middle">동선 안내</text>
+      <text x="400" y="412" fill="#5A6875" font-size="10" text-anchor="middle">보조3</text>
+
+      <!-- 동선 화살표: 접수 → 체험존 -->
+      <path d="M 580 365 Q 540 340 500 320" fill="none" stroke="#E87A2F" stroke-width="2.5" stroke-dasharray="4,3" marker-end="url(#arrow1)"/>
+
+      <!-- 동선 화살표: 체험존 → 작성존 -->
+      <path d="M 430 230 Q 400 270 360 280" fill="none" stroke="#006241" stroke-width="2.5" stroke-dasharray="4,3" marker-end="url(#arrow2)"/>
+
+      <!-- 화살표 마커 -->
+      <defs>
+        <marker id="arrow1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#E87A2F"/>
+        </marker>
+        <marker id="arrow2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+          <path d="M 0 0 L 10 5 L 0 10 z" fill="#006241"/>
+        </marker>
+      </defs>
+
+      <!-- 동선 단계 번호 -->
+      <circle cx="595" cy="350" r="13" fill="#E87A2F"/>
+      <text x="595" y="355" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle">1</text>
+      <circle cx="500" cy="160" r="13" fill="#006241"/>
+      <text x="500" y="165" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle">2</text>
+      <circle cx="345" cy="265" r="13" fill="#006241"/>
+      <text x="345" y="270" fill="#FFFFFF" font-size="13" font-weight="700" text-anchor="middle">3</text>
+    </svg>
+  </div>
+  <div class="layout-legend">
+    <div class="legend-item"><span class="legend-num" style="background:#E87A2F">1</span> 접수 — 옷깃 스티커 부착 후 체험존으로 안내</div>
+    <div class="legend-item"><span class="legend-num" style="background:#006241">2</span> 체험존 — APS 프로 진행 (Q카드 + 갤러리 워크)</div>
+    <div class="legend-item"><span class="legend-num" style="background:#006241">3</span> 작성존 — 매니저 개별 대응 + 시트 작성</div>
   </div>
 </section>
 
