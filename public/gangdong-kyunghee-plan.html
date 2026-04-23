@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>4/29 강동경희의료원 알쓰패치 캠페인 운영 계획안</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+  :root {
+    --teal: #006241;
+    --teal-light: #E8F3EE;
+    --blue: #1B3F8D;
+    --amber: #E87A2F;
+    --amber-light: #FDF2E8;
+    --cloud: #F2F0EB;
+    --ink: #1A2B3B;
+    --ink-60: #5A6875;
+    --line: #E2DFD7;
+    --white: #FFFFFF;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: "ss03";
+    background: var(--cloud);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+  header {
+    padding: 28px 24px;
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+  header .eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.85;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  header .meta {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  .greeting {
+    padding: 24px;
+    background: var(--white);
+    border-radius: 14px;
+    margin-bottom: 28px;
+    font-size: 15.5px;
+    line-height: 1.75;
+  }
+  .greeting strong {
+    color: var(--teal);
+  }
+  section {
+    margin-bottom: 36px;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--teal);
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    margin: 20px 0 10px;
+  }
+  p, li {
+    font-size: 15px;
+    color: var(--ink);
+  }
+  ul, ol {
+    padding-left: 18px;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  /* Info Box / Card */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    border: 1px solid var(--line);
+  }
+  .card-amber {
+    background: var(--amber-light);
+    border: 1px solid var(--amber);
+  }
+  .card-teal {
+    background: var(--teal-light);
+    border: 1px solid var(--teal);
+  }
+  /* Overview Table */
+  .overview {
+    background: var(--white);
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  .overview-row {
+    display: flex;
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--line);
+  }
+  .overview-row:last-child {
+    border-bottom: none;
+  }
+  .overview-label {
+    flex: 0 0 92px;
+    font-weight: 600;
+    color: var(--ink-60);
+    font-size: 14px;
+  }
+  .overview-value {
+    flex: 1;
+    font-size: 15px;
+  }
+  .overview-value strong {
+    color: var(--teal);
+  }
+  /* Flow Steps */
+  .flow {
+    display: grid;
+    gap: 10px;
+  }
+  .flow-step {
+    display: flex;
+    gap: 14px;
+    background: var(--white);
+    border-radius: 12px;
+    padding: 16px 18px;
+    border: 1px solid var(--line);
+    align-items: flex-start;
+  }
+  .flow-num {
+    flex: 0 0 32px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--teal);
+    color: var(--white);
+    font-weight: 700;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .flow-content {
+    flex: 1;
+  }
+  .flow-title {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 3px;
+  }
+  .flow-duration {
+    color: var(--amber);
+    font-size: 13px;
+    font-weight: 500;
+    margin-bottom: 4px;
+  }
+  .flow-desc {
+    font-size: 14px;
+    color: var(--ink-60);
+    line-height: 1.55;
+  }
+  /* Role Table */
+  .role-grid {
+    display: grid;
+    gap: 10px;
+  }
+  .role-row {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 14px 18px;
+    border: 1px solid var(--line);
+    display: grid;
+    grid-template-columns: 120px 110px 1fr;
+    align-items: center;
+    gap: 14px;
+  }
+  .role-row.highlight {
+    background: var(--teal-light);
+    border-color: var(--teal);
+  }
+  .role-name {
+    font-weight: 700;
+    font-size: 14.5px;
+    color: var(--ink);
+  }
+  .role-who {
+    font-size: 13px;
+    color: var(--ink-60);
+  }
+  .role-task {
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  @media (max-width: 560px) {
+    .role-row {
+      grid-template-columns: 1fr;
+      gap: 4px;
+    }
+    .role-who { color: var(--amber); }
+  }
+  /* Sticker Chips */
+  .sticker-group {
+    display: grid;
+    gap: 10px;
+    margin-top: 12px;
+  }
+  .sticker {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 16px;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--line);
+  }
+  .dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+  }
+  .sticker-desc {
+    font-size: 14.5px;
+  }
+  /* Prep Two Column */
+  .prep {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+  }
+  @media (max-width: 560px) {
+    .prep {
+      grid-template-columns: 1fr;
+    }
+  }
+  .prep-col {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid var(--line);
+  }
+  .prep-col.aps {
+    border-top: 4px solid var(--teal);
+  }
+  .prep-col.hospital {
+    border-top: 4px solid var(--blue);
+  }
+  .prep-col h4 {
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 12px;
+    color: var(--ink);
+  }
+  .prep-col ul {
+    padding-left: 18px;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+  /* Concerns List */
+  .concerns {
+    background: var(--amber-light);
+    border-radius: 12px;
+    padding: 20px 22px;
+    border: 1px solid var(--amber);
+  }
+  .concerns h3 {
+    color: var(--amber);
+    margin-top: 0;
+    margin-bottom: 12px;
+    font-size: 15px;
+  }
+  .concerns ul {
+    padding-left: 18px;
+    font-size: 14.5px;
+    line-height: 1.85;
+    color: var(--ink);
+  }
+  .concerns p {
+    margin-top: 14px;
+    font-weight: 600;
+    color: var(--teal);
+  }
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 14px;
+    text-align: center;
+  }
+  footer .brand {
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  footer .phone {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  footer .note {
+    font-size: 13px;
+    margin-top: 10px;
+    opacity: 0.85;
+  }
+  /* Emphasis */
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-left: 6px;
+    vertical-align: middle;
+  }
+  .tag-amber {
+    background: var(--amber);
+  }
+  .note {
+    font-size: 13px;
+    color: var(--ink-60);
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  @media print {
+    body { background: #fff; }
+    header, footer { background: var(--teal) !important; -webkit-print-color-adjust: exact; }
+    .card, .overview, .flow-step, .role-row, .prep-col, .sticker, .concerns {
+      break-inside: avoid;
+    }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">APS 보건교육연구소 · 캠페인 운영 계획안</div>
+  <h1>4/29 강동경희의료원<br>알쓰패치 캠페인 운영 계획안</h1>
+  <div class="meta">신선미 선생님께 · 2026-04-22 공유</div>
+</header>
+
+<div class="greeting">
+  <strong>신선미 선생님께,</strong><br><br>
+  4/29 캠페인 운영 계획을 아래와 같이 정리해 드립니다.
+  편하게 읽어보시고 <strong>조정이 필요하시거나 걱정되시는 부분</strong>이 있으시면
+  언제든 편하게 말씀해 주세요. 선생님 상황에 맞춰 다시 정리해 드리겠습니다.
+</div>
+
+<section>
+  <h2>개요</h2>
+  <div class="overview">
+    <div class="overview-row">
+      <div class="overview-label">일시</div>
+      <div class="overview-value"><strong>2026-04-29 (수) 12:00 ~ 13:30</strong> · 90분</div>
+    </div>
+    <div class="overview-row">
+      <div class="overview-label">장소</div>
+      <div class="overview-value">원내 독립 10평 공간</div>
+    </div>
+    <div class="overview-row">
+      <div class="overview-label">예상 참여</div>
+      <div class="overview-value">75명 이상 (점심 식사 후 임직원 드롭인)</div>
+    </div>
+    <div class="overview-row">
+      <div class="overview-label">진행 방식</div>
+      <div class="overview-value">갤러리 워크 + 착석 자가 점검</div>
+    </div>
+    <div class="overview-row">
+      <div class="overview-label">핵심 목표</div>
+      <div class="overview-value"><strong>"술과 담배는 발암물질"</strong> 인식 개선 (라이트 모드)</div>
+    </div>
+  </div>
+  <p class="note">※ 현장 배치도는 선생님께서 따로 준비해 주시는 영상 기준으로 4/27 리허설 때 함께 확정합니다.</p>
+</section>
+
+<section>
+  <h2>참가자 1인 흐름 (약 20~25분)</h2>
+  <div class="flow">
+    <div class="flow-step">
+      <div class="flow-num">1</div>
+      <div class="flow-content">
+        <div class="flow-title">접수대</div>
+        <div class="flow-duration">2~3분</div>
+        <div class="flow-desc">간단 설문 → 옷깃 스티커 부착 → 패치·리플렛 수령</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">2</div>
+      <div class="flow-content">
+        <div class="flow-title">갤러리 워크</div>
+        <div class="flow-duration">10~12분</div>
+        <div class="flow-desc">APS 프로 강사 설명 + 패치 반응 관찰 동시 진행</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">3</div>
+      <div class="flow-content">
+        <div class="flow-title">1차 판정 + Q카드</div>
+        <div class="flow-duration">2~3분</div>
+        <div class="flow-desc">APS 프로가 체질 해설 · Q카드 3종 중 해당 카드 배포</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">4</div>
+      <div class="flow-content">
+        <div class="flow-title">착석 15석</div>
+        <div class="flow-duration">5~10분</div>
+        <div class="flow-desc">리플렛 후면 AUDIT-K 자가 확인 · 절주 서약 워크시트 · 스크린 영상 시청 · 만족도 설문</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">5</div>
+      <div class="flow-content">
+        <div class="flow-title">매니저 부스 <span class="tag tag-amber">선택</span></div>
+        <div class="flow-duration">궁금하신 분만</div>
+        <div class="flow-desc">신선미 선생님께 개별 질의·상담</div>
+      </div>
+    </div>
+    <div class="flow-step">
+      <div class="flow-num">6</div>
+      <div class="flow-content">
+        <div class="flow-title">출구</div>
+        <div class="flow-desc">보조 3이 동선 안내·만족도 확인</div>
+      </div>
+    </div>
+  </div>
+  <div class="card card-teal" style="margin-top: 14px;">
+    <strong>※ AUDIT-K 및 절주 서약 워크시트는 수거하지 않습니다.</strong><br>
+    참가자 본인이 확인·서약한 후 가져가시도록 합니다.
+  </div>
+</section>
+
+<section>
+  <h2>진행 인력 5명</h2>
+  <div class="role-grid">
+    <div class="role-row">
+      <div class="role-name">보조 1 (접수)</div>
+      <div class="role-who">병원 측 배정</div>
+      <div class="role-task">설문·스티커·패치·리플렛 배부</div>
+    </div>
+    <div class="role-row highlight">
+      <div class="role-name">APS 프로</div>
+      <div class="role-who">APS 파견 1인</div>
+      <div class="role-task">갤러리 워크 강의 · 체질 판정 · Q카드 배포</div>
+    </div>
+    <div class="role-row">
+      <div class="role-name">보조 2 (착석)</div>
+      <div class="role-who">병원 측 배정</div>
+      <div class="role-task">워크시트 작성 안내 · 만족도 설문 유도</div>
+    </div>
+    <div class="role-row">
+      <div class="role-name">보조 3 (동선)</div>
+      <div class="role-who">병원 측 배정</div>
+      <div class="role-task">동선 안내 · 만족도 확인 · 중도 이탈자 대응</div>
+    </div>
+    <div class="role-row highlight">
+      <div class="role-name">매니저</div>
+      <div class="role-who">신선미 선생님</div>
+      <div class="role-task">개별 상담 · 현장 총괄</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>옷깃 스티커 <span class="tag">강사 맞춤 설명용</span></h2>
+  <p>접수 시 간단 설문에 따라 <strong>옷깃에 작은 색깔 스티커</strong>(1~2개)를 부착해 드립니다.
+  강사가 설명 중 스티커를 보고 해당 분께 맞춤 메시지를 전해드립니다.</p>
+  <div class="sticker-group">
+    <div class="sticker">
+      <div class="dot" style="background:#FFD93D;">🟡</div>
+      <div class="sticker-desc"><strong>노랑</strong> · 평소 술에 빨개지지 않음</div>
+    </div>
+    <div class="sticker">
+      <div class="dot" style="background:#E85D5D;">🔴</div>
+      <div class="sticker-desc"><strong>빨강</strong> · 현재 술에 빨개지심</div>
+    </div>
+    <div class="sticker">
+      <div class="dot" style="background:#F5A54A;">🟠</div>
+      <div class="sticker-desc"><strong>주황</strong> · 예전엔 빨개졌는데 지금은 괜찮음</div>
+    </div>
+    <div class="sticker">
+      <div class="dot" style="background:#4A8BD8;">🔵</div>
+      <div class="sticker-desc"><strong>파랑</strong> · 본인 흡연 중</div>
+    </div>
+    <div class="sticker">
+      <div class="dot" style="background:#6BAF68;">🟢</div>
+      <div class="sticker-desc"><strong>초록</strong> · 가족 중 흡연자 동거</div>
+    </div>
+  </div>
+  <p class="note">※ 거부하시는 분이 계시면 편히 넘어가시면 됩니다.
+  색상의 의미는 외부에 공개하지 않습니다. 강사만 알아보는 식별 용도입니다.</p>
+</section>
+
+<section>
+  <h2>알러지 안내문 <span class="tag">접수대 부착</span></h2>
+  <div class="card card-amber">
+    <strong>🩹 알쓰패치 사용 전 확인해 주세요</strong><br><br>
+    밴드·반창고 등 의료용 접착제에 알러지 반응이 있으시거나,<br>
+    해당 부위에 피부 발진·상처가 있으신 분은<br>
+    <strong>진행 보조 또는 매니저에게 미리 알려주세요.</strong>
+  </div>
+</section>
+
+<section>
+  <h2>준비물</h2>
+  <div class="prep">
+    <div class="prep-col aps">
+      <h4>APS 측에서 준비</h4>
+      <ul>
+        <li>APS 프로 1인 (강사)</li>
+        <li>알쓰패치 (보냉가방·트레이·아이스팩)</li>
+        <li>Q카드 3종 (체질별)</li>
+        <li>옷깃 스티커 5색</li>
+        <li>갤러리 패널 10종 (이미 보유)</li>
+        <li>기본 리플렛 (AUDIT-K 후면 포함)</li>
+        <li>절주 서약 워크시트</li>
+        <li>만족도 설문지</li>
+        <li>알러지 안내문</li>
+        <li>타이머·대본</li>
+      </ul>
+    </div>
+    <div class="prep-col hospital">
+      <h4>병원 측에서 준비</h4>
+      <ul>
+        <li>보조 인력 3인 (접수·착석·동선)</li>
+        <li>10평 공간 확보 (벽면 패널 설치 가능)</li>
+        <li>착석용 테이블·의자 15석</li>
+        <li>스크린·영상 재생 장비<br>(영상 2종 APS 제공)</li>
+        <li>펜 여유분</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>사전 리허설 <span class="tag">4/27 또는 4/28</span></h2>
+  <div class="overview">
+    <div class="overview-row">
+      <div class="overview-label">일시</div>
+      <div class="overview-value">선생님 편하신 시간 · 60~90분</div>
+    </div>
+    <div class="overview-row">
+      <div class="overview-label">참석</div>
+      <div class="overview-value">APS 프로 + 매니저(신선미) + 병원 보조 3인</div>
+    </div>
+    <div class="overview-row">
+      <div class="overview-label">내용</div>
+      <div class="overview-value"><strong>진행자 전원이 실제 체험</strong> + 공간·동선 점검 + Q&A</div>
+    </div>
+    <div class="overview-row">
+      <div class="overview-label">장소</div>
+      <div class="overview-value">실제 행사 공간</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>행사 후 성과 보고 <span class="tag">상급자용</span></h2>
+  <p>의료원장·간호부장께 보고하실 수 있는 수치를 APS가 <strong>1페이지 요약</strong>으로 정리해 4/30에 전달해 드립니다.</p>
+  <div class="card" style="margin-top: 12px;">
+    <ul style="padding-left: 18px; line-height: 1.8;">
+      <li>참여 인원 · 참여율</li>
+      <li>체질 분포 (주의·경고·위험 %)</li>
+      <li>양성 반응 비율</li>
+      <li><strong>"술·담배 발암물질 인지" 만족도 설문 응답률</strong></li>
+      <li>후속 상담 희망자 수</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <div class="concerns">
+    <h3>💬 걱정되시는 점 언제든 말씀해 주세요</h3>
+    <ul>
+      <li>공간이 좁지 않을까?</li>
+      <li>인원이 한꺼번에 몰리면?</li>
+      <li>직원들 반응이 어떨지 걱정돼요</li>
+      <li>스티커 부착은 자연스러울까?</li>
+      <li>제가 당일 뭐부터 해야 하죠?</li>
+      <li>리허설 시간이 안 나요</li>
+      <li>준비물·수량 관련</li>
+      <li>기타 조정 요청</li>
+    </ul>
+    <p>조정 필요한 부분이 있으시면 편하게 말씀해 주세요.<br>
+    선생님 상황에 맞춰 다시 잡아 드리겠습니다.</p>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">APS 보건교육연구소</div>
+  <div class="phone">☎ 1544-5291</div>
+  <div class="note">4/29 당일 APS 프로가 현장에 동행합니다.</div>
+</footer>
+
+</div>
+</body>
+</html>
