@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>4/29 강동경희대학교병원 알쓰패치 캠페인 운영 준비 안내서 v3</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.min.css" rel="stylesheet">
+<style>
+  :root {
+    --teal: #006241;
+    --teal-light: #E8F3EE;
+    --blue: #1B3F8D;
+    --amber: #E87A2F;
+    --amber-light: #FDF2E8;
+    --red: #C0392B;
+    --red-light: #FBE9E7;
+    --cloud: #F2F0EB;
+    --ink: #1A2B3B;
+    --ink-60: #5A6875;
+    --line: #E2DFD7;
+    --white: #FFFFFF;
+    --gray-50: #F8F9FA;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { font-size: 16px; }
+  body {
+    font-family: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, sans-serif;
+    font-feature-settings: "ss03";
+    background: var(--cloud);
+    color: var(--ink);
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  .container {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 20px 80px;
+  }
+  header {
+    padding: 28px 24px;
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 16px;
+    margin-bottom: 24px;
+  }
+  header .eyebrow {
+    font-size: 13px;
+    font-weight: 500;
+    opacity: 0.85;
+    letter-spacing: 0.02em;
+    margin-bottom: 10px;
+  }
+  header h1 {
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.35;
+    margin-bottom: 12px;
+  }
+  header .meta {
+    font-size: 14px;
+    opacity: 0.9;
+  }
+  header .version {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 3px 10px;
+    background: rgba(255,255,255,0.18);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-radius: 100px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .greeting {
+    padding: 24px;
+    background: var(--white);
+    border-radius: 14px;
+    margin-bottom: 28px;
+    font-size: 15.5px;
+    line-height: 1.75;
+  }
+  .greeting strong {
+    color: var(--teal);
+  }
+  .greeting .highlight-box {
+    margin-top: 14px;
+    padding: 14px 16px;
+    background: var(--teal-light);
+    border-left: 4px solid var(--teal);
+    border-radius: 0 8px 8px 0;
+  }
+  .greeting .highlight-box .label {
+    color: var(--teal);
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: 6px;
+  }
+  .greeting ul {
+    margin-top: 10px;
+    padding-left: 18px;
+  }
+  .greeting li {
+    margin-bottom: 4px;
+    font-size: 14.5px;
+    color: var(--ink-60);
+  }
+  section {
+    margin-bottom: 36px;
+  }
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--teal);
+    margin-bottom: 16px;
+    padding-left: 12px;
+    border-left: 4px solid var(--teal);
+    letter-spacing: -0.01em;
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 18px 0 10px;
+  }
+  h4 {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--ink);
+    margin: 14px 0 8px;
+  }
+  p, li {
+    font-size: 15px;
+    color: var(--ink);
+  }
+  ul, ol {
+    padding-left: 18px;
+  }
+  li {
+    margin-bottom: 6px;
+  }
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+    background: var(--white);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+  }
+  th {
+    background: var(--gray-50);
+    color: var(--ink);
+    font-weight: 700;
+    font-size: 13.5px;
+    padding: 10px 14px;
+    text-align: left;
+    border-bottom: 2px solid var(--line);
+  }
+  td {
+    padding: 10px 14px;
+    font-size: 14px;
+    border-bottom: 1px solid var(--line);
+    color: var(--ink);
+    vertical-align: top;
+  }
+  tr:last-child td { border-bottom: none; }
+  /* Cards */
+  .card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 12px;
+    border: 1px solid var(--line);
+  }
+  .card-amber {
+    background: var(--amber-light);
+    border: 1px solid var(--amber);
+  }
+  .card-teal {
+    background: var(--teal-light);
+    border: 1px solid var(--teal);
+  }
+  .card-red {
+    background: var(--red-light);
+    border: 1px solid var(--red);
+  }
+  .card-gray {
+    background: var(--gray-50);
+    border: 1px solid var(--line);
+  }
+  /* Boxes */
+  .key-box {
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 12px;
+    padding: 20px 22px;
+    margin: 14px 0;
+  }
+  .key-box .key-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    opacity: 0.85;
+    margin-bottom: 8px;
+  }
+  .key-box h3 {
+    color: var(--white);
+    font-size: 16px;
+    margin: 0 0 8px;
+  }
+  .key-box ol {
+    padding-left: 22px;
+    margin-top: 6px;
+  }
+  .key-box li {
+    color: var(--white);
+    font-size: 14.5px;
+    margin-bottom: 6px;
+  }
+  .alert-box {
+    background: var(--red-light);
+    border: 1px solid var(--red);
+    border-left: 5px solid var(--red);
+    border-radius: 8px;
+    padding: 16px 18px;
+    margin: 14px 0;
+  }
+  .alert-box .alert-label {
+    color: var(--red);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+  }
+  .alert-box ul {
+    padding-left: 18px;
+    margin-top: 6px;
+  }
+  .alert-box li {
+    font-size: 14px;
+    margin-bottom: 4px;
+  }
+  .info-box {
+    background: var(--gray-50);
+    border-left: 4px solid var(--ink-60);
+    border-radius: 0 8px 8px 0;
+    padding: 14px 16px;
+    margin: 14px 0;
+    font-size: 14px;
+    color: var(--ink-60);
+    line-height: 1.6;
+  }
+  .info-box strong {
+    color: var(--ink);
+  }
+  /* Tags */
+  .tag {
+    display: inline-block;
+    padding: 2px 9px;
+    background: var(--amber-light);
+    color: var(--amber);
+    border-radius: 100px;
+    font-size: 11.5px;
+    font-weight: 600;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .tag-teal { background: var(--teal-light); color: var(--teal); }
+  .tag-red { background: var(--red-light); color: var(--red); }
+  .tag-gray { background: var(--gray-50); color: var(--ink-60); }
+  /* Color dots */
+  .color-dot {
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    margin-right: 6px;
+    vertical-align: middle;
+    border: 1px solid var(--line);
+  }
+  /* Sub-section header (보조 1·2·3) */
+  .role-header {
+    background: var(--teal);
+    color: var(--white);
+    padding: 14px 20px;
+    border-radius: 10px 10px 0 0;
+    margin-top: 24px;
+  }
+  .role-header h3 {
+    color: var(--white);
+    font-size: 16px;
+    margin: 0;
+  }
+  .role-body {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-top: none;
+    border-radius: 0 0 10px 10px;
+    padding: 20px;
+  }
+  .role-body p, .role-body li {
+    font-size: 14.5px;
+  }
+  .role-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding: 10px 14px;
+    background: var(--gray-50);
+    border-radius: 8px;
+    font-size: 13.5px;
+  }
+  .role-meta strong {
+    color: var(--teal);
+  }
+  /* Checklist */
+  .checklist {
+    background: var(--white);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 20px;
+    margin: 12px 0;
+  }
+  .checklist h4 {
+    color: var(--teal);
+    margin: 6px 0 10px;
+    font-size: 14px;
+  }
+  .checklist ul {
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    padding: 5px 0 5px 26px;
+    position: relative;
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .checklist li::before {
+    content: "☐";
+    position: absolute;
+    left: 0;
+    top: 4px;
+    color: var(--teal);
+    font-size: 16px;
+  }
+  /* Footer */
+  footer {
+    margin-top: 40px;
+    padding: 24px;
+    background: var(--teal);
+    color: var(--white);
+    border-radius: 14px;
+    text-align: center;
+  }
+  footer .brand {
+    font-weight: 700;
+    margin-bottom: 6px;
+    font-size: 15px;
+  }
+  footer .phone {
+    font-size: 18px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  footer .note {
+    font-size: 13px;
+    margin-top: 10px;
+    opacity: 0.85;
+    line-height: 1.6;
+  }
+  @media (max-width: 560px) {
+    .container { padding: 20px 14px 60px; }
+    header { padding: 22px 18px; }
+    header h1 { font-size: 20px; }
+    .role-meta { flex-direction: column; gap: 6px; }
+    table { font-size: 13px; }
+    th, td { padding: 8px 10px; }
+  }
+  /* Print */
+  @media print {
+    body { background: white; }
+    .container { max-width: none; padding: 0; }
+    header, footer, .key-box { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+    section { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <div class="eyebrow">매니저·보조 스탭 공유 · v3.0</div>
+  <h1>4/29 강동경희대학교병원<br>알쓰패치 캠페인 운영 준비 안내서</h1>
+  <div class="meta">신선미 매니저 + 보조 스탭 3인 대상 · 90분 캠페인</div>
+  <div class="version">v3.0 · 2026-04-27 (전면 단순화)</div>
+</header>
+
+<div class="greeting">
+  <p><strong>신선미 선생님께,</strong></p>
+  <p style="margin-top:10px;">4/29 캠페인 당일을 <strong>최대한 가볍게 운영하실 수 있도록</strong> 선생님께 부담드리지 않는 방향으로 전면 단순화했습니다.</p>
+  <div class="highlight-box">
+    <div class="label">선생님은 현장 운영만 도와주시면 됩니다.</div>
+    <ul>
+      <li>후속 상담은 따로 진행하지 않습니다.</li>
+      <li>상담 예약 같은 부담스러운 역할은 없습니다.</li>
+      <li>2차 판정 시 Q카드 대신 리플렛에 표기된 내용을 한 번 더 확인시켜 주시면 됩니다 (Q카드까지 전달 시 내용 과다).</li>
+      <li><strong>따가움·화끈거림 등 피부증상</strong>은 물수건 조치, 아주 드물게 어지럼·술 취한 느낌 호소 시 <strong>생수·이온음료 제공 + 잠시 휴식</strong> 안내.</li>
+    </ul>
+  </div>
+  <p style="margin-top:14px;font-size:14px;color:var(--ink-60);">보조 스탭께는 해당 섹션(§2)만 출력해 전달하시면 됩니다. 궁금하신 점·조정 사항은 언제든 말씀해 주세요.</p>
+</div>
+
+<section>
+  <h2>🗓 당일 전체 흐름 요약</h2>
+  <table>
+    <thead>
+      <tr><th style="width:24%">시간</th><th>내용</th><th style="width:30%">주도</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><strong>10:00</strong></td><td>APS 프로(대표) 도착 · 테이블 셋팅 시작</td><td>APS + 보조 스탭</td></tr>
+      <tr><td>셋팅 후</td><td><strong>리허설 30분</strong> — 진행자 전원 실제 체험</td><td>전원</td></tr>
+      <tr><td>리허설 후</td><td>휴식 🍪 (운영 스탭 간식 권장)</td><td>전원</td></tr>
+      <tr><td><strong>12:00 ~ 13:30</strong></td><td>캠페인 실행</td><td>전원</td></tr>
+      <tr><td>13:30 ~</td><td>정리 · 철수 · 수치 집계</td><td>APS + 매니저</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<section>
+  <h2>📋 §1. 매니저 진행 큐시트 (신선미 선생님)</h2>
+  <div class="role-meta">
+    <div><strong>위치</strong> 매니저 부스 (착석존 옆)</div>
+    <div><strong>준비물</strong> 펜 30개</div>
+  </div>
+
+  <div class="key-box">
+    <div class="key-label">★ 매니저 역할 — 단순화 v3</div>
+    <p style="font-size:14px;opacity:0.95;">선생님께서 부담 없이 도와주실 수 있도록 <strong>최대한 가볍게</strong> 재정의했습니다.</p>
+    <h3 style="margin-top:12px;">핵심 2가지만</h3>
+    <ol>
+      <li><strong>2차 판정 및 해설, QR 설문지 배포</strong> — 리플렛 내용을 바탕으로 간단히 설명</li>
+      <li><strong>위험체질 응대</strong> — 따가움·어지러움 등 불편감 호소 시 물수건 찜질·이온음료·회복 안내</li>
+    </ol>
+  </div>
+
+  <h3>10:00 ~ 리허설 전 (셋팅 중)</h3>
+  <ul>
+    <li>공간 배치 최종 확인</li>
+    <li>보조 스탭 3인 소개·역할 재확인</li>
+  </ul>
+
+  <h3>리허설 중 (30분)</h3>
+  <ul>
+    <li>APS 프로 안내에 따라 <strong>실제 체험 순서 전원 돌아보기</strong><br>(접수 → 패치 부착 → 갤러리 워크 → 착석·작성 → 매니저 부스 → 출구)</li>
+    <li>본인 부스 위치·동선 시뮬레이션</li>
+    <li>궁금하거나 걱정되는 점 <strong>꼭 공유</strong></li>
+  </ul>
+
+  <h3>휴식 (캠페인 시작 전)</h3>
+  <ul>
+    <li>점심시간 운영이라 <strong>간식 꼭 챙기세요</strong> 🍪</li>
+    <li>심리적 여유 확보</li>
+  </ul>
+
+  <h3>12:00 ~ 13:30 (캠페인 중)</h3>
+  <p style="margin:10px 0;font-size:14.5px;color:var(--ink-60);"><strong style="color:var(--teal);">상시 대기 — 매니저 부스 (착석존 옆)</strong></p>
+  <p style="margin-bottom:14px;font-size:14.5px;">선생님께서는 부스에 편하게 계시면 됩니다. APS 프로가 1차 판정과 해설까지 모두 직접 처리하고, AUDIT-K 작성과 만족도 조사만 선생님 부스에서 진행합니다.</p>
+
+  <div class="card card-teal">
+    <h4 style="color:var(--teal);">① 10분 관찰 중 AUDIT-K 작성 및 만족도 조사 — 핵심 역할</h4>
+    <ul style="margin-top:6px;">
+      <li><strong>2차 판정</strong> (1차에서 반응이 늦게 나오는 분이 있습니다)</li>
+      <li><strong>AUDIT-K 작성결과 함께 확인</strong></li>
+      <li><strong>만족도 조사 QR 코드 스캔 요청</strong></li>
+    </ul>
+  </div>
+
+  <div class="card card-gray">
+    <h4>② 옵션 B — 음성 반응자 응대 (선택 · 여유 있으실 때만)</h4>
+    <ul style="margin-top:6px;">
+      <li>주의(GG) 체질 분이 추가 궁금증을 표현하실 때만</li>
+      <li>리플렛에 기재된 내용을 한 번 더 설명해주시면 됩니다</li>
+    </ul>
+  </div>
+
+  <div class="alert-box">
+    <div class="alert-label">③ 위기 대응 (간호 지식 활용)</div>
+    <ul>
+      <li><strong>피부 따가움·가려움</strong> 호소 → 물에 적신 수건으로 <strong>습식 찜질</strong></li>
+      <li><strong>술 취한 느낌·어지러움</strong> 호소 → <strong>이온음료·생수</strong> 제공</li>
+      <li><strong>회복 안내</strong>: "피부 반응은 보통 10시간 내외로 자연히 사라집니다"</li>
+    </ul>
+  </div>
+
+  <h3>13:30 ~ (종료 후)</h3>
+  <ul>
+    <li>참가자 전원 퇴장 확인</li>
+    <li>APS 프로와 수치 집계 시작 (만족도 설문·체질 분포)</li>
+  </ul>
+
+  <h3>4/30 (다음 날)</h3>
+  <ul>
+    <li>APS가 <strong>성과 요약 1페이지</strong> 전달드림 → 상급자 보고 자료 활용</li>
+  </ul>
+</section>
+
+<section>
+  <h2>👥 §2. 보조 스탭 3인 역할 안내</h2>
+  <p style="font-size:14px;color:var(--ink-60);margin-bottom:8px;">각 보조 스탭에게 해당 섹션만 출력·배포 가능합니다.</p>
+
+  <!-- 보조 1 -->
+  <div class="role-header">
+    <h3>📌 보조 1 — 접수·스티커·패치 담당</h3>
+  </div>
+  <div class="role-body">
+    <div class="role-meta">
+      <div><strong>위치</strong> 입구 접수대</div>
+    </div>
+
+    <h4>준비물 (접수대 비치)</h4>
+    <ul>
+      <li>옷깃 스티커 5색 (각 40~60개)</li>
+      <li>알쓰패치, 노담패치 (보냉가방) · 리플렛 2종</li>
+      <li>알러지 안내문 (탁상 POP A3 — 시인성 강화)</li>
+    </ul>
+
+    <h4 style="margin-top:14px;">작업 순서 <span class="tag tag-teal">단순화 v3</span></h4>
+    <table>
+      <thead>
+        <tr><th style="width:60px">단계</th><th>동작</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>참가자 도착 → 인사 + <strong>알러지 안내문(A3 POP) 안내</strong> — "혹시 밴드·반창고 알러지 있으세요?" 구두 확인</td></tr>
+        <tr><td>2</td><td>"평소 술 드시면 얼굴 빨개지시나요? 담배 피우세요?" 간단 확인 → <strong>옷깃 스티커 1~2개 부착</strong></td></tr>
+        <tr><td>3</td><td><strong>알쓰패치 1매 + 노담패치 1매</strong> (흡연자 및 가족, 가족이 비흡연자라도 전달) <strong>+ 리플렛 1부</strong> 지급</td></tr>
+        <tr><td>4</td><td>"갤러리 쪽으로 안내드릴게요" 체험존 입장 유도</td></tr>
+        <tr><td>5</td><td>혼잡 시 패치 부착 후 체험존 입장 유도 (보조3 신호에 따름)</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      💡 <strong>v3 단순화</strong>: 접수 설문지 작성 단계 삭제. 점심시간 빠른 흐름을 위해 <strong>구두 확인 + 스티커</strong>만으로 충분합니다.
+    </div>
+
+    <h4>스티커 색상 기준</h4>
+    <table>
+      <thead>
+        <tr><th style="width:80px">색</th><th>설문 답변</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><span class="color-dot" style="background:#FFD700"></span>노랑</td><td>Q1 "평소 빨개지지 않아요"</td></tr>
+        <tr><td><span class="color-dot" style="background:#E74C3C"></span>빨강</td><td>Q1 "현재 빨개져요"</td></tr>
+        <tr><td><span class="color-dot" style="background:#E87A2F"></span>주황</td><td>Q1 "예전엔 빨개졌는데 지금은 괜찮아요"</td></tr>
+        <tr><td><span class="color-dot" style="background:#3498DB"></span>파랑</td><td>Q2 흡연 "예"</td></tr>
+        <tr><td><span class="color-dot" style="background:#2ECC71"></span>초록</td><td>Q3 가족 흡연 "예"</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      🎯 색상 의미는 <strong>참가자에게 공개하지 않습니다</strong>. 강사(APS 프로)가 시각 식별용으로만 사용.<br>
+      붙이기 거부하시는 분 → "편하신 대로 괜찮습니다" 자연스럽게 넘어가세요.
+    </div>
+
+    <p style="margin-top:12px;font-size:14px;"><strong>혼잡 시</strong>: 대기 길면 "곧 10명 모이면 함께 부착 도와드릴게요" 안내 (AUDIT-K 먼저 작성 유도)</p>
+  </div>
+
+  <!-- 보조 2 -->
+  <div class="role-header">
+    <h3>📌 보조 2 — 착석존·영상·만족도 담당</h3>
+  </div>
+  <div class="role-body">
+    <div class="role-meta">
+      <div><strong>위치</strong> 착석 24석 테이블</div>
+    </div>
+
+    <h4>준비물</h4>
+    <ul>
+      <li>만족도 설문지 30부 (QR 미접속자 백업용 소량 — <strong>메인은 QR 온라인 수집</strong>)</li>
+      <li>QR 코드 (탁상용)</li>
+      <li>펜 30개</li>
+    </ul>
+
+    <h4 style="margin-top:14px;">작업 순서 <span class="tag tag-teal">단순화 v3</span></h4>
+    <table>
+      <thead>
+        <tr><th style="width:60px">단계</th><th>동작</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>1차 판정 후 착석 안내</td></tr>
+        <tr><td>2</td><td>테이블 착석 후 리플렛 뒷면 AUDIT-K 작성 및 가계도 작성 도움</td></tr>
+        <tr><td>3</td><td><strong>만족도 설문 QR 안내</strong> — "휴대폰으로 QR 찍으시면 1분이면 됩니다"</td></tr>
+        <tr><td>4</td><td>QR 접속 어려우신 분에게만 종이 설문지 배부 (30부 백업)</td></tr>
+        <tr><td>5</td><td>종이 설문 작성 완료 시 회수</td></tr>
+      </tbody>
+    </table>
+
+    <div class="info-box">
+      💡 <strong>워크시트 미사용 사유</strong>: L1 캠페인(90분 90명 압축 운영)은 체험·즉석 인지·만족도가 본질. 절주 서약 워크시트는 L2~L3 매트릭스(중독센터·보건소 단기개입)에서 본격 사용하므로 본 캠페인에서는 부담 없이 생략합니다.
+    </div>
+
+    <h4>스크린 영상</h4>
+    <ul>
+      <li>무음 영상 2종 반복 재생 중인지 상시 확인</li>
+      <li>멈추면 조용히 재시작</li>
+    </ul>
+
+    <h4 style="margin-top:14px;">중요 멘트</h4>
+    <ul>
+      <li>"답안지 수거 안 해요. 가져가셔서 참고하시면 됩니다"</li>
+      <li>"점수 <strong>높다고</strong> 걱정 마세요. 오늘 참여가 시작이에요"</li>
+    </ul>
+
+    <div class="info-box">
+      💡 <strong>점수 확인 및 안내는 매니저 담당</strong>. 보조 2는 착석 후 자리 관리·만족도·영상만.
+    </div>
+  </div>
+
+  <!-- 보조 3 -->
+  <div class="role-header">
+    <h3>📌 보조 3 — 동선·부착 도움·이탈자 담당</h3>
+  </div>
+  <div class="role-body">
+    <div class="role-meta">
+      <div><strong>위치</strong> 공간 전체 순회 · 접수대 ↔ 체험존 이동 · 출구 근처</div>
+    </div>
+
+    <h4>준비물</h4>
+    <ul>
+      <li>리플렛 예비분</li>
+    </ul>
+
+    <h4 style="margin-top:14px;">작업 순서 <span class="tag tag-teal">단순화 v3</span></h4>
+    <table>
+      <thead>
+        <tr><th style="width:60px">단계</th><th>동작</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>전체 동선 관찰 — 접수 → 부착 → 갤러리 → 착석 → 출구 흐름 원활한지 확인</td></tr>
+        <tr><td>2</td><td>집단 부착 시 APS 프로 보조 — 10명 단위 부착 지도할 때 옆에서 도움</td></tr>
+        <tr><td>3</td><td>부착 후 온도센서 변색 확인 (자연스러운 손동작으로 보호필름 제거 도움)</td></tr>
+        <tr><td>4</td><td>대기 길어지면 보조 1에 알림</td></tr>
+        <tr><td>5</td><td>출구에서 만족도 설문(QR 또는 종이) 수거·전달 확인</td></tr>
+        <tr><td>6</td><td>중도 이탈자 빠른 트랙: "시간 없어요" → 리플렛 전달 후 출구 안내</td></tr>
+        <tr><td>7</td><td>피크 시간(12:30~13:00) 접수대·부착존 혼잡 시 복도에서 대기줄 관리 (대기 중 AUDIT-K 작성 안내)</td></tr>
+        <tr><td>8</td><td>복도 대기 인원 20명 이상 시 보조1에게 알리고 접수대로 안내</td></tr>
+      </tbody>
+    </table>
+
+    <h4 style="margin-top:14px;">부착 검증 절차 <span class="tag-gray tag">Pro Manual 기준</span></h4>
+    <ol style="padding-left:22px;">
+      <li>참가자 부착 완료 확인</li>
+      <li><strong>온도센서 색 변화 관찰</strong> (체온 전달되면 변색 → 투명에 가까워짐)</li>
+      <li>변색 시 보호필름 자연스럽게 제거 도움</li>
+      <li>7분 타이머는 <strong>APS 프로가 애플워치 음성 명령으로 관리</strong> (보조 3은 혼잡시 시간 확인 도움)</li>
+      <li><strong>따가움·화끈거리는 느낌 호소</strong> → 즉시 매니저(간호사)에게 이관 (위험체질 의심 + 습식 찜질·이온음료 응대)</li>
+    </ol>
+
+    <h4 style="margin-top:14px;">중요 멘트</h4>
+    <ul>
+      <li>"시간 급하시면 리플렛만 받아가셔도 괜찮아요"</li>
+      <li>"만족도 설문은 QR로 1분이면 됩니다"</li>
+      <li><strong>"센서가 사라지는 게 보이죠? 측정에 적합한 피부온도입니다"</strong> (부착 직후·온도센서 변색 시점)</li>
+      <li><strong>"따갑거나 화끈거리는 느낌이 있으신 분은 저에게 말씀해 주세요"</strong> (위험체질 조기 식별)</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>✅ §3. 리허설 체크리스트 <span class="tag">4/29 10:00 ~ 셋팅 완료 후 30분</span></h2>
+  <p style="font-size:14px;color:var(--ink-60);margin-bottom:8px;"><strong>참석</strong>: APS 프로(대표) + 신선미 매니저 + 보조 3인 = 5명</p>
+
+  <div class="checklist">
+    <h4>사전 확인 (10분)</h4>
+    <ul>
+      <li>공간 배치도 최종 (접수·갤러리·착석·매니저·출구)</li>
+      <li>패널 10종 배치 (갤러리 5종 + 자율 관람 5종)</li>
+      <li>스크린 영상 재생 테스트 (무음·반복)</li>
+      <li>접수대 세트 (스티커·패치·리플렛·알러지 안내문 A3·펜)</li>
+      <li>착석존 세트 (만족도 QR·종이 설문 30부·펜)</li>
+      <li><strong>매니저 부스 세트 (상담사용 Q시트 1부·물수건·이온음료·생수)</strong></li>
+      <li>보조 3 예비분 (리플렛)</li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>실전 리허설 (15분 · 역할별 순차 체험)</h4>
+    <ul>
+      <li>보조 1 → 접수·스티커·패치 배부 시연</li>
+      <li>APS 프로 → 갤러리 워크 10분 시연 (축약)</li>
+      <li>보조 2 → 착석·설문 안내 시연</li>
+      <li>매니저 → 매니저 부스 응대 시연</li>
+      <li>보조 3 → 동선·이탈자 대응 시연</li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>Q&A (5분)</h4>
+    <ul>
+      <li>각자 궁금한 점 자유 공유</li>
+      <li>음성 반응자 응대 스크립트 공유 (APS 프로)</li>
+      <li>반응 불편감 대응 흐름 공유 (따가움→습식 찜질·어지러움→이온음료)</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>📦 §4. 당일 준비물 체크리스트</h2>
+
+  <h3>APS 측 (대표 지참 · 10:00 현장 도착)</h3>
+
+  <div class="checklist">
+    <h4>제품 · 물품</h4>
+    <ul>
+      <li>알쓰패치 120매 (100 기본 + 20 추가)</li>
+      <li>노담패치 72매 (60 기본 + 12 추가)</li>
+      <li>보냉가방 + 트레이 + 아이스팩 (여유분 1세트)</li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>양식 · 인쇄물 <span class="tag tag-teal">v3 단순화</span></h4>
+    <p style="font-size:13px;color:var(--ink-60);padding:0 4px;margin-bottom:6px;">표기: 강동경희대학교병원 메인 / 도구: 알쓰패치솔루션L1</p>
+    <ul>
+      <li>만족도 설문지 30부 (QR 백업용 — 메인은 QR 온라인 수집)</li>
+      <li>만족도 QR 안내판 1개 (탁상용)</li>
+      <li>알러지 안내문 1부 (A3 탁상 POP — 시인성 확대)</li>
+      <li>리플렛 2종 (주문수량) — <strong>AUDIT-K와 가계도는 리플렛 뒷면에 포함 (자율 점검·수거 안 함)</strong></li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>기자재</h4>
+    <ul>
+      <li>갤러리 패널 10종 (이동식·이젤 포함)</li>
+      <li>옷깃 스티커 5색 (총 200개+)</li>
+      <li><strong>APS 프로 애플워치</strong> (7분 타이머 음성 명령 관리)</li>
+      <li>APS 프로 대본</li>
+      <li>펜 20개 이상 · 클립보드 10개</li>
+      <li>생수 · 간식 (운영 스탭 5인분)</li>
+      <li><strong>참가자 대응용 생수 · 이온음료 여유분</strong> (5~10병)</li>
+      <li><strong>깨끗한 수건 · 티슈</strong> (습식 냉찜질용, 보냉백에 물 적셔 준비)</li>
+    </ul>
+  </div>
+
+  <h3 style="margin-top:24px;">병원 측 (신선미 매니저 준비)</h3>
+
+  <div class="checklist">
+    <h4>공간</h4>
+    <ul>
+      <li>독립 10평 공간 확보</li>
+      <li>벽면 패널 설치 가능 여부 확인</li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>가구</h4>
+    <ul>
+      <li>테이블 · 의자 24석 (착석존)</li>
+      <li>접수대용 테이블 1개</li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>장비</h4>
+    <ul>
+      <li>스크린 · 영상 재생 장비 (PC · HDMI)</li>
+      <li>(영상 파일 APS 측 사전 전달 · USB 지참)</li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>인력</h4>
+    <ul>
+      <li>보조 스탭 3인 배정 확정 (이름 · 연락처 · 부서)</li>
+      <li>보조 3인에게 §2 역할 안내서 사전 전달 (본 문서)</li>
+      <li>10:00 도착 공지</li>
+    </ul>
+  </div>
+
+  <div class="checklist">
+    <h4>후속 대응</h4>
+    <ul>
+      <li>4/30 만족도 조사결과 전송 (이메일·카톡)</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <div class="brand">📞 문의 — APS 보건교육연구소</div>
+  <div class="phone">☎ 1544-5291</div>
+  <div class="note">
+    4/29 당일 APS 프로(대표)가 10:00 현장 도착합니다.<br>
+    준비 중 궁금하신 점·조정 사항은 언제든 연락 주세요.
+  </div>
+</footer>
+
+</div>
+</body>
+</html>
