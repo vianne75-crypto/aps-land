@@ -1,0 +1,1650 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>화요일 밤 11시, 작년 보고서를 또 베끼고 있었다 — APS</title>
+<meta name="description" content="당신이 이미 알고 있던 것을 증명해드립니다. APS는 이미 변하고 싶은 보건관리자의 다음 단계입니다.">
+<link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;900&family=IBM+Plex+Serif:ital,wght@0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   APS 브랜드 소개서 — 트라이브즈 버전
+   세스 고딘 5대 원칙 기반
+   ① 가르치지 말고 증명  ② 도발 제목  ③ 제품 언급 자제
+   ④ 밤에 생각나는 질문  ⑤ 선택 이후의 장면
+   SAGE 슬기 · 2026-05-07
+   ============================================================ */
+
+:root {
+  --teal:       #006241;
+  --teal-dark:  #003D29;
+  --teal-light: #D4E9E2;
+  --teal-pale:  #EBF5F1;
+
+  --ink:        #14141A;
+  --charcoal:   #1E1E22;
+  --body:       #2C2C30;
+  --sub:        #5A6070;
+  --muted:      #8A909A;
+  --border:     #E2DED8;
+  --hairline:   #EFECE6;
+
+  --bg-cream:   #F5F1EA;
+  --bg-paper:   #FAF8F3;
+  --white:      #FEFEFE;
+
+  --amber:      #E8A020;
+  --rust:       #B85C38;
+
+  --sans:  'Pretendard', sans-serif;
+  --serif: 'Noto Serif KR', serif;
+  --en:    'IBM Plex Serif', serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--sans);
+  font-size: 17px;
+  color: var(--body);
+  background: var(--bg-paper);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: inherit; text-decoration: none; }
+
+/* ── 레이아웃 ── */
+.wrap        { max-width: 920px;  margin: 0 auto; padding: 0 24px; }
+.wrap-narrow { max-width: 680px;  margin: 0 auto; padding: 0 24px; }
+.wrap-wide   { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+section { padding: 120px 0; }
+
+/* ── 타이포 시스템 ── */
+.eyebrow {
+  font-family: var(--en);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--teal);
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.eyebrow::before {
+  content: '';
+  width: 36px; height: 1px;
+  background: var(--teal);
+}
+
+h1, h2, h3, .serif { font-family: var(--serif); }
+em.teal { color: var(--teal); font-style: normal; }
+em.under { font-style: normal; box-shadow: inset 0 -10px 0 var(--teal-light); padding: 0 2px; }
+
+/* ════════════════════════════════════════════
+   NAV — 미니멀
+   ════════════════════════════════════════════ */
+nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(20,20,26,0.97);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.nav-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.nav-brand {
+  font-family: var(--en);
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+}
+.nav-brand span {
+  font-family: var(--sans);
+  font-size: 11px;
+  color: rgba(255,255,255,0.35);
+  margin-left: 8px;
+  letter-spacing: 0;
+}
+.nav-cta {
+  padding: 8px 18px;
+  border-radius: 6px;
+  background: var(--teal);
+  color: var(--white);
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* ════════════════════════════════════════════
+   HERO — 도발 헤드라인 (원칙 ②)
+   ════════════════════════════════════════════ */
+.hero {
+  background: var(--ink);
+  color: var(--white);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  padding: 100px 0 80px;
+}
+
+/* 시계 — 점멸 콜론 + 라벨 */
+.hero-clock {
+  position: absolute;
+  top: 100px;
+  right: 40px;
+  font-family: var(--en);
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.32);
+  letter-spacing: 0.18em;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  z-index: 3;
+}
+.hero-clock .colon { animation: blink 1.4s ease-in-out infinite; }
+.hero-clock .label {
+  font-size: 10px;
+  color: rgba(255,255,255,0.22);
+  letter-spacing: 0.25em;
+  margin-left: 10px;
+  border-left: 1px solid rgba(255,255,255,0.15);
+  padding-left: 10px;
+}
+@keyframes blink {
+  0%, 48%, 98%, 100% { opacity: 1; }
+  50%, 96%           { opacity: 0.15; }
+}
+
+/* 호흡하는 호박 도트 */
+@keyframes breathe {
+  0%, 100% { transform: scale(1);    box-shadow: 0 0 12px var(--amber), 0 0 0 0 rgba(232,160,32,0.45); }
+  50%      { transform: scale(1.18); box-shadow: 0 0 18px var(--amber), 0 0 0 9px rgba(232,160,32,0); }
+}
+
+/* hero 미세 그리드 + 비네트 */
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 78% 18%, rgba(0,98,65,0.20), transparent 55%),
+    radial-gradient(ellipse at 0% 100%, rgba(232,160,32,0.06), transparent 50%),
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: auto, auto, 64px 64px, 64px 64px;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.18), transparent);
+}
+
+.hero-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  width: 100%;
+  position: relative;
+  z-index: 2;
+}
+
+.hero-time {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.05em;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.hero-time::before {
+  content: '';
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: var(--amber);
+  box-shadow: 0 0 12px var(--amber);
+  animation: breathe 2.6s ease-in-out infinite;
+}
+
+.hero-headline {
+  font-family: var(--serif);
+  font-size: clamp(40px, 6.5vw, 76px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  margin-bottom: 36px;
+  max-width: 920px;
+}
+
+.hero-headline .quiet {
+  display: block;
+  color: rgba(255,255,255,0.45);
+  font-size: 0.65em;
+  font-weight: 500;
+  font-style: italic;
+  margin-bottom: 18px;
+}
+
+.hero-headline .accent {
+  color: var(--teal-light);
+}
+
+.hero-attribution {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 56px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  max-width: 480px;
+}
+.attribution-dot {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 14px;
+  color: rgba(255,255,255,0.6);
+  flex-shrink: 0;
+}
+.attribution-text {
+  font-size: 13px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.6;
+}
+.attribution-text strong { color: rgba(255,255,255,0.85); }
+
+/* ════════════════════════════════════════════
+   사회적 증거 — 실명 후기 (트라이브즈 핵심)
+   ════════════════════════════════════════════ */
+.testimony-band {
+  background: var(--white);
+  padding: 80px 0;
+  border-bottom: 1px solid var(--hairline);
+}
+
+.testimony-quote {
+  font-family: var(--serif);
+  font-size: clamp(22px, 3vw, 30px);
+  font-weight: 500;
+  line-height: 1.55;
+  color: var(--ink);
+  letter-spacing: -0.015em;
+  margin-bottom: 40px;
+  position: relative;
+  padding-left: 40px;
+}
+
+.testimony-quote::before {
+  content: '"';
+  position: absolute;
+  left: -8px;
+  top: -32px;
+  font-size: 100px;
+  font-family: var(--en);
+  color: var(--teal);
+  line-height: 1;
+}
+
+.testimony-quote em {
+  font-style: normal;
+  color: var(--teal-dark);
+  background: var(--teal-pale);
+  padding: 0 4px;
+  border-radius: 2px;
+}
+
+.testimony-cite {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding-left: 40px;
+}
+.cite-portrait {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--teal-pale);
+  border: 2px solid var(--white);
+  box-shadow: 0 0 0 1px var(--teal-light);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--serif);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--teal);
+  flex-shrink: 0;
+}
+.cite-info {}
+.cite-name {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+.cite-role {
+  font-size: 13px;
+  color: var(--muted);
+}
+
+/* ════════════════════════════════════════════
+   "당신이 이미 알고 있던 것" — 원칙 ① 증명
+   ════════════════════════════════════════════ */
+.knew-section {
+  background: var(--bg-cream);
+}
+
+.knew-prologue {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 44px);
+  font-weight: 600;
+  line-height: 1.3;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 64px;
+  text-align: left;
+}
+
+.knew-prologue em {
+  font-style: normal;
+  color: var(--teal);
+}
+
+/* 재해석 블록 — 평생 본 장면 → 의미 부여 */
+.reframe-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.reframe {
+  display: grid;
+  grid-template-columns: 1fr 80px 1fr;
+  gap: 32px;
+  align-items: start;
+  padding: 64px 0;
+  border-top: 1px solid var(--border);
+  position: relative;
+}
+.reframe:last-child { border-bottom: 1px solid var(--border); }
+
+/* 가운데 화살표 — 재해석의 흐름 */
+.reframe-arrow {
+  position: relative;
+  height: 100%;
+  min-height: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding-top: 18px;
+  gap: 6px;
+}
+.reframe-arrow::before {
+  content: '';
+  width: 1px;
+  flex: 1;
+  background: linear-gradient(180deg, var(--border) 0%, var(--teal-light) 100%);
+}
+.reframe-arrow .tip {
+  font-family: var(--en);
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  color: var(--muted);
+  font-weight: 600;
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  margin-bottom: 8px;
+}
+.reframe-arrow .tip::before {
+  content: '→';
+  display: block;
+  font-size: 18px;
+  color: var(--teal);
+  letter-spacing: 0;
+  transform: rotate(180deg);
+  margin-bottom: 8px;
+}
+
+.reframe-left {
+  position: relative;
+  padding-left: 28px;
+}
+.reframe-left::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--bg-paper);
+  border: 2px solid var(--muted);
+}
+.reframe-left::after {
+  content: 'SCENE';
+  position: absolute;
+  left: 28px;
+  top: -22px;
+  font-family: var(--en);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.reframe-scene {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 18px;
+  color: var(--sub);
+  line-height: 1.65;
+  letter-spacing: -0.005em;
+}
+
+.reframe-right {
+  position: relative;
+  padding-left: 28px;
+}
+.reframe-right::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 14px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--teal);
+  box-shadow: 0 0 0 4px var(--teal-pale);
+}
+.reframe-right::after {
+  content: 'MEANING';
+  position: absolute;
+  left: 28px;
+  top: -22px;
+  font-family: var(--en);
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  color: var(--teal);
+  font-weight: 600;
+}
+
+.reframe-meaning {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 600;
+  color: var(--ink);
+  line-height: 1.55;
+  letter-spacing: -0.015em;
+}
+
+.reframe-meaning strong {
+  color: var(--teal);
+  font-weight: 700;
+}
+
+@media (max-width: 720px) {
+  .reframe { grid-template-columns: 1fr; gap: 32px; padding: 48px 0; }
+  .reframe-arrow { min-height: 36px; flex-direction: row; padding-top: 0; }
+  .reframe-arrow::before { width: 100%; height: 1px; flex: 1; background: linear-gradient(90deg, var(--border), var(--teal-light)); }
+  .reframe-arrow .tip { writing-mode: horizontal-tb; transform: none; margin: 0; }
+  .reframe-arrow .tip::before { transform: none; margin: 0 8px 0 0; display: inline; }
+  .reframe-left::after, .reframe-right::after { position: static; display: inline-block; margin-bottom: 8px; }
+}
+
+/* ════════════════════════════════════════════
+   "선택 이후의 장면" — 원칙 ⑤
+   ════════════════════════════════════════════ */
+.scene-section {
+  background: var(--white);
+}
+
+.scene-intro {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 42px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+  letter-spacing: -0.025em;
+  max-width: 720px;
+  margin-bottom: 80px;
+}
+
+.scene-intro em {
+  font-style: normal;
+  color: var(--teal);
+  display: block;
+  margin-top: 8px;
+}
+
+/* 시네마틱 스토리보드 */
+.scenes {
+  display: flex;
+  flex-direction: column;
+  gap: 96px;
+  position: relative;
+}
+
+.scene {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 48px;
+  align-items: start;
+  position: relative;
+}
+
+/* 필름 프레임 — 좌측 슬레이트 */
+.scene-slate {
+  padding-top: 6px;
+  border-top: 2px solid var(--ink);
+  width: 96px;
+}
+.scene-number {
+  font-family: var(--en);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: var(--ink);
+  display: block;
+  margin-bottom: 6px;
+}
+.scene-stamp {
+  font-family: var(--en);
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  text-transform: uppercase;
+  display: block;
+  margin-bottom: 4px;
+}
+.scene-time {
+  font-family: var(--en);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--teal);
+  display: block;
+}
+
+/* 필름 그레인 오버레이 (서브틀) */
+.scene-narrative {
+  position: relative;
+}
+.scene-narrative::before {
+  content: '';
+  position: absolute;
+  left: -16px;
+  top: 12px;
+  bottom: 12px;
+  width: 2px;
+  background: var(--teal);
+  opacity: 0;
+  transition: opacity .5s ease;
+}
+.scene.fade-in.visible .scene-narrative::before { opacity: 0.6; }
+
+.scene-body {}
+
+.scene-title {
+  font-family: var(--serif);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 16px;
+}
+
+.scene-narrative {
+  font-family: var(--serif);
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--ink);
+  letter-spacing: -0.018em;
+  margin-bottom: 16px;
+}
+
+.scene-narrative em {
+  font-style: italic;
+  color: var(--teal-dark);
+}
+
+.scene-detail {
+  font-size: 15px;
+  color: var(--sub);
+  line-height: 1.7;
+  font-style: italic;
+  padding: 14px 18px;
+  background: var(--bg-cream);
+  border-left: 2px solid var(--teal-light);
+  margin-top: 8px;
+  position: relative;
+}
+.scene-detail::before {
+  content: 'SUBTITLE';
+  position: absolute;
+  top: -10px;
+  left: 14px;
+  font-family: var(--en);
+  font-style: normal;
+  font-size: 9px;
+  letter-spacing: 0.3em;
+  color: var(--teal);
+  background: var(--white);
+  padding: 0 8px;
+  font-weight: 600;
+}
+
+/* 시네마 섹션 전체에 미세 노이즈 (CSS만으로 그레인) */
+.scene-section {
+  position: relative;
+}
+.scene-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(0,0,0,0.015) 1px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, rgba(0,0,0,0.012) 1px, transparent 1.5px),
+    radial-gradient(circle at 40% 80%, rgba(0,0,0,0.010) 1px, transparent 1.5px);
+  background-size: 3px 3px, 5px 5px, 7px 7px;
+  opacity: 0.6;
+  mix-blend-mode: multiply;
+}
+
+@media (max-width: 720px) {
+  .scene { grid-template-columns: 1fr; gap: 16px; }
+  .scene-slate { width: 100%; }
+}
+
+/* ════════════════════════════════════════════
+   트라이브 발견 — "당신만이 아니다"
+   ════════════════════════════════════════════ */
+.tribe-section {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.tribe-headline {
+  font-family: var(--serif);
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--white);
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 760px;
+}
+
+.tribe-headline em {
+  font-style: normal;
+  color: var(--teal-light);
+}
+
+.tribe-sub {
+  font-size: 17px;
+  color: rgba(255,255,255,0.55);
+  line-height: 1.75;
+  max-width: 580px;
+  margin-bottom: 64px;
+}
+
+/* 트라이브 정체성 카드 */
+.tribe-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1px;
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.tribe-card {
+  background: var(--ink);
+  padding: 40px 32px;
+  position: relative;
+  transition: background .35s ease, transform .35s ease;
+  overflow: hidden;
+  cursor: default;
+}
+.tribe-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at var(--mx, 50%) var(--my, 50%), rgba(212,233,226,0.10), transparent 55%);
+  opacity: 0;
+  transition: opacity .35s ease;
+  pointer-events: none;
+}
+.tribe-card::after {
+  content: '';
+  position: absolute;
+  left: 32px; right: 32px;
+  bottom: 24px;
+  height: 1px;
+  background: linear-gradient(90deg, var(--teal-light), transparent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform .5s cubic-bezier(.2,.7,.2,1);
+}
+.tribe-card:hover {
+  background: #18181E;
+  transform: translateY(-2px);
+}
+.tribe-card:hover::before { opacity: 1; }
+.tribe-card:hover::after  { transform: scaleX(1); }
+.tribe-card:hover .tribe-card-num { color: var(--white); }
+.tribe-card:hover .tribe-card-body { color: rgba(255,255,255,0.75); }
+
+.tribe-card-num {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 14px;
+  color: var(--teal-light);
+  margin-bottom: 14px;
+  letter-spacing: 0.05em;
+  transition: color .3s ease;
+}
+.tribe-card-body {
+  transition: color .3s ease;
+}
+
+.tribe-card-title {
+  font-family: var(--serif);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.4;
+  margin-bottom: 14px;
+}
+
+.tribe-card-body {
+  font-size: 14px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.7;
+}
+
+@media (max-width: 720px) {
+  .tribe-grid { grid-template-columns: 1fr; }
+}
+
+/* 트라이브 합산 인용 */
+.tribe-stat {
+  margin-top: 80px;
+  padding: 40px;
+  background: rgba(0,98,65,0.15);
+  border-left: 3px solid var(--teal-light);
+  border-radius: 0 8px 8px 0;
+}
+
+.tribe-stat-num {
+  font-family: var(--en);
+  font-size: 56px;
+  font-weight: 700;
+  color: var(--teal-light);
+  line-height: 1;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.tribe-stat-label {
+  font-family: var(--serif);
+  font-size: 19px;
+  font-weight: 500;
+  color: rgba(255,255,255,0.85);
+  line-height: 1.5;
+}
+
+.tribe-stat-source {
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  margin-top: 12px;
+  font-family: var(--en);
+  letter-spacing: 0.05em;
+}
+
+/* ════════════════════════════════════════════
+   증명 — 숫자 (제품 설명 대신)
+   ════════════════════════════════════════════ */
+.proof-section {
+  background: var(--bg-paper);
+}
+
+.proof-headline {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4vw, 40px);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  max-width: 680px;
+}
+
+.proof-headline em {
+  font-style: normal;
+  color: var(--teal);
+}
+
+.proof-sub {
+  font-size: 16px;
+  color: var(--sub);
+  line-height: 1.75;
+  max-width: 560px;
+  margin-bottom: 56px;
+}
+
+.proof-numbers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  padding: 40px 0;
+}
+
+.proof-num-item {
+  border-right: 1px solid var(--border);
+  padding-right: 24px;
+}
+.proof-num-item:last-child { border-right: none; }
+
+.proof-num {
+  font-family: var(--en);
+  font-size: 44px;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1;
+  margin-bottom: 10px;
+  display: block;
+  letter-spacing: -0.02em;
+}
+
+.proof-label {
+  font-size: 13px;
+  color: var(--sub);
+  line-height: 1.5;
+  font-weight: 500;
+}
+
+.proof-source {
+  font-size: 11px;
+  color: var(--muted);
+  margin-top: 6px;
+  font-family: var(--en);
+  letter-spacing: 0.03em;
+}
+
+@media (max-width: 720px) {
+  .proof-numbers { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .proof-num-item:nth-child(2) { border-right: none; }
+}
+
+/* 도입 기관 — 한 줄 텍스트 (로고 그리드 대신) */
+.proof-tribe-list {
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px dashed var(--border);
+  font-family: var(--serif);
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--sub);
+  font-style: italic;
+}
+
+.proof-tribe-list strong {
+  color: var(--ink);
+  font-weight: 600;
+  font-style: normal;
+}
+
+/* ════════════════════════════════════════════
+   다음 단계 — CTA (스펙 없는 초대)
+   ════════════════════════════════════════════ */
+.next-section {
+  background: var(--teal);
+  color: var(--white);
+}
+
+.next-inner {
+  max-width: 840px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.next-eyebrow {
+  font-family: var(--en);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  margin-bottom: 32px;
+}
+
+.next-headline {
+  font-family: var(--serif);
+  font-size: clamp(36px, 5vw, 56px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  margin-bottom: 32px;
+}
+
+.next-headline em {
+  font-style: italic;
+  color: var(--teal-light);
+  font-weight: 600;
+}
+
+.next-sub {
+  font-family: var(--serif);
+  font-size: 18px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  max-width: 560px;
+  margin: 0 auto 48px;
+}
+
+.next-buttons {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn-cream {
+  display: inline-block;
+  padding: 16px 36px;
+  background: var(--bg-cream);
+  color: var(--teal-dark);
+  font-size: 15px;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: all .18s;
+  letter-spacing: 0.01em;
+}
+.btn-cream:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.15); }
+
+.btn-line {
+  display: inline-block;
+  padding: 16px 36px;
+  background: transparent;
+  color: rgba(255,255,255,0.85);
+  font-size: 15px;
+  font-weight: 600;
+  border: 1.5px solid rgba(255,255,255,0.3);
+  border-radius: 8px;
+  transition: all .15s;
+}
+.btn-line:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+
+/* ════════════════════════════════════════════
+   밤의 질문 — 원칙 ④
+   ════════════════════════════════════════════ */
+.question-section {
+  background:
+    radial-gradient(ellipse at 12% 22%, rgba(232,160,32,0.04), transparent 38%),
+    radial-gradient(ellipse at 85% 78%, rgba(0,98,65,0.18), transparent 45%),
+    var(--ink);
+  color: var(--white);
+  padding: 160px 0;
+  position: relative;
+  overflow: hidden;
+}
+
+/* 상단 인장 라인 */
+.question-section::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 50%;
+  transform: translateX(-50%);
+  width: 60px; height: 3px;
+  background: var(--teal-light);
+}
+
+/* 별·점 — 미세하게 */
+.question-section::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(1px 1px at 12% 18%,  rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(1px 1px at 28% 42%,  rgba(255,255,255,0.30), transparent 60%),
+    radial-gradient(1.5px 1.5px at 58% 12%, rgba(255,255,255,0.45), transparent 60%),
+    radial-gradient(1px 1px at 78% 32%,  rgba(255,255,255,0.55), transparent 60%),
+    radial-gradient(1px 1px at 88% 68%,  rgba(255,255,255,0.30), transparent 60%),
+    radial-gradient(1px 1px at 18% 78%,  rgba(255,255,255,0.40), transparent 60%),
+    radial-gradient(1.2px 1.2px at 42% 88%, rgba(255,255,255,0.30), transparent 60%),
+    radial-gradient(1px 1px at 68% 58%,  rgba(255,255,255,0.25), transparent 60%);
+  opacity: 0.8;
+}
+
+/* 달 — 우상단에 흐릿한 원 */
+.question-moon {
+  position: absolute;
+  top: 90px;
+  right: 12%;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.10), rgba(255,255,255,0.02) 60%, transparent 75%);
+  box-shadow: inset -10px -10px 22px rgba(0,0,0,0.4);
+  z-index: 1;
+  animation: moonglow 6s ease-in-out infinite;
+}
+@keyframes moonglow {
+  0%,100% { opacity: 0.55; }
+  50%     { opacity: 0.85; }
+}
+@media (max-width: 640px) {
+  .question-moon { width: 56px; height: 56px; top: 60px; right: 24px; }
+}
+
+.question-inner {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 24px;
+  text-align: center;
+}
+
+.question-eyebrow {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  letter-spacing: 0.1em;
+  margin-bottom: 40px;
+}
+
+.question-text {
+  font-family: var(--serif);
+  font-size: clamp(28px, 4.5vw, 44px);
+  font-weight: 500;
+  font-style: italic;
+  color: var(--white);
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+}
+
+.question-text::before,
+.question-text::after {
+  font-family: var(--en);
+  color: var(--teal-light);
+  font-size: 0.7em;
+  vertical-align: 0.2em;
+  margin: 0 0.15em;
+}
+.question-text::before { content: '\201C'; }
+.question-text::after  { content: '\201D'; }
+
+.question-sign {
+  font-family: var(--en);
+  font-style: italic;
+  font-size: 13px;
+  color: rgba(255,255,255,0.3);
+  margin-top: 48px;
+  letter-spacing: 0.1em;
+}
+
+/* ════════════════════════════════════════════
+   FOOTER
+   ════════════════════════════════════════════ */
+footer {
+  background: #0E0E12;
+  color: rgba(255,255,255,0.45);
+  padding: 56px 0 40px;
+}
+
+.footer-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 24px;
+  align-items: end;
+}
+
+.footer-brand {
+  font-family: var(--en);
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--teal-light);
+  letter-spacing: 0.12em;
+  margin-bottom: 6px;
+}
+
+.footer-tagline {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 14px;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 24px;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 18px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: rgba(255,255,255,0.5);
+}
+.footer-links a:hover { color: rgba(255,255,255,0.85); }
+
+.footer-disclaimer {
+  font-size: 11.5px;
+  color: rgba(255,255,255,0.25);
+  line-height: 1.7;
+  max-width: 520px;
+}
+
+.footer-right {
+  text-align: right;
+  font-size: 12px;
+  color: rgba(255,255,255,0.35);
+  line-height: 1.7;
+}
+
+@media (max-width: 640px) {
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-right { text-align: left; }
+}
+
+/* ── 스크롤 인 ── */
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.fade-in.visible { opacity: 1; transform: none; }
+
+/* ════════════════════════════════════════════
+   모바일 반응형 정밀화
+   ════════════════════════════════════════════ */
+@media (max-width: 720px) {
+  body { font-size: 16px; }
+  section { padding: 80px 0; }
+  .wrap, .wrap-narrow, .wrap-wide { padding: 0 20px; }
+
+  /* Hero */
+  .hero { min-height: auto; padding: 90px 0 70px; }
+  .hero-clock { top: 80px; right: 20px; font-size: 12px; }
+  .hero-clock .label { display: none; }
+  .hero-headline { font-size: clamp(32px, 8vw, 44px); margin-bottom: 28px; }
+  .hero-attribution { margin-top: 40px; max-width: 100%; }
+
+  /* Testimony */
+  .testimony-band { padding: 56px 0; }
+  .testimony-quote { padding-left: 24px; font-size: 19px; margin-bottom: 28px; }
+  .testimony-quote::before { font-size: 60px; top: -18px; left: -4px; }
+  .testimony-cite { padding-left: 24px; }
+
+  /* Knew section */
+  .knew-prologue { font-size: 22px; margin-bottom: 40px; }
+
+  /* Scene section */
+  .scenes { gap: 64px; }
+  .scene-narrative { font-size: 18px; }
+  .scene-detail { font-size: 14px; }
+
+  /* Tribe */
+  .tribe-headline { font-size: 26px; }
+  .tribe-card { padding: 28px 24px; }
+  .tribe-stat { padding: 28px; margin-top: 56px; }
+  .tribe-stat-num { font-size: 44px; }
+  .tribe-stat-label { font-size: 16px; }
+
+  /* Proof */
+  .proof-headline { font-size: 22px; }
+  .proof-numbers { padding: 28px 0; gap: 24px; }
+  .proof-num { font-size: 34px; }
+  .proof-num-item { padding-right: 16px; }
+  .proof-tribe-list { font-size: 15px; }
+
+  /* CTA */
+  .next-section { padding: 96px 0; }
+  .next-headline { font-size: 28px; }
+  .next-buttons { flex-direction: column; align-items: stretch; }
+  .btn-cream, .btn-line { padding: 14px 24px; text-align: center; }
+
+  /* Question */
+  .question-section { padding: 96px 0; }
+  .question-text { font-size: 24px; }
+
+  /* Nav */
+  .nav-inner { height: 54px; padding: 0 16px; }
+  .nav-cta { padding: 7px 14px; font-size: 12px; }
+}
+
+@media (max-width: 380px) {
+  .hero-headline { font-size: 28px; }
+  .hero-clock { top: 76px; }
+}
+
+/* 모션 감소 환경 — 접근성 */
+@media (prefers-reduced-motion: reduce) {
+  .hero-time::before, .hero-clock .colon, .question-moon { animation: none; }
+  .fade-in { opacity: 1; transform: none; transition: none; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">APS<span>알쓰패치솔루션</span></div>
+    <a href="#next" class="nav-cta">다음 단계로</a>
+  </div>
+</nav>
+
+
+<!-- ════════════════════════════════════════════
+     HERO — 도발 헤드라인 (원칙 ②)
+     "교육이 재밌었다"가 아닌 행동을 묻는다
+     ════════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-clock"><span>23</span><span class="colon">:</span><span>47</span><span class="label">TUE · APR</span></div>
+  <div class="hero-inner">
+    <div class="hero-time">화요일 밤, 11시 47분</div>
+
+    <h1 class="hero-headline">
+      <span class="quiet">화요일 밤 11시,</span>
+      작년 자료를<br>
+      다시 열고 있었다.
+    </h1>
+
+    <div class="hero-attribution">
+      <div class="attribution-dot">K</div>
+      <div class="attribution-text">
+        <strong>어느 사업장 보건관리자의 4월</strong><br>
+        매년 같은 근로자 건강증진활동 계획. 효과 없다는 걸 본인이 가장 잘 안다.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     사회적 증거 — 실명 후기 (트라이브즈 핵심)
+     원칙: 페이지 최상단에 한 명의 목소리
+     ════════════════════════════════════════════ -->
+<section class="testimony-band">
+  <div class="wrap">
+    <div class="testimony-quote fade-in">
+      이번엔 <em>직원이 먼저 물어봤어요.</em><br>
+      "저 빨개졌어요. 이게 무슨 뜻이에요?"<br>
+      <br>
+      교육이 끝나도 대화가 이어진 건<br>
+      <em>3년 만에 처음입니다.</em>
+    </div>
+    <div class="testimony-cite fade-in">
+      <div class="cite-portrait">곽</div>
+      <div class="cite-info">
+        <div class="cite-name">곽○○ 보건관리자</div>
+        <div class="cite-role">국내 대형 제약사 사업장 · 2026년 4월</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     "당신이 이미 알고 있던 것" — 원칙 ① 증명
+     평생 본 장면을 재해석
+     ════════════════════════════════════════════ -->
+<section class="knew-section">
+  <div class="wrap">
+    <div class="eyebrow fade-in">What You Already Knew</div>
+    <h2 class="knew-prologue fade-in">
+      당신은 이미 알고 있었습니다.<br>
+      누군가 가르쳐서가 아니라 — <em>오랫동안 봐왔기 때문에.</em>
+    </h2>
+
+    <div class="reframe-grid fade-in">
+
+      <!-- 재해석 1 -->
+      <div class="reframe">
+        <div class="reframe-left">
+          <p class="reframe-scene">
+            "한 잔만 마셔도 얼굴이 빨개지는 사람.<br>
+            우리는 그게 <strong>약한 거</strong>라고 했다."
+          </p>
+        </div>
+        <div class="reframe-arrow"><span class="tip">REFRAME</span></div>
+        <div class="reframe-right">
+          <p class="reframe-meaning">
+            그건 약한 게 아니었습니다.<br>
+            <strong>1군 발암물질이 몸에 쌓이고 있다는 신호</strong>였습니다.<br>
+            평생 들어온 농담이, 사실은 경고였습니다.
+          </p>
+        </div>
+      </div>
+
+      <!-- 재해석 2 -->
+      <div class="reframe">
+        <div class="reframe-left">
+          <p class="reframe-scene">
+            "교육이 끝나면<br>
+            아무도 더 묻지 않았다."
+          </p>
+        </div>
+        <div class="reframe-arrow"><span class="tip">REFRAME</span></div>
+        <div class="reframe-right">
+          <p class="reframe-meaning">
+            머리로 들은 정보는 행동을 바꾸지 않습니다.<br>
+            <strong>몸이 직접 반응한 사람만이 다음 날 다시 묻습니다.</strong>
+          </p>
+        </div>
+      </div>
+
+      <!-- 재해석 3 -->
+      <div class="reframe">
+        <div class="reframe-left">
+          <p class="reframe-scene">
+            "건강증진 기안은 늘<br>
+            안전보건위원회에서 후순위였다."
+          </p>
+        </div>
+        <div class="reframe-arrow"><span class="tip">REFRAME</span></div>
+        <div class="reframe-right">
+          <p class="reframe-meaning">
+            "교육 진행했습니다"로는 다음 분기 예산이 안 살아납니다.<br>
+            <strong>AUDIT-K 결과·체질 분포·행동 변화율 — 데이터로 답해야</strong> 산안법 제5조가 비로소 도구가 됩니다.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     선택 이후의 장면 — 원칙 ⑤
+     스펙이 아니라 장면을 판다
+     ════════════════════════════════════════════ -->
+<section class="scene-section">
+  <div class="wrap">
+    <div class="eyebrow fade-in">Scenes After Your Choice</div>
+    <h2 class="scene-intro fade-in">
+      당신이 다음 단계를 밟았을 때,<br>
+      <em>이런 장면이 시작됩니다.</em>
+    </h2>
+
+    <div class="scenes">
+
+      <div class="scene fade-in">
+        <div class="scene-slate">
+          <span class="scene-number">SC. 01</span>
+          <span class="scene-stamp">EXT · MAY</span>
+          <span class="scene-time">19:42</span>
+        </div>
+        <div class="scene-body">
+          <div class="scene-title">A Day in May</div>
+          <p class="scene-narrative">
+            금요일 회식 자리. 한 직원이 처음으로<br>
+            <em>"저는 알쓰입니다"</em>라고 입을 엽니다.
+          </p>
+          <p class="scene-detail">
+            그 한마디가 옆 테이블의 부장에게 넘어가고, 다음 주 월요일 보건실에 사람이 옵니다.
+            묻기 시작한 사람은 한 번이라도 자기 몸을 본 사람입니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="scene fade-in">
+        <div class="scene-slate">
+          <span class="scene-number">SC. 02</span>
+          <span class="scene-stamp">INT · Q3</span>
+          <span class="scene-time">14:30</span>
+        </div>
+        <div class="scene-body">
+          <div class="scene-title">Quarterly Review · 안전보건위원회</div>
+          <p class="scene-narrative">
+            분기 안전보건위원회. 당신은 처음으로 <em>데이터로 말합니다.</em><br>
+            "저희 사업장 27%가 AG형 음주위험체질입니다.<br>
+            AUDIT-K 결과와 일치합니다."
+          </p>
+          <p class="scene-detail">
+            안보위원장이 다시 묻습니다. "그 수치, 어디서 났어요?"
+            건강증진 기안이 처음으로 후순위에서 빠진 분기가 됩니다.
+          </p>
+        </div>
+      </div>
+
+      <div class="scene fade-in">
+        <div class="scene-slate">
+          <span class="scene-number">SC. 03</span>
+          <span class="scene-stamp">EXT · APR</span>
+          <span class="scene-time">09:00</span>
+        </div>
+        <div class="scene-body">
+          <div class="scene-title">Next April · 금주의 달</div>
+          <p class="scene-narrative">
+            내년 금주의 달(4월). 작년 자료를 <em>복사하지 않아도 됩니다.</em><br>
+            올해는 진짜 변화가 있었기 때문입니다.
+          </p>
+          <p class="scene-detail">
+            화요일 밤 11시에, 처음으로 일찍 퇴근합니다.
+            근로자 건강증진활동 보고서는 30분이면 끝납니다.
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     트라이브 발견 — "당신만이 아니다"
+     ════════════════════════════════════════════ -->
+<section class="tribe-section">
+  <div class="wrap-wide">
+    <div class="eyebrow fade-in" style="color:var(--teal-light);">Find Your Tribe</div>
+
+    <h2 class="tribe-headline fade-in">
+      당신만 그렇게 느낀 게 아니었습니다.<br>
+      <em>이미 같은 생각을 하던 사람들이 있습니다.</em>
+    </h2>
+
+    <p class="tribe-sub fade-in">
+      매년 같은 보고서를 베끼면서, "이건 아닌데" 싶었던 사람들.<br>
+      각자 자기 자리에서 조용히 다른 길을 찾고 있었습니다.
+    </p>
+
+    <div class="tribe-grid fade-in">
+      <div class="tribe-card">
+        <div class="tribe-card-num">— 01</div>
+        <div class="tribe-card-title">매년 같은 근로자 건강증진활동 계획을<br>복사하는 게 지긋지긋한 보건관리자</div>
+        <div class="tribe-card-body">"효과 없다"는 걸 누구보다 본인이 잘 압니다. 다른 방식이 있다는 걸 이미 알고 있습니다.</div>
+      </div>
+      <div class="tribe-card">
+        <div class="tribe-card-num">— 02</div>
+        <div class="tribe-card-title">안전보건위원회에서<br>늘 작아지던 건강증진 담당자</div>
+        <div class="tribe-card-body">"교육 진행했습니다"로는 부족하다는 걸 압니다. 데이터로 답할 도구가 없었을 뿐입니다.</div>
+      </div>
+      <div class="tribe-card">
+        <div class="tribe-card-num">— 03</div>
+        <div class="tribe-card-title">산안법 제5조 그 이상을<br>해보고 싶었던 보건관리자</div>
+        <div class="tribe-card-body">서류만 채우는 것이 아니라, 사업장 27%의 음주위험체질을 진짜로 관리하고 싶었습니다.</div>
+      </div>
+    </div>
+
+    <div class="tribe-stat fade-in">
+      <span class="tribe-stat-num">500<span style="font-size:32pt">+</span></span>
+      <p class="tribe-stat-label">기관이 이미 같은 결정을 내렸습니다.<br>전국 보건소·기업·공공기관·병원·지자체.</p>
+      <div class="tribe-stat-source">As of 2026 — 누적 도입 기관 / 112만+ 패치 납품</div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     증명 — 숫자만 (제품 설명 0)
+     ════════════════════════════════════════════ -->
+<section class="proof-section">
+  <div class="wrap">
+    <div class="eyebrow fade-in">Numbers, Not Promises</div>
+    <h2 class="proof-headline fade-in">
+      "교육이 재밌었다"는 칭찬이 아닙니다.<br>
+      <em>"내가 바뀔 것 같다"가 칭찬입니다.</em>
+    </h2>
+    <p class="proof-sub fade-in">
+      2026년 4월, N=116 직원 대상 캠페인 실측 데이터.
+    </p>
+
+    <div class="proof-numbers fade-in">
+      <div class="proof-num-item">
+        <span class="proof-num">99.1<span style="font-size:24px">%</span></span>
+        <div class="proof-label">전반적 만족도</div>
+        <div class="proof-source">N=116</div>
+      </div>
+      <div class="proof-num-item">
+        <span class="proof-num">97.4<span style="font-size:24px">%</span></span>
+        <div class="proof-label">인식 변화율</div>
+        <div class="proof-source">N=116</div>
+      </div>
+      <div class="proof-num-item">
+        <span class="proof-num">94<span style="font-size:24px">%</span></span>
+        <div class="proof-label">행동 변화 의향</div>
+        <div class="proof-source">N=116</div>
+      </div>
+      <div class="proof-num-item">
+        <span class="proof-num">14<span style="font-size:24px">×</span></span>
+        <div class="proof-label">흡연 시 독성 증폭</div>
+        <div class="proof-source">Mizuno 2017</div>
+      </div>
+    </div>
+
+    <p class="proof-tribe-list fade-in">
+      이미 결정한 사업장·기관 —
+      <strong>한화큐셀</strong>(2개 사업장) · <strong>GC녹십자</strong>(건강관리실) · <strong>서울교통공사</strong> ·
+      <strong>국민건강보험공단</strong> · <strong>강동경희대병원</strong> · <strong>CJ대한통운</strong>.<br>
+      <span style="font-style:normal; font-size:13px; color:var(--muted); display:inline-block; margin-top:8px;">
+        AUDIT-K 연계 · 근로자 건강증진활동 지침(고시 2022-33호) 기반 · 사업장 보건관리 업무매뉴얼 p.299 정합.
+      </span>
+    </p>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     다음 단계 — CTA
+     ════════════════════════════════════════════ -->
+<section class="next-section" id="next">
+  <div class="next-inner">
+    <div class="next-eyebrow">The Next Step</div>
+    <h2 class="next-headline">
+      이미 다른 길을 찾고 있던<br>
+      보건관리자를 위한,<br>
+      <em>다음 단계가 있습니다.</em>
+    </h2>
+    <p class="next-sub">
+      우리는 당신을 설득하지 않습니다.<br>
+      당신이 이미 알고 있던 것을, 이제 함께 데이터로 증명할 뿐입니다.
+    </p>
+    <div class="next-buttons">
+      <a href="https://aps7.net" class="btn-cream">기업·사업장 도입 →</a>
+      <a href="https://wcolive.com" class="btn-line">공공기관·조달 문의</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- ════════════════════════════════════════════
+     밤의 질문 — 원칙 ④
+     "댓글 유도가 아닌 진짜 질문"
+     ════════════════════════════════════════════ -->
+<section class="question-section">
+  <div class="question-moon" aria-hidden="true"></div>
+  <div class="question-inner">
+    <div class="question-eyebrow fade-in">— A question for tonight · 23:47 —</div>
+    <p class="question-text fade-in">
+      내년 금주의 달,<br>
+      당신은 또 같은 자료를 복사하고 있을 건가요?
+    </p>
+    <div class="question-sign fade-in">
+      답하지 않아도 됩니다. 다만, 기억해두십시오.
+    </div>
+  </div>
+</section>
+
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">APS</div>
+      <div class="footer-tagline">— 보건관리자의 다음 단계.</div>
+      <div class="footer-links">
+        <a href="https://aps7.net">aps7.net</a>
+        <a href="https://wcolive.com">wcolive.com</a>
+        <a href="mailto:contact@aps7.net">contact@aps7.net</a>
+      </div>
+      <div class="footer-disclaimer">
+        이 자료는 교육 목적이며 의료 진단·처방이 아닙니다. 수치는 학술 연구 결과이며 개인 상태와 다를 수 있습니다.<br>
+        APS[앱스]알쓰패치솔루션 · 무단 복제·배포 금지
+      </div>
+    </div>
+    <div class="footer-right">
+      Tribes Edition v1<br>
+      2026
+    </div>
+  </div>
+</footer>
+
+
+<script>
+// fade-in
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(el => { if (el.isIntersecting) el.target.classList.add('visible'); });
+}, { threshold: 0.1 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// 트라이브 카드 spotlight — 마우스 위치 추적
+document.querySelectorAll('.tribe-card').forEach(card => {
+  card.addEventListener('mousemove', e => {
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', ((e.clientX - r.left) / r.width * 100) + '%');
+    card.style.setProperty('--my', ((e.clientY - r.top)  / r.height * 100) + '%');
+  });
+});
+</script>
+
+</body>
+</html>
