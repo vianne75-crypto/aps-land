@@ -1,0 +1,795 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>화요일 밤 11시, 작년 보고서를 또 베끼고 있었다 — APS Tribes Edition</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="당신이 이미 알고 있던 것을 증명해드립니다. APS는 이미 변하고 싶은 보건관리자의 다음 단계입니다.">
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --teal:        #006241;
+    --teal-deep:   #004A31;
+    --teal-soft:   #E4F1EB;
+    --teal-mist:   #F2F8F5;
+    --teal-line:   #B7D6C7;
+    --amber:       #E87A2F;
+    --amber-ink:   #B85C18;
+    --amber-soft:  #FBE8D6;
+    --navy:        #1B3F8D;
+    --cloud:       #F2F0EB;
+    --cloud-2:     #E8E5DE;
+    --paper:       #FBFAF6;
+    --ink-1:       #1C1B19;
+    --ink-2:       #3B3936;
+    --ink-3:       #6F6B66;
+    --ink-4:       #9C9690;
+    --line:        rgba(28,27,25,.10);
+    --line-2:      rgba(28,27,25,.18);
+    --serif:       "Noto Serif KR",Georgia,"Times New Roman",serif;
+    --sans:        "Pretendard Variable","Pretendard",-apple-system,BlinkMacSystemFont,sans-serif;
+    --mono:        "JetBrains Mono",ui-monospace,"SF Mono",Menlo,monospace;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    font-family:var(--sans);background:var(--paper);color:var(--ink-1);
+    -webkit-font-smoothing:antialiased;font-feature-settings:"ss02","cv02";
+    line-height:1.6;letter-spacing:-.005em;
+  }
+  img{display:block;max-width:100%}
+
+  /* ===== shared layout ===== */
+  .wrap{max-width:1080px;margin:0 auto;padding:0 32px}
+  .ts{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.18em;
+    color:var(--teal);text-transform:uppercase;
+    display:inline-flex;align-items:center;gap:10px;
+  }
+  .ts::before{
+    content:"";width:6px;height:6px;border-radius:999px;background:var(--amber);
+    box-shadow:0 0 0 4px rgba(232,122,47,.18);
+  }
+  .eb{
+    font-family:var(--mono);font-size:10.5px;font-weight:600;letter-spacing:.22em;
+    color:var(--ink-3);text-transform:uppercase;
+  }
+  .h-serif{font-family:var(--serif);font-weight:700;letter-spacing:-.025em;line-height:1.2;color:var(--ink-1)}
+  .h-serif em{font-style:italic;font-weight:600;color:var(--teal)}
+
+  /* ============================================================
+     NAV
+     ============================================================ */
+  nav.top{
+    position:fixed;top:0;left:0;right:0;z-index:50;
+    background:rgba(251,250,246,.88);backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
+  }
+  nav.top .row{
+    max-width:1080px;margin:0 auto;padding:14px 32px;
+    display:flex;align-items:center;justify-content:space-between;gap:24px;
+  }
+  nav.top .brand{
+    display:flex;align-items:center;gap:10px;font-family:var(--serif);
+    font-weight:700;color:var(--ink-1);font-size:15px;letter-spacing:-.01em;
+  }
+  nav.top .brand img{width:24px;height:24px;object-fit:contain}
+  nav.top .brand span small{
+    display:block;font-family:var(--mono);font-size:9px;font-weight:500;
+    letter-spacing:.18em;color:var(--ink-3);text-transform:uppercase;margin-top:1px;
+  }
+  nav.top .next{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.16em;
+    color:var(--teal);text-transform:uppercase;
+    padding:10px 18px;border:1.5px solid var(--teal);border-radius:999px;
+    text-decoration:none;transition:background .2s,color .2s;
+    display:inline-flex;align-items:center;gap:8px;
+  }
+  nav.top .next:hover{background:var(--teal);color:#FFF}
+  nav.top .next .arr{transition:transform .2s}
+  nav.top .next:hover .arr{transform:translateX(3px)}
+
+  /* ============================================================
+     HERO — 화요일 밤 11:47
+     ============================================================ */
+  .hero{
+    min-height:100vh;padding:140px 0 100px;position:relative;overflow:hidden;
+    background:
+      radial-gradient(ellipse 800px 600px at 78% 32%, rgba(0,98,65,.06), transparent 70%),
+      var(--paper);
+  }
+  .hero .wrap{position:relative;z-index:2}
+  .hero .ts-row{display:flex;align-items:center;gap:18px;margin-bottom:36px}
+  .hero .ts-row .clock{
+    font-family:var(--mono);font-weight:700;font-size:14px;letter-spacing:.1em;color:var(--ink-1);
+    display:flex;align-items:baseline;gap:8px;
+  }
+  .hero .ts-row .clock big{font-size:18px;letter-spacing:.05em}
+  .hero .ts-row .pulse{
+    width:10px;height:10px;border-radius:999px;background:var(--amber);
+    box-shadow:0 0 0 0 rgba(232,122,47,.5);
+    animation:pulse 2s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(232,122,47,.55)}
+    100%{box-shadow:0 0 0 18px rgba(232,122,47,0)}
+  }
+
+  .hero h1{
+    font-family:var(--serif);font-weight:700;font-size:clamp(40px,5.6vw,72px);
+    line-height:1.18;letter-spacing:-.03em;color:var(--ink-1);
+    max-width:920px;margin-bottom:48px;
+  }
+  .hero h1 em{font-style:normal;color:var(--teal);position:relative}
+  .hero h1 em::after{
+    content:"";position:absolute;left:0;right:0;bottom:.04em;height:.1em;
+    background:var(--amber);opacity:.28;z-index:-1;
+  }
+
+  .hero .testify{
+    display:grid;grid-template-columns:64px 1fr;gap:24px;align-items:flex-start;
+    max-width:640px;padding:32px;
+    background:#FFF;border:1px solid var(--line);border-radius:6px;
+    box-shadow:0 1px 0 rgba(0,0,0,.02),0 24px 48px -32px rgba(28,27,25,.18);
+    position:relative;
+  }
+  .hero .testify::before{
+    content:"";position:absolute;left:-1px;top:32px;bottom:32px;width:3px;background:var(--teal);
+  }
+  .hero .testify .avatar{
+    width:64px;height:64px;border-radius:999px;background:var(--teal-soft);
+    display:grid;place-items:center;font-family:var(--serif);font-weight:700;
+    font-size:24px;color:var(--teal);
+  }
+  .hero .testify .body p{font-size:15px;line-height:1.65;color:var(--ink-2);margin-bottom:14px}
+  .hero .testify .body p em{font-style:italic;font-weight:600;color:var(--teal)}
+  .hero .testify .body p strong{font-weight:700;color:var(--ink-1)}
+  .hero .testify .meta{
+    font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.16em;
+    color:var(--ink-3);text-transform:uppercase;margin-top:6px;
+  }
+  .hero .testify .meta b{color:var(--ink-1);font-weight:600}
+
+  /* corner mark */
+  .hero .corner{
+    position:absolute;top:140px;right:32px;text-align:right;
+    font-family:var(--mono);font-size:10px;letter-spacing:.18em;color:var(--ink-3);
+    text-transform:uppercase;line-height:1.8;
+  }
+  .hero .corner big{display:block;font-size:13px;color:var(--ink-1);font-weight:600}
+
+  /* ============================================================
+     REFRAME — 당신은 이미 알고 있었습니다
+     ============================================================ */
+  .reframe{padding:120px 0;background:var(--cloud);position:relative;border-top:1px solid var(--line)}
+  .reframe .head{margin-bottom:64px;max-width:760px}
+  .reframe .head .eb{margin-bottom:16px;display:block}
+  .reframe .head h2{font-size:clamp(34px,4.4vw,52px)}
+  .reframe .head h2 em{font-style:italic;color:var(--teal)}
+
+  .reframe .items{display:flex;flex-direction:column;gap:14px}
+  .reframe .item{
+    background:#FFF;border:1px solid var(--line);border-radius:4px;overflow:hidden;
+    display:grid;grid-template-columns:1fr 1fr;
+  }
+  .reframe .item .quote{
+    padding:36px 40px;background:var(--paper);position:relative;
+    display:flex;flex-direction:column;justify-content:center;gap:14px;
+    border-right:1px solid var(--line);
+  }
+  .reframe .item .quote::before{
+    content:""""; position:absolute;top:14px;left:24px;
+    font-family:var(--serif);font-size:64px;line-height:1;color:var(--ink-4);opacity:.35;
+  }
+  .reframe .item .quote q{
+    font-family:var(--serif);font-weight:500;font-size:21px;line-height:1.55;
+    color:var(--ink-2);quotes:none;letter-spacing:-.015em;
+  }
+  .reframe .item .quote q::before,.reframe .item .quote q::after{content:""}
+  .reframe .item .quote .lbl{
+    font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.18em;
+    color:var(--ink-4);text-transform:uppercase;
+  }
+  .reframe .item .answer{
+    padding:36px 40px;background:#FFF;
+    display:flex;flex-direction:column;justify-content:center;gap:12px;position:relative;
+  }
+  .reframe .item .answer .tag{
+    align-self:flex-start;
+    font-family:var(--mono);font-size:10px;font-weight:700;letter-spacing:.2em;
+    color:var(--teal);text-transform:uppercase;
+    padding:5px 11px;background:var(--teal-soft);border-radius:999px;
+    display:inline-flex;align-items:center;gap:6px;
+  }
+  .reframe .item .answer .tag::before{
+    content:"";width:5px;height:5px;border-radius:999px;background:var(--teal);
+  }
+  .reframe .item .answer p{
+    font-size:16px;line-height:1.65;color:var(--ink-1);font-weight:500;
+  }
+  .reframe .item .answer p strong{font-weight:700;color:var(--teal-deep)}
+  .reframe .item .answer p em{font-style:normal;background:var(--amber-soft);padding:0 4px;color:var(--amber-ink);font-weight:600}
+
+  /* ============================================================
+     SCENES — 영화 씬 3개
+     ============================================================ */
+  .scenes{padding:120px 0 100px;background:var(--paper);position:relative}
+  .scenes .head{margin-bottom:72px;max-width:760px}
+  .scenes .head .eb{margin-bottom:16px;display:block}
+  .scenes .head h2{font-size:clamp(34px,4.4vw,52px)}
+  .scenes .head h2 em{font-style:italic;color:var(--teal)}
+
+  .scene{
+    display:grid;grid-template-columns:200px 1fr;gap:48px;align-items:flex-start;
+    padding:48px 0;border-top:1px solid var(--line);
+  }
+  .scene:last-child{border-bottom:1px solid var(--line)}
+  .scene .slate{
+    font-family:var(--mono);
+    display:flex;flex-direction:column;gap:8px;
+  }
+  .scene .slate .num{
+    font-family:var(--serif);font-weight:800;font-size:64px;line-height:1;
+    color:var(--teal);letter-spacing:-.04em;font-feature-settings:"lnum";
+  }
+  .scene .slate .id{font-size:10px;font-weight:600;letter-spacing:.22em;color:var(--ink-3);text-transform:uppercase}
+  .scene .slate .when{
+    font-size:11px;font-weight:700;letter-spacing:.12em;color:var(--ink-1);
+    padding:6px 10px;background:var(--cloud);border-radius:3px;
+    align-self:flex-start;margin-top:6px;
+  }
+  .scene .slate .name{
+    font-family:var(--serif);font-style:italic;font-weight:500;font-size:14px;
+    color:var(--ink-2);margin-top:14px;letter-spacing:-.01em;
+  }
+  .scene .body h3{
+    font-family:var(--serif);font-weight:700;font-size:30px;line-height:1.3;
+    color:var(--ink-1);letter-spacing:-.02em;margin-bottom:18px;
+  }
+  .scene .body h3 em{font-style:italic;color:var(--teal)}
+  .scene .body .lead{
+    font-size:17px;line-height:1.7;color:var(--ink-2);margin-bottom:20px;
+  }
+  .scene .body .punch{
+    font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.55;
+    color:var(--ink-1);padding:18px 22px;background:var(--teal-mist);
+    border-left:3px solid var(--teal);border-radius:0 4px 4px 0;
+    letter-spacing:-.015em;
+  }
+
+  /* ============================================================
+     TRIBES — 3 personas
+     ============================================================ */
+  .tribes{padding:120px 0;background:var(--cloud);border-top:1px solid var(--line)}
+  .tribes .head{margin-bottom:56px;max-width:780px}
+  .tribes .head .eb{margin-bottom:16px;display:block}
+  .tribes .head h2{font-size:clamp(34px,4.4vw,50px)}
+  .tribes .head h2 em{font-style:italic;color:var(--teal)}
+  .tribes .head .sub{font-size:16px;color:var(--ink-2);margin-top:20px;line-height:1.65;max-width:680px}
+
+  .tribes .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:56px}
+  .tribes .card{
+    background:#FFF;border:1px solid var(--line);border-radius:4px;
+    padding:32px 28px;position:relative;display:flex;flex-direction:column;gap:18px;
+    transition:transform .25s,box-shadow .25s,border-color .25s;
+  }
+  .tribes .card:hover{transform:translateY(-3px);border-color:var(--teal-line);box-shadow:0 14px 36px -20px rgba(0,98,65,.25)}
+  .tribes .card .n{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.18em;
+    color:var(--teal);text-transform:uppercase;
+  }
+  .tribes .card h4{
+    font-family:var(--serif);font-weight:600;font-size:21px;line-height:1.4;
+    color:var(--ink-1);letter-spacing:-.015em;
+  }
+  .tribes .card p{font-size:14px;line-height:1.65;color:var(--ink-2)}
+
+  .tribes .badge-row{
+    display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center;
+    padding:32px 36px;background:#FFF;border:1px solid var(--line);border-radius:4px;
+    position:relative;overflow:hidden;
+  }
+  .tribes .badge-row::before{
+    content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--teal);
+  }
+  .tribes .badge-row .num{
+    font-family:var(--serif);font-weight:800;font-size:64px;line-height:.95;
+    color:var(--teal);letter-spacing:-.04em;
+  }
+  .tribes .badge-row .num small{font-size:34px;font-weight:700;color:var(--amber);margin-left:4px}
+  .tribes .badge-row .copy h5{
+    font-family:var(--serif);font-weight:600;font-size:18px;line-height:1.5;
+    color:var(--ink-1);margin-bottom:6px;letter-spacing:-.01em;
+  }
+  .tribes .badge-row .copy p{
+    font-size:13px;line-height:1.65;color:var(--ink-3);
+    font-family:var(--mono);font-weight:500;letter-spacing:.02em;
+  }
+
+  /* ============================================================
+     NUMBERS — 측정 데이터
+     ============================================================ */
+  .numbers{padding:120px 0;background:var(--paper);border-top:1px solid var(--line)}
+  .numbers .head{margin-bottom:56px;max-width:760px}
+  .numbers .head .eb{margin-bottom:16px;display:block}
+  .numbers .head h2{font-size:clamp(34px,4.4vw,52px)}
+  .numbers .head h2 em{font-style:italic;color:var(--teal)}
+  .numbers .head .meta{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.12em;
+    color:var(--ink-3);text-transform:uppercase;margin-top:18px;
+  }
+  .numbers .stat-grid{
+    display:grid;grid-template-columns:repeat(4,1fr);
+    border:1px solid var(--line);border-radius:4px;background:#FFF;overflow:hidden;
+    margin-bottom:48px;
+  }
+  .numbers .stat{
+    padding:36px 28px;border-right:1px solid var(--line);
+    display:flex;flex-direction:column;gap:8px;position:relative;
+  }
+  .numbers .stat:last-child{border-right:none}
+  .numbers .stat .lbl{
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.18em;
+    color:var(--ink-3);text-transform:uppercase;
+  }
+  .numbers .stat .val{
+    font-family:var(--serif);font-weight:800;font-size:54px;line-height:1;
+    color:var(--ink-1);letter-spacing:-.035em;font-feature-settings:"lnum","tnum";
+  }
+  .numbers .stat .val .pct{font-size:34px;color:var(--teal);font-weight:700;margin-left:2px}
+  .numbers .stat .val .x{color:var(--amber);font-style:italic}
+  .numbers .stat .src{
+    font-family:var(--mono);font-size:10px;font-weight:500;letter-spacing:.04em;
+    color:var(--ink-4);margin-top:4px;
+  }
+  .numbers .stat .bar{
+    margin-top:14px;height:3px;background:var(--cloud-2);border-radius:999px;overflow:hidden;
+  }
+  .numbers .stat .bar i{display:block;height:100%;background:var(--teal);border-radius:999px}
+  .numbers .stat:nth-child(1) .bar i{width:99.1%}
+  .numbers .stat:nth-child(2) .bar i{width:97.4%}
+  .numbers .stat:nth-child(3) .bar i{width:94%}
+  .numbers .stat:nth-child(4) .bar i{width:100%;background:var(--amber)}
+
+  .numbers .clients{
+    padding:32px 36px;background:var(--teal-mist);border-radius:4px;
+    border:1px solid var(--teal-line);
+  }
+  .numbers .clients .lbl{
+    font-family:var(--mono);font-size:10px;font-weight:600;letter-spacing:.22em;
+    color:var(--teal);text-transform:uppercase;margin-bottom:14px;
+  }
+  .numbers .clients .list{
+    display:flex;flex-wrap:wrap;gap:8px 0;margin-bottom:18px;
+    font-family:var(--serif);font-weight:500;font-size:17px;color:var(--ink-1);
+    letter-spacing:-.01em;line-height:1.6;
+  }
+  .numbers .clients .list b{font-weight:700;color:var(--teal-deep)}
+  .numbers .clients .list span.sep{color:var(--ink-4);margin:0 12px;font-weight:400}
+  .numbers .clients .foot{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.04em;
+    color:var(--ink-3);line-height:1.65;padding-top:14px;border-top:1px solid var(--teal-line);
+  }
+
+  /* ============================================================
+     CTA
+     ============================================================ */
+  .cta{
+    padding:140px 0;background:var(--teal-deep);color:#FFF;position:relative;overflow:hidden;
+  }
+  .cta::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 600px 400px at 14% 22%, rgba(232,122,47,.18), transparent 60%),
+      radial-gradient(ellipse 500px 400px at 88% 80%, rgba(255,255,255,.05), transparent 60%);
+  }
+  .cta .wrap{position:relative;z-index:2}
+  .cta .eb{color:rgba(255,255,255,.55);margin-bottom:18px;display:block}
+  .cta h2{
+    font-family:var(--serif);font-weight:700;font-size:clamp(36px,4.6vw,56px);
+    line-height:1.2;letter-spacing:-.025em;color:#FFF;margin-bottom:24px;max-width:840px;
+  }
+  .cta h2 em{font-style:italic;color:var(--amber)}
+  .cta .lead{
+    font-size:17px;line-height:1.75;color:rgba(255,255,255,.78);
+    max-width:620px;margin-bottom:40px;
+  }
+  .cta .lead strong{color:#FFF;font-weight:600}
+
+  .cta .btn-row{display:flex;flex-wrap:wrap;gap:14px;margin-bottom:80px}
+  .cta .btn{
+    display:inline-flex;align-items:center;gap:10px;
+    padding:18px 26px;border-radius:4px;
+    font-family:var(--sans);font-weight:600;font-size:15px;letter-spacing:-.005em;
+    text-decoration:none;transition:transform .2s,box-shadow .2s,background .2s;
+  }
+  .cta .btn.primary{background:var(--amber);color:#FFF}
+  .cta .btn.primary:hover{background:#F08439;transform:translateY(-2px);box-shadow:0 10px 26px -10px rgba(232,122,47,.6)}
+  .cta .btn.ghost{
+    background:transparent;color:#FFF;border:1.5px solid rgba(255,255,255,.3);
+  }
+  .cta .btn.ghost:hover{border-color:#FFF;background:rgba(255,255,255,.06)}
+  .cta .btn .arr{transition:transform .2s}
+  .cta .btn:hover .arr{transform:translateX(3px)}
+
+  .cta .question{
+    padding-top:48px;border-top:1px solid rgba(255,255,255,.14);
+    display:grid;grid-template-columns:auto 1fr;gap:36px;align-items:flex-start;
+  }
+  .cta .question .stamp{
+    font-family:var(--mono);font-size:11px;font-weight:600;letter-spacing:.2em;
+    color:var(--amber);text-transform:uppercase;line-height:1.6;
+    border-left:2px solid var(--amber);padding-left:16px;
+  }
+  .cta .question .stamp big{
+    display:block;font-family:var(--serif);font-weight:700;font-size:28px;color:#FFF;
+    letter-spacing:-.02em;margin-top:6px;text-transform:none;font-style:italic;
+  }
+  .cta .question .body p{
+    font-family:var(--serif);font-weight:500;font-size:22px;line-height:1.6;
+    color:#FFF;letter-spacing:-.015em;margin-bottom:14px;
+  }
+  .cta .question .body small{
+    font-family:var(--mono);font-size:11px;font-weight:500;letter-spacing:.08em;
+    color:rgba(255,255,255,.55);text-transform:uppercase;
+  }
+
+  /* ============================================================
+     FOOTER
+     ============================================================ */
+  footer{padding:56px 0 48px;background:var(--ink-1);color:rgba(255,255,255,.6)}
+  footer .row{
+    max-width:1080px;margin:0 auto;padding:0 32px;
+    display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:flex-end;
+  }
+  footer .brand{display:flex;align-items:center;gap:12px}
+  footer .brand img{width:30px;height:30px;object-fit:contain;filter:brightness(0) invert(1)}
+  footer .brand .t{
+    font-family:var(--serif);font-weight:700;font-size:16px;color:#FFF;letter-spacing:-.01em;
+  }
+  footer .brand .t small{
+    display:block;font-family:var(--mono);font-size:9.5px;font-weight:500;
+    letter-spacing:.18em;color:rgba(255,255,255,.45);text-transform:uppercase;margin-top:2px;
+  }
+  footer .links{
+    display:flex;gap:24px;font-family:var(--mono);font-size:11px;font-weight:500;
+    letter-spacing:.1em;text-transform:uppercase;flex-wrap:wrap;
+  }
+  footer .links a{color:rgba(255,255,255,.7);text-decoration:none;transition:color .2s}
+  footer .links a:hover{color:var(--amber)}
+  footer .meta{
+    font-family:var(--mono);font-size:10px;letter-spacing:.06em;color:rgba(255,255,255,.4);
+    text-align:right;line-height:1.6;
+  }
+  footer .legal{
+    max-width:1080px;margin:32px auto 0;padding:24px 32px 0;border-top:1px solid rgba(255,255,255,.1);
+    font-family:var(--mono);font-size:10.5px;letter-spacing:.04em;color:rgba(255,255,255,.4);
+    line-height:1.7;
+  }
+
+  /* ============================================================
+     RESPONSIVE
+     ============================================================ */
+  @media (max-width:880px){
+    .reframe .item{grid-template-columns:1fr}
+    .reframe .item .quote{border-right:none;border-bottom:1px solid var(--line)}
+    .scene{grid-template-columns:1fr;gap:24px}
+    .scene .slate{flex-direction:row;align-items:center;gap:18px}
+    .scene .slate .num{font-size:48px}
+    .tribes .grid{grid-template-columns:1fr}
+    .numbers .stat-grid{grid-template-columns:repeat(2,1fr)}
+    .numbers .stat:nth-child(2){border-right:none}
+    .numbers .stat:nth-child(1),.numbers .stat:nth-child(2){border-bottom:1px solid var(--line)}
+    .cta .question{grid-template-columns:1fr;gap:24px}
+    footer .row{grid-template-columns:1fr;gap:20px}
+    footer .meta{text-align:left}
+    .hero .corner{display:none}
+  }
+</style>
+</head>
+
+<body>
+
+<!-- ============================================================
+     NAV
+     ============================================================ -->
+<nav class="top">
+  <div class="row">
+    <a href="#" class="brand">
+      <img src="aps-symbol.png" alt="">
+      <span>APS<small>Tribes Edition · v2</small></span>
+    </a>
+    <a href="#next" class="next">다음 단계로 <span class="arr">→</span></a>
+  </div>
+</nav>
+
+<!-- ============================================================
+     HERO — 화요일 밤 11:47
+     ============================================================ -->
+<section class="hero">
+  <div class="wrap">
+    <div class="ts-row">
+      <span class="pulse" aria-hidden="true"></span>
+      <span class="clock">23<big>:</big>47 <span style="color:var(--ink-3);font-weight:500;margin-left:6px">TUE · APR</span></span>
+      <span class="ts" style="margin-left:6px">화요일 밤, 11시 47분</span>
+    </div>
+
+    <h1>
+      화요일 밤 11시,<br>
+      <em>작년 자료를</em> 다시 열고 있었다.
+    </h1>
+
+    <article class="testify">
+      <div class="avatar">곽</div>
+      <div class="body">
+        <p><strong>어느 사업장 보건관리자의 4월</strong></p>
+        <p>매년 같은 근로자 건강증진활동 계획. 효과 없다는 걸 본인이 가장 잘 안다.</p>
+        <p>그런데 이번엔 <em>직원이 먼저 물어봤어요.</em><br>
+        "저 빨개졌어요. 이게 무슨 뜻이에요?"</p>
+        <p>교육이 끝나도 대화가 이어진 건 <em>3년 만에 처음입니다.</em></p>
+        <div class="meta"><b>곽○○</b> 보건관리자 · 국내 대형 제약사 사업장 · 2026년 4월</div>
+      </div>
+    </article>
+  </div>
+
+  <div class="corner">
+    <big>SCENE 00</big>
+    The night before<br>
+    she changed the plan
+  </div>
+</section>
+
+<!-- ============================================================
+     REFRAME
+     ============================================================ -->
+<section class="reframe">
+  <div class="wrap">
+    <header class="head">
+      <span class="eb">What You Already Knew</span>
+      <h2 class="h-serif">당신은 이미 알고 있었습니다.<br>누군가 가르쳐서가 아니라 — <em>오랫동안 봐왔기 때문에.</em></h2>
+    </header>
+
+    <div class="items">
+      <div class="item">
+        <div class="quote">
+          <q>한 잔만 마셔도 얼굴이 빨개지는 사람.<br>우리는 그게 약한 거라고 했다.</q>
+          <span class="lbl">— 평생 들어온 농담</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Reframe</span>
+          <p>그건 약한 게 아니었습니다. <strong>1군 발암물질이 몸에 쌓이고 있다는 신호</strong>였습니다. 평생 들어온 농담이, 사실은 <em>경고</em>였습니다.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="quote">
+          <q>교육이 끝나면<br>아무도 더 묻지 않았다.</q>
+          <span class="lbl">— 3년째 같은 결과</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Reframe</span>
+          <p>머리로 들은 정보는 행동을 바꾸지 않습니다. <strong>몸이 직접 반응한 사람만이 다음 날 다시 묻습니다.</strong></p>
+        </div>
+      </div>
+
+      <div class="item">
+        <div class="quote">
+          <q>건강증진 기안은 늘<br>안전보건위원회에서 후순위였다.</q>
+          <span class="lbl">— 매년 같은 후순위</span>
+        </div>
+        <div class="answer">
+          <span class="tag">Reframe</span>
+          <p>"교육 진행했습니다"로는 다음 분기 예산이 안 살아납니다. <strong>AUDIT-K 결과·체질 분포·행동 변화율 — 데이터로 답해야</strong> 산안법 제5조가 비로소 도구가 됩니다.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     SCENES
+     ============================================================ -->
+<section class="scenes">
+  <div class="wrap">
+    <header class="head">
+      <span class="eb">Scenes After Your Choice</span>
+      <h2 class="h-serif">당신이 다음 단계를 밟았을 때,<br><em>이런 장면이 시작됩니다.</em></h2>
+    </header>
+
+    <article class="scene">
+      <div class="slate">
+        <span class="num">01</span>
+        <span class="id">SC. 01 EXT</span>
+        <span class="when">MAY · 19:42</span>
+        <span class="name">A Day in May</span>
+      </div>
+      <div class="body">
+        <h3>금요일 회식 자리. 한 직원이 처음으로<br><em>"저는 알쓰입니다"</em>라고 입을 엽니다.</h3>
+        <p class="lead">그 한마디가 옆 테이블의 부장에게 넘어가고, 다음 주 월요일 보건실에 사람이 옵니다.</p>
+        <div class="punch">묻기 시작한 사람은 한 번이라도 자기 몸을 본 사람입니다.</div>
+      </div>
+    </article>
+
+    <article class="scene">
+      <div class="slate">
+        <span class="num">02</span>
+        <span class="id">SC. 02 INT</span>
+        <span class="when">Q3 · 14:30</span>
+        <span class="name">Quarterly Review</span>
+      </div>
+      <div class="body">
+        <h3>분기 안전보건위원회. 당신은 처음으로<br><em>데이터로 말합니다.</em></h3>
+        <p class="lead">"저희 사업장 27%가 AG형 음주위험체질입니다. AUDIT-K 결과와 일치합니다." 안보위원장이 다시 묻습니다. "그 수치, 어디서 났어요?"</p>
+        <div class="punch">건강증진 기안이 처음으로 후순위에서 빠진 분기가 됩니다.</div>
+      </div>
+    </article>
+
+    <article class="scene">
+      <div class="slate">
+        <span class="num">03</span>
+        <span class="id">SC. 03 EXT</span>
+        <span class="when">APR · 09:00</span>
+        <span class="name">Next April · 금주의 달</span>
+      </div>
+      <div class="body">
+        <h3>내년 금주의 달(4월). 작년 자료를<br><em>복사하지 않아도 됩니다.</em></h3>
+        <p class="lead">올해는 진짜 변화가 있었기 때문입니다. 화요일 밤 11시에, 처음으로 일찍 퇴근합니다.</p>
+        <div class="punch">근로자 건강증진활동 보고서는 30분이면 끝납니다.</div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- ============================================================
+     TRIBES
+     ============================================================ -->
+<section class="tribes">
+  <div class="wrap">
+    <header class="head">
+      <span class="eb">Find Your Tribe</span>
+      <h2 class="h-serif">당신만 그렇게 느낀 게 아니었습니다.<br><em>이미 같은 생각을 하던 사람들이 있습니다.</em></h2>
+      <p class="sub">매년 같은 보고서를 베끼면서, "이건 아닌데" 싶었던 사람들. 각자 자기 자리에서 조용히 다른 길을 찾고 있었습니다.</p>
+    </header>
+
+    <div class="grid">
+      <div class="card">
+        <span class="n">— 01</span>
+        <h4>매년 같은 근로자 건강증진활동 계획을 복사하는 게 지긋지긋한 보건관리자</h4>
+        <p>"효과 없다"는 걸 누구보다 본인이 잘 압니다. 다른 방식이 있다는 걸 이미 알고 있습니다.</p>
+      </div>
+      <div class="card">
+        <span class="n">— 02</span>
+        <h4>안전보건위원회에서 늘 작아지던 건강증진 담당자</h4>
+        <p>"교육 진행했습니다"로는 부족하다는 걸 압니다. 데이터로 답할 도구가 없었을 뿐입니다.</p>
+      </div>
+      <div class="card">
+        <span class="n">— 03</span>
+        <h4>산안법 제5조 그 이상을 해보고 싶었던 보건관리자</h4>
+        <p>서류만 채우는 것이 아니라, 사업장 27%의 음주위험체질을 진짜로 관리하고 싶었습니다.</p>
+      </div>
+    </div>
+
+    <div class="badge-row">
+      <div class="num">500<small>+</small></div>
+      <div class="copy">
+        <h5>기관이 이미 같은 결정을 내렸습니다.</h5>
+        <p>전국 보건소·기업·공공기관·병원·지자체 · As of 2026 — 누적 도입 기관 / 112만+ 패치 납품</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     NUMBERS
+     ============================================================ -->
+<section class="numbers">
+  <div class="wrap">
+    <header class="head">
+      <span class="eb">Numbers, Not Promises</span>
+      <h2 class="h-serif">"교육이 재밌었다"는 칭찬이 아닙니다.<br><em>"내가 바뀔 것 같다"</em>가 칭찬입니다.</h2>
+      <div class="meta">2026년 4월 · N = 116 직원 대상 캠페인 실측</div>
+    </header>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <span class="lbl">전반적 만족도</span>
+        <div class="val">99.1<span class="pct">%</span></div>
+        <div class="bar"><i></i></div>
+        <span class="src">N = 116 · 2026.04</span>
+      </div>
+      <div class="stat">
+        <span class="lbl">인식 변화율</span>
+        <div class="val">97.4<span class="pct">%</span></div>
+        <div class="bar"><i></i></div>
+        <span class="src">N = 116 · 2026.04</span>
+      </div>
+      <div class="stat">
+        <span class="lbl">행동 변화 의향</span>
+        <div class="val">94<span class="pct">%</span></div>
+        <div class="bar"><i></i></div>
+        <span class="src">N = 116 · 2026.04</span>
+      </div>
+      <div class="stat">
+        <span class="lbl">흡연 시 독성 증폭</span>
+        <div class="val"><span class="x">14×</span></div>
+        <div class="bar"><i></i></div>
+        <span class="src">Mizuno 2017 · ALDH2 deficient</span>
+      </div>
+    </div>
+
+    <div class="clients">
+      <div class="lbl">이미 결정한 사업장 · 기관</div>
+      <div class="list">
+        <span><b>한화큐셀</b> (2개 사업장)</span><span class="sep">·</span>
+        <span><b>GC녹십자</b> (건강관리실)</span><span class="sep">·</span>
+        <span><b>서울교통공사</b></span><span class="sep">·</span>
+        <span><b>국민건강보험공단</b></span><span class="sep">·</span>
+        <span><b>강동경희대병원</b></span><span class="sep">·</span>
+        <span><b>CJ대한통운</b></span>
+      </div>
+      <div class="foot">
+        AUDIT-K 연계 · 근로자 건강증진활동 지침(고시 2022-33호) 기반 · 사업장 보건관리 업무매뉴얼 p.299 정합
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     CTA
+     ============================================================ -->
+<section class="cta" id="next">
+  <div class="wrap">
+    <span class="eb">The Next Step</span>
+    <h2>이미 다른 길을 찾고 있던 보건관리자를 위한,<br><em>다음 단계가 있습니다.</em></h2>
+    <p class="lead">우리는 당신을 설득하지 않습니다. <strong>당신이 이미 알고 있던 것을, 이제 함께 데이터로 증명할 뿐입니다.</strong></p>
+
+    <div class="btn-row">
+      <a href="https://aps7.net" class="btn primary">기업·사업장 도입 <span class="arr">→</span></a>
+      <a href="https://wcolive.com" class="btn ghost">공공기관·조달 문의 <span class="arr">→</span></a>
+    </div>
+
+    <div class="question">
+      <div class="stamp">
+        — A question for tonight ·<br>
+        23:47 —
+        <big>오늘 밤,</big>
+      </div>
+      <div class="body">
+        <p>내년 금주의 달, 당신은 또 <em style="font-style:italic;color:var(--amber)">같은 자료를 복사하고 있을 건가요?</em></p>
+        <small>답하지 않아도 됩니다. 다만, 기억해두십시오.</small>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
+<footer>
+  <div class="row">
+    <div class="brand">
+      <img src="aps-symbol.png" alt="">
+      <div class="t">APS <small>보건관리자의 다음 단계</small></div>
+    </div>
+    <div class="links">
+      <a href="https://aps7.net">aps7.net</a>
+      <a href="https://wcolive.com">wcolive.com</a>
+      <a href="mailto:contact@aps7.net">contact@aps7.net</a>
+    </div>
+    <div class="meta">
+      Tribes Edition · v2<br>
+      © 2026 APS알쓰패치솔루션
+    </div>
+  </div>
+  <div class="legal">
+    이 자료는 교육 목적이며 의료 진단·처방이 아닙니다. 수치는 학술 연구 결과이며 개인 상태와 다를 수 있습니다. · APS[앱스]알쓰패치솔루션 · 무단 복제·배포 금지
+  </div>
+</footer>
+
+</body>
+</html>
